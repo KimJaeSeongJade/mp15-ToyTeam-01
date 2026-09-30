@@ -1,3 +1,12 @@
+---
+name: Feature request
+about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 ## 작업 내용
 <!-- 무엇을 만드는지 한두 줄 -->
 <!-- 예시: 포탑을 계속 쏘면 과열돼서 잠깐 못 쏘게 만든다 (무한 난사 방지) -->

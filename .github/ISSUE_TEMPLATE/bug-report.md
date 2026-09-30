@@ -1,3 +1,11 @@
+---
+name: Bug report
+about: Bug report
+title: ''
+labels: ''
+assignees: ''
+
+---
 ## 버그 내용
 <!-- 무슨 일이 일어나는지 한두 줄 -->
 - 
