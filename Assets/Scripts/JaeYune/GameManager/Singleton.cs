@@ -22,7 +22,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
     
-    protected void SetSingleton(T value)
+    protected void SetSingleton()
     {
         if (_instance != null && _instance != this)
         {
