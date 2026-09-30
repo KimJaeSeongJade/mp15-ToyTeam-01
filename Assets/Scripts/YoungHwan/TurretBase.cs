@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public abstract class TurretBase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("포탑 설정")]
+    [SerializeField] protected TurretType _type;
+    [SerializeField] protected Transform _firePoint;
+    
+    public TurretType Type => _type;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    protected abstract void Fire();
 }
