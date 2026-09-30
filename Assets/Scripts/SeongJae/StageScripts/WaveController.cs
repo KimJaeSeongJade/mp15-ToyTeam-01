@@ -32,21 +32,9 @@ public class WaveController : MonoBehaviour
         StopSpawnMonster();
     }
 
-    private void SpawnMonster(int numbers)
-    {
-        for(int i = 0; i < numbers; i++)
-        {
-            _monsterPool.Take();
-        }
-    }
-
     private void SpawnMonsterLine()
     {
         //TODO: 오브젝트 풀, 몬스터 연동, 소환 구현 필요
-        for(int i = 0; i < _spawnPoints.Length; i++)
-        {
-            _monsterPool.Take();
-        }
 
         Debug.Log($"몬스터 {_monsterSpawnCount}번째 사이클 소환");
         _monsterSpawnCount++;
