@@ -6,35 +6,41 @@ using UnityEngine.UI;
 public class TestInGameUIController : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseUI;
-    
     [SerializeField] private Button _continueButton;
-    [SerializeField] private Button _exitButton;
 
     private KeyCode _pauseKey = KeyCode.Q;
     private bool _isPausePressed => Input.GetKeyDown(_pauseKey);
 
-    private void OnEnable() => BindButtons();
-    private void OnDisable() => UnbindButtons();
+    private void Awake()
+    {
+        _pauseUI.SetActive(false);
+    }
+    
+    private void OnEnable()
+    {
+        BindButtons();
+    }
+    private void OnDisable()
+    {
+        UnbindButtons();
+    }
 
     private void BindButtons()
     {
-        _continueButton.onClick.AddListener(PauseKey);  
-        _exitButton.onClick.AddListener(PauseKey);
+        _continueButton.onClick.AddListener(PressToContinue);  
     }
 
-    private void BindGameFlow()
+    private void UnbindButtons()
     {
+        if (GameManager.Instance == null)
+            return;
+        
+        _continueButton.onClick.RemoveListener(PressToContinue);
     }
     
-    private void UnbindButtons()
-    {}
-    
-    private void UnbindGameFlow()
-    {}
-    
-    private void Update()
+    private void LateUpdate()
     {
-        
+        PauseKey();
     }
 
     private void PauseKey()
@@ -42,7 +48,23 @@ public class TestInGameUIController : MonoBehaviour
         if (!_isPausePressed)
             return;
 
+        OnGamePause();
         GameManager.Instance.PauseGame();
     }
+    
+    private void PressToContinue()
+    {
+        OnGameResume();
+        GameManager.Instance.ResumeGame();
+    }
 
+    private void OnGamePause()
+    {
+        _pauseUI.SetActive(true);
+    }
+
+    private void OnGameResume()
+    {
+        _pauseUI.SetActive(false);
+    }
 }
