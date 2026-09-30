@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveController : MonoBehaviour
 {
-    //TODO: 몬스터 오브젝트 풀 연동
+    //TODO: 몬스터 오브젝트 풀과 연동
     [SerializeField] private ObjectPool _monsterPool;
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private int _maxMonster;
@@ -17,7 +17,7 @@ public class WaveController : MonoBehaviour
     private void Start() => Init();
 
     /// <summary>
-    /// 웨이브 시작 시 실행할 로직
+    /// 웨이브 활성화 시 실행할 로직
     /// </summary>
     private void OnEnable()
     {
@@ -25,7 +25,7 @@ public class WaveController : MonoBehaviour
     }
 
     /// <summary>
-    /// 웨이브 종료 시 실행할 로직
+    /// 웨이브 비활성화 시 실행할 로직
     /// </summary>
     private void OnDisable()
     {
