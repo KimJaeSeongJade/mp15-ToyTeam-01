@@ -23,7 +23,7 @@ public class ObjectPool : MonoBehaviour
 
         for(int i = 0; i < _objectPool.Length; i++)
         {
-            GameObject temp = Instantiate(_prefab);
+            GameObject temp = Instantiate(_prefab, transform);
             temp.SetActive(false);
             _objectPool[i] = temp.GetComponent<IPoolable>();
             _objectPool[i].GameObject = temp;
