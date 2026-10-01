@@ -52,7 +52,7 @@ public class TurretController : MonoBehaviour
         _cameraPivot.localRotation = Quaternion.Euler(_pitch, 0, 0);
         _camera.gameObject.transform.position = _cameraPivot.position;
         _camera.gameObject.transform.rotation = _cameraPivot.rotation;
-        _turrets[_turretIndex].transform.position = _cameraPivot.position;
+        _turrets[_turretIndex].transform.rotation = _cameraPivot.rotation;
     }
 
     private void ChangeTurret(int index)
