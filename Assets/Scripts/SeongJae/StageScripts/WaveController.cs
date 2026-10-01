@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,18 +11,17 @@ public class WaveController : MonoBehaviour
     [SerializeField] private float _spawnCoolDown = 2.0f;
 
     public int MaxMonsterCount;
-
     private WaitForSeconds _waitSpawnCoolDown;
     private Coroutine _monsterSpawnRoutine;
     private int _monsterSpawnCount;
 
-    private bool _isDefeated;
     private void Start() => Init();
 
     public void OnEnter()
     {
         StartSpawnMonster();
         //넥서스 체력 변동 시 호출하도록 구독 한 번?
+        Debug.Log($"{name} : 웨이브 시작");
     }
 
     public void OnRunning()
@@ -32,6 +32,7 @@ public class WaveController : MonoBehaviour
     public void OnExit()
     {
         StopSpawnMonster();
+        Debug.Log($"{name} : 웨이브 종료");
     }
 
     private void CheckGameOver()
@@ -43,7 +44,7 @@ public class WaveController : MonoBehaviour
     {
         //TODO: 오브젝트 풀, 몬스터 연동, 소환 구현 필요
         //TODO: 소환하는 알고리즘 푸아송 디스크? 사용하면 되나요
-        Debug.Log($"몬스터 {_monsterSpawnCount}번째 사이클 소환");
+        Debug.Log($"{name} : 몬스터 {_monsterSpawnCount}번째 사이클 소환");
         _monsterSpawnCount++;
     }
 

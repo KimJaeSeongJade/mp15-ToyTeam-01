@@ -38,25 +38,25 @@ public class StageData : MonoBehaviour
         }
     }
 
-    private int _currentScore;
-    public int CurrentScore
+    private int _score;
+    public int Score
     {
-        get => _currentScore;
+        get => _score;
         set
         {
-            _currentScore = value;
-            OnScoreChanged?.Invoke(_currentScore);
+            _score = value;
+            OnScoreChanged?.Invoke(_score);
         }
     }
 
-    [SerializeField] private float _currentTime;
-    public float CurrentTime
+    [SerializeField] private float _time;
+    public float Time
     {
-        get => _currentTime;
+        get => _time;
         set
         {
-            _currentTime = value;
-            OnTimeChanged?.Invoke(_currentTime);
+            _time = value;
+            OnTimeChanged?.Invoke(_time);
         }
     }
 
