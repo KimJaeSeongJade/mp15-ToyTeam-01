@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,15 +11,29 @@ public class SelectStage : MonoBehaviour
     [SerializeField] private Button _hellStageButton;
     [SerializeField] private Button _backToMainMenuButton;
     
-    private TestTitleController _testTitleController;
+    [SerializeField] private TestTitleController _testTitleController;
     
     [SerializeField] private string _inGameSceneName;
-    
+
+    private void OnEnable() => BindButtonEvents();
+
+    private void OnDisable() => UnbindButtonEvents();
+
     private void BindButtonEvents()
-    {}
-    
+    {
+        _easyStageButton.onClick.AddListener(SelectEasyStageButton);
+        _hardStageButton.onClick.AddListener(SelectHardStageButton);
+        _hellStageButton.onClick.AddListener(SelectHellStageButton);
+        _backToMainMenuButton.onClick.AddListener(SelectBackToMainMenuButton);
+    }
+
     private void UnbindButtonEvents()
-    {}
+    {
+        _easyStageButton.onClick.RemoveListener(SelectEasyStageButton);
+        _hardStageButton.onClick.RemoveListener(SelectHardStageButton);
+        _hellStageButton.onClick.RemoveListener(SelectHellStageButton);
+        _backToMainMenuButton.onClick.RemoveListener(SelectBackToMainMenuButton);
+    }
 
     public void SelectEasyStageButton()
     {
@@ -37,7 +52,6 @@ public class SelectStage : MonoBehaviour
 
     public void SelectBackToMainMenuButton()
     {
-        _testTitleController._titleUi.gameObject.SetActive(true);
-        gameObject.SetActive(false);
+        _testTitleController.ViewMainMenu();
     }
 }

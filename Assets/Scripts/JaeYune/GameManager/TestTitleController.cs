@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TestTitleController : MonoBehaviour
 {
-    [field: SerializeField] public GameObject _titleUi;
-    [field: SerializeField] public GameObject _selectStageUi;
+    [SerializeField] private GameObject _titleUi;
+    [SerializeField] private GameObject _selectStageUi;
 
-    private void Awake() => Init();
+    private void Awake() => ViewMainMenu();
+    
+    public void ViewSelectStage()
+    {
+        _titleUi.SetActive(false);
+        _selectStageUi.SetActive(true);
+    }
 
-    private void Init()
+    public void ViewMainMenu()
     {
         _titleUi.SetActive(true);
         _selectStageUi.SetActive(false);
