@@ -27,14 +27,14 @@ public class StageData : MonoBehaviour
         }
     }
 
-    private int _currentMonster;
-    public int CurrentMonster
+    private int _monsterCount;
+    public int MonsterCount
     {
-        get => _currentMonster;
+        get => _monsterCount;
         set
         {
-            _currentMonster = value;
-            OnMonsterCountChanged?.Invoke(_currentMonster);
+            _monsterCount = value;
+            OnMonsterCountChanged?.Invoke(_monsterCount);
         }
     }
 
@@ -49,8 +49,20 @@ public class StageData : MonoBehaviour
         }
     }
 
+    [SerializeField] private float _currentTime;
+    public float CurrentTime
+    {
+        get => _currentTime;
+        set
+        {
+            _currentTime = value;
+            OnTimeChanged?.Invoke(_currentTime);
+        }
+    }
+
     public event Action<int> OnCurrentWaveChanged;
     public event Action<int> OnMaxWaveChanged;
     public event Action<int> OnMonsterCountChanged;
     public event Action<int> OnScoreChanged;
+    public event Action<float> OnTimeChanged;
 }

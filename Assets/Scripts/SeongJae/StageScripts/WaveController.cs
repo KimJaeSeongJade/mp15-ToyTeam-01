@@ -7,8 +7,9 @@ public class WaveController : MonoBehaviour
     //TODO: 몬스터 오브젝트 풀과 연동
     [SerializeField] private ObjectPool _monsterPool;
     [SerializeField] private Transform[] _spawnPoints;
-    [SerializeField] private int _maxMonster;
     [SerializeField] private float _spawnCoolDown = 2.0f;
+
+    public int MaxMonsterCount;
 
     private WaitForSeconds _waitSpawnCoolDown;
     private Coroutine _monsterSpawnRoutine;
@@ -20,11 +21,12 @@ public class WaveController : MonoBehaviour
     public void OnEnter()
     {
         StartSpawnMonster();
+        //넥서스 체력 변동 시 호출하도록 구독 한 번?
     }
 
     public void OnRunning()
     {
-        CheckGameOver();
+
     }
 
     public void OnExit()
@@ -34,7 +36,7 @@ public class WaveController : MonoBehaviour
 
     private void CheckGameOver()
     {
-        //여기에 벽 체력 구독 해서, 
+
     }
 
     private void SpawnMonsterLine()
