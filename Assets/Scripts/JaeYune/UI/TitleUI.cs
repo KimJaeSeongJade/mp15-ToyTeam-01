@@ -10,7 +10,7 @@ public class TitleUI : MonoBehaviour
     [SerializeField] private Button _exitButton;
     //[SerializeField] private Button _creditsButton;
     
-    [SerializeField] private TestTitleController _testTitleController;
+    [SerializeField] private TitleController titleController;
     
     private void OnEnable() => BindButtonEvents();
     private void OnDisable() => UnBindButtonEvents();
@@ -31,7 +31,7 @@ public class TitleUI : MonoBehaviour
     
     private void StartGame()
     {
-        _testTitleController.ViewSelectStage();
+        titleController.ViewSelectStage();
     }
 
     private void ExitGame()

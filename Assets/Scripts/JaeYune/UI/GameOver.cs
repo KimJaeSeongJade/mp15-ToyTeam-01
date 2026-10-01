@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GameOver : MonoBehaviour
+{
+    [SerializeField] private Button _restartButton;
+    [SerializeField] private Button _returnMainButton;
+
+    private string _restartSceneName = "TestScene";
+    private string _returnSceneName = "GameManagerTest";
+    
+    private void OnEnable()
+    {
+        BindButtons();
+        BindGameFlow();
+    }
+    private void OnDisable()
+    {
+        UnbindButtons();
+        UnbindGameFlow();
+    }
+
+    private void BindButtons()
+    {
+        _restartButton.onClick.AddListener(RestartGame);
+        _returnMainButton.onClick.AddListener(ReturnMainMenu);
+    }
+
+    private void BindGameFlow()
+    {
+        GameManager.Instance.OnGameStart += RestartGame;
+        GameManager.Instance.OnGameResume += ReturnMainMenu;
+    }
+    
+    private void UnbindButtons()
+    {
+        _restartButton.onClick.RemoveListener(RestartGame);
+        _returnMainButton.onClick.RemoveListener(ReturnMainMenu);
+    }
+
+    private void UnbindGameFlow()
+    {
+        GameManager.Instance.OnGameStart -= RestartGame;
+        GameManager.Instance.OnGameResume -= ReturnMainMenu;
+    }
+
+    private void RestartGame()
+    {
+        GameManager.Instance.LoadScene(_restartSceneName);
+    }
+
+    private void ReturnMainMenu()
+    {
+        GameManager.Instance.LoadScene(_returnSceneName);
+    }
+}

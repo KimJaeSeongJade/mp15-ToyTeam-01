@@ -42,7 +42,7 @@ public class GameManager : Singleton<GameManager>
     public void ClearGame()
     {
         OnGameClear?.Invoke();
-        Time.timeScale = 1;
+        Time.timeScale = 0;
         IsGameRunning = false;
         IsGameClear = true;
     }
@@ -50,7 +50,7 @@ public class GameManager : Singleton<GameManager>
     public void GameOver()
     {
         OnGameOver?.Invoke();
-        Time.timeScale = 1;
+        Time.timeScale = 0;
         IsGameRunning = false;
     }
 

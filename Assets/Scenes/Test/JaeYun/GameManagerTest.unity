@@ -358,6 +358,10 @@ PrefabInstance:
       value: Pref_01.TitleUI
       objectReference: {fileID: 0}
     - target: {fileID: 5175273925681450417, guid: 224dcdc6b69d9a942a7e6b872720a0be, type: 3}
+      propertyPath: titleController
+      value: 
+      objectReference: {fileID: 1982030717}
+    - target: {fileID: 5175273925681450417, guid: 224dcdc6b69d9a942a7e6b872720a0be, type: 3}
       propertyPath: _testTitleController
       value: 
       objectReference: {fileID: 1982030717}
@@ -669,6 +673,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5328163136025482483, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
+      propertyPath: titleController
+      value: 
+      objectReference: {fileID: 1982030717}
     - target: {fileID: 5328163136025482483, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
       propertyPath: _testTitleController
       value: 
