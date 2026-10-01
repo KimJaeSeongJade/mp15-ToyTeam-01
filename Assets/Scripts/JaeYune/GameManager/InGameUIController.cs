@@ -9,8 +9,7 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] private GameObject _gameOverUi;
 
     private void Awake() => StartGame();
-
-
+    
     public void StartGame()
     {
         GameManager.Instance.StartGame();
@@ -22,6 +21,14 @@ public class InGameUIController : MonoBehaviour
     public void GameClear()
     {
         GameManager.Instance.ClearGame();
+        _applyUis.SetActive(false);
+        _clearUi.SetActive(true);
+        _gameOverUi.SetActive(false);
+    }
+
+    public void GameOver()
+    {
+        GameManager.Instance.GameOver();
         _applyUis.SetActive(false);
         _clearUi.SetActive(true);
         _gameOverUi.SetActive(false);
