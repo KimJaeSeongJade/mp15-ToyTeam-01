@@ -12,7 +12,18 @@ public class StageData : MonoBehaviour
         set
         {
             _currentWave = value;
-            OnWaveChanged?.Invoke(_currentWave);
+            OnCurrentWaveChanged?.Invoke(_currentWave);
+        }
+    }
+
+    private int _maxWave;
+    public int MaxWave
+    {
+        get => _maxWave;
+        set
+        {
+            _maxWave = value;
+            OnMaxWaveChanged?.Invoke(_maxWave);
         }
     }
 
@@ -27,6 +38,19 @@ public class StageData : MonoBehaviour
         }
     }
 
-    public event Action<int> OnWaveChanged;
+    private int _currentScore;
+    public int CurrentScore
+    {
+        get => _currentScore;
+        set
+        {
+            _currentScore = value;
+            OnScoreChanged?.Invoke(_currentScore);
+        }
+    }
+
+    public event Action<int> OnCurrentWaveChanged;
+    public event Action<int> OnMaxWaveChanged;
     public event Action<int> OnMonsterCountChanged;
+    public event Action<int> OnScoreChanged;
 }
