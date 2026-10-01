@@ -1,40 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TestTitleController : MonoBehaviour
 {
-    [SerializeField] private Button _startButton;
-    [SerializeField] private Button _exitButton;
-    //[SerializeField] private Button _creditsButton;
-    
-    [SerializeField] private string _inGameSceneName;
+    [SerializeField] private GameObject _titleUi;
+    [SerializeField] private GameObject _selectStageUi;
 
-    private void OnEnable() => BindButtonEvents();
-    private void OnDisable() => UnBindButtonEvents();
+    private void Awake() => ViewMainMenu();
     
-    private void BindButtonEvents()
+    public void ViewSelectStage()
     {
-        _startButton.onClick.AddListener(StartGame);
-        _exitButton.onClick.AddListener(ExitGame);
-        //_creditsButton.onClick.AddListener();
-    }
-    
-    private void UnBindButtonEvents()
-    {
-        _startButton.onClick.RemoveListener(StartGame);
-        _exitButton.onClick.RemoveListener(ExitGame);
-        //_creditsButton.onClick.RemoveListener();
+        _titleUi.SetActive(false);
+        _selectStageUi.SetActive(true);
     }
 
-    private void StartGame()
+    public void ViewMainMenu()
     {
-        GameManager.Instance.LoadScene(_inGameSceneName);
-    }
-
-    private void ExitGame()
-    {
-        Application.Quit();
+        _titleUi.SetActive(true);
+        _selectStageUi.SetActive(false);
     }
 }
