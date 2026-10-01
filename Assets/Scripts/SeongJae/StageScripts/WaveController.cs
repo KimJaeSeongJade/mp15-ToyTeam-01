@@ -14,28 +14,33 @@ public class WaveController : MonoBehaviour
     private Coroutine _monsterSpawnRoutine;
     private int _monsterSpawnCount;
 
+    private bool _isDefeated;
     private void Start() => Init();
 
-    /// <summary>
-    /// 웨이브 활성화 시 실행할 로직
-    /// </summary>
-    private void OnEnable()
+    public void OnEnter()
     {
         StartSpawnMonster();
     }
 
-    /// <summary>
-    /// 웨이브 비활성화 시 실행할 로직
-    /// </summary>
-    private void OnDisable()
+    public void OnRunning()
+    {
+        CheckGameOver();
+    }
+
+    public void OnExit()
     {
         StopSpawnMonster();
+    }
+
+    private void CheckGameOver()
+    {
+        //여기에 벽 체력 구독 해서, 
     }
 
     private void SpawnMonsterLine()
     {
         //TODO: 오브젝트 풀, 몬스터 연동, 소환 구현 필요
-
+        //TODO: 소환하는 알고리즘 푸아송 디스크? 사용하면 되나요
         Debug.Log($"몬스터 {_monsterSpawnCount}번째 사이클 소환");
         _monsterSpawnCount++;
     }
