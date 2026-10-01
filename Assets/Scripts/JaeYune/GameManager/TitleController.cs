@@ -8,6 +8,19 @@ public class TitleController : MonoBehaviour
     [SerializeField] private GameObject _selectStageUi;
 
     private void Awake() => ViewMainMenu();
+    private void OnEnable() => BindGameFlow();
+
+    private void OnDisable() => UnbindGameFlow();
+
+    private void BindGameFlow()
+    {
+        GameManager.Instance.OnGameResume += ViewMainMenu;
+    }
+
+    private void UnbindGameFlow()
+    {
+        GameManager.Instance.OnGameResume -= ViewMainMenu;
+    }
     
     public void ViewSelectStage()
     {

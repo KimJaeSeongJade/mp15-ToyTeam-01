@@ -16,19 +16,20 @@ public class InGameUIController : MonoBehaviour
 
     private void BindGameFlow()
     {
+        GameManager.Instance.OnGameStart += GameStart;
         GameManager.Instance.OnGameClear += ViewGameClear;
         GameManager.Instance.OnGameOver += ViewGameOver;
     }
 
     private void UnbindGameFlow()
     {
+        GameManager.Instance.OnGameStart -= GameStart;
         GameManager.Instance.OnGameClear -= ViewGameClear;
         GameManager.Instance.OnGameOver -= ViewGameOver;
     }
     
     private void GameStart()
     {
-        GameManager.Instance.StartGame();
         _applyUis.SetActive(true);
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(false);
