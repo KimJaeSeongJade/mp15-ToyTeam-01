@@ -988,6 +988,7 @@ GameObject:
   - component: {fileID: 5602116601589258371}
   - component: {fileID: 8984924107003901903}
   - component: {fileID: 4284036706401709186}
+  - component: {fileID: 2479173750267651822}
   m_Layer: 5
   m_Name: Pref_05.ClearStage
   m_TagString: Untagged
@@ -1083,6 +1084,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2479173750267651822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8290920151885443800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d69e27fb3f3eb4eb90f40e2543a96b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3300069430981805391
 PrefabInstance:
   m_ObjectHideFlags: 0
