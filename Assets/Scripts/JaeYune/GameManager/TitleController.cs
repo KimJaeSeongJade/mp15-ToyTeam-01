@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestTitleController : MonoBehaviour
+public class TitleController : MonoBehaviour
 {
     [SerializeField] private GameObject _titleUi;
     [SerializeField] private GameObject _selectStageUi;

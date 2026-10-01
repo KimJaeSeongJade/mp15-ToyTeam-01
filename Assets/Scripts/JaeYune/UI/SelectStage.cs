@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SelectStage : MonoBehaviour
@@ -11,7 +12,7 @@ public class SelectStage : MonoBehaviour
     [SerializeField] private Button _hellStageButton;
     [SerializeField] private Button _backToMainMenuButton;
     
-    [SerializeField] private TestTitleController _testTitleController;
+    [SerializeField] private TitleController titleController;
     
     [SerializeField] private string _inGameSceneName;
 
@@ -52,6 +53,6 @@ public class SelectStage : MonoBehaviour
 
     public void SelectBackToMainMenuButton()
     {
-        _testTitleController.ViewMainMenu();
+        titleController.ViewMainMenu();
     }
 }
