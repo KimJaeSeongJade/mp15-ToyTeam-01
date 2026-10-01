@@ -107,3 +107,6 @@ InitTestScene*.unity*
 
 # Imported Assets
 /[Aa]ssets/[Ii]mports
+
+# TextMesh Pro files
+/[Aa]ssets/TextMesh*Pro/
