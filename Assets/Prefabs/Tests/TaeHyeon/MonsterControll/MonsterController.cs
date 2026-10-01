@@ -15,18 +15,18 @@ public class MonsterController : MonoBehaviour
 {
     [Header("Monster Settings")]
     [SerializeField] private Monstertype _monsterType;
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float _moveSpeed = 5f;
     /// <summary>
     /// 방어물 이름 제가 임시로 NexusPoint라고 지었습니다. 나중에 방어물 이름이 정해지면 다시 바꾸겠습니다.
     /// </summary>
     [SerializeField] private Transform _nexusPoint;  
     [SerializeField] private float _arriveDistance = 0.5f; 
-    private float currentHealth;
+    private float _currentHealth;
     /// <summary>
     /// 몬스터가 사망했는지 혹은 넥서스에 도착했는지를 체크하는 변수로 
     /// 두 상태가 중복으로 발생하지 않도록 방지합니다
     /// </summary>
-    private bool isResolved; 
+    private bool _isResolved; 
     /// <summary>
     /// 나중에 몬스터 사망시 점수 획득을 위한 이벤트 부분입니다.
     /// </summary>
@@ -38,8 +38,8 @@ public class MonsterController : MonoBehaviour
     // 몬스터 활성화 시 상태 초기화
     public void OnEnable()
     {
-        currentHealth = GetMaxHealth();
-        isResolved = false;
+        _currentHealth = GetMaxHealth();
+        _isResolved = false;
 
     }
     public void Update()
@@ -52,8 +52,8 @@ public class MonsterController : MonoBehaviour
     private void Initialize(Transform nexusPoint)
     {
         _nexusPoint = nexusPoint;
-        currentHealth = GetMaxHealth();
-        isResolved = false;
+        _currentHealth = GetMaxHealth();
+        _isResolved = false;
     } 
     /// <summary>
     /// 몬스터 데미지 처리 함수입니다 
@@ -61,14 +61,14 @@ public class MonsterController : MonoBehaviour
     /// </summary>
     public void TakeDamage(float damage)
     {
-        if (isResolved)
+        if (_isResolved)
         {
             return;
         }
         
-        currentHealth -= damage;
+        _currentHealth -= damage;
 
-        if(currentHealth <= 0f)
+        if(_currentHealth <= 0f)
         {
             MonsterDeath();
         }
@@ -79,13 +79,13 @@ public class MonsterController : MonoBehaviour
     /// </summary>
     public void MoveToNexus()
     {
-        if(isResolved || _nexusPoint == null)
+        if(_isResolved || _nexusPoint == null)
         {
             return;
         }
 
         transform.position = Vector3.MoveTowards(transform.position, 
-        _nexusPoint.position, moveSpeed * Time.deltaTime);
+        _nexusPoint.position, _moveSpeed * Time.deltaTime);
 
         //거리 측정하고 도착판정 범위를 검사하는 부분입니다
         float distance = Vector3.Distance(transform.position, _nexusPoint.position);
@@ -123,7 +123,7 @@ public class MonsterController : MonoBehaviour
     /// </summary>
     private void MonsterDeath()
     {
-        isResolved = true;
+        _isResolved = true;
         OnKilled?.Invoke(this); 
         gameObject.SetActive(false);
     }
@@ -132,7 +132,7 @@ public class MonsterController : MonoBehaviour
     /// </summary>
     private void ArriveNexus()
     {
-        isResolved = true;
+        _isResolved = true;
         OnNexusArrived?.Invoke(this);
         gameObject.SetActive(false);
     }
