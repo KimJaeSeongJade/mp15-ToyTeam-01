@@ -5,36 +5,14 @@ using UnityEngine.UI;
 
 public class TestTitleController : MonoBehaviour
 {
-    [SerializeField] private Button _startButton;
-    [SerializeField] private Button _exitButton;
-    //[SerializeField] private Button _creditsButton;
-    
-    //[SerializeField] private string _inGameSceneName;
+    [field: SerializeField] public GameObject _titleUi;
+    [field: SerializeField] public GameObject _selectStageUi;
 
-    private void OnEnable() => BindButtonEvents();
-    private void OnDisable() => UnBindButtonEvents();
-    
-    private void BindButtonEvents()
-    {
-        _startButton.onClick.AddListener(StartGame);
-        _exitButton.onClick.AddListener(ExitGame);
-        //_creditsButton.onClick.AddListener();
-    }
-    
-    private void UnBindButtonEvents()
-    {
-        _startButton.onClick.RemoveListener(StartGame);
-        _exitButton.onClick.RemoveListener(ExitGame);
-        //_creditsButton.onClick.RemoveListener();
-    }
+    private void Awake() => Init();
 
-    public void StartGame()
+    private void Init()
     {
-        //GameManager.Instance.LoadScene(_inGameSceneName);
-    }
-
-    private void ExitGame()
-    {
-        Application.Quit();
+        _titleUi.SetActive(true);
+        _selectStageUi.SetActive(false);
     }
 }

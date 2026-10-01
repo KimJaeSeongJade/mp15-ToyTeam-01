@@ -9,9 +9,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3c6a2d5c-5cbf-41ae-849a-0df1f54e1a6a" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mp15-ToyTeam-01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mp15-ToyTeam-01/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Tests/JaeYun/UIDesignPrefab/BasicUI/Pref_02.SelectStage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Tests/JaeYun/UIDesignPrefab/BasicUI/Pref_02.SelectStage.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test/JaeYun/GameManagerTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test/JaeYun/GameManagerTest.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/JaeYune/GameManager/TestTitleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/JaeYune/GameManager/TestTitleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/JaeYune/UI/SelectStage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/JaeYune/UI/SelectStage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/JaeYune/UI/TitleUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/JaeYune/UI/TitleUI.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +25,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../mp15-ProjectExit/Assets/Scripts/UI/TitleSceneController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/JaeYune/GameManager/TestInGameUIController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/JaeYune/UI/TitleUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.7/Scripts/Runtime/TMP_Settings.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
