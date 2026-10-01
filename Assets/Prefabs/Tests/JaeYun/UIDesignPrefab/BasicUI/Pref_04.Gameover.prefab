@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 919049656604392491}
   - component: {fileID: 5891134050439016242}
   m_Layer: 5
-  m_Name: Pref_04.Gameover
+  m_Name: Pref_04.GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
