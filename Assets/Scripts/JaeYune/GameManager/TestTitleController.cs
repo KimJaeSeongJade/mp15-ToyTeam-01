@@ -9,7 +9,7 @@ public class TestTitleController : MonoBehaviour
     [SerializeField] private Button _exitButton;
     //[SerializeField] private Button _creditsButton;
     
-    [SerializeField] private string _inGameSceneName;
+    //[SerializeField] private string _inGameSceneName;
 
     private void OnEnable() => BindButtonEvents();
     private void OnDisable() => UnBindButtonEvents();
@@ -28,9 +28,9 @@ public class TestTitleController : MonoBehaviour
         //_creditsButton.onClick.RemoveListener();
     }
 
-    private void StartGame()
+    public void StartGame()
     {
-        GameManager.Instance.LoadScene(_inGameSceneName);
+        //GameManager.Instance.LoadScene(_inGameSceneName);
     }
 
     private void ExitGame()
