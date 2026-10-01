@@ -238,7 +238,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2029917792951334319, guid: 640a28a059632934e8ee8f2f3cad7951, type: 3}
       propertyPath: m_Name
-      value: Pref_04.Gameover
+      value: Pref_04.GameOver
       objectReference: {fileID: 0}
     - target: {fileID: 3404702765119968146, guid: 640a28a059632934e8ee8f2f3cad7951, type: 3}
       propertyPath: m_Pivot.x
