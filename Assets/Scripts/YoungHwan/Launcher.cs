@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Launcher : TurretBase
 {
-    protected override void Fire()
+    public override void Fire()
     {
         // TODO: 런처 공격 로직 구현
+        Debug.Log("Launcher Fire");
     }
 }

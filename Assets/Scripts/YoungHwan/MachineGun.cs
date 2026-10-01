@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MachineGun : TurretBase
 {
-    protected override void Fire()
+    public override void Fire()
     {
         // TODO: 머신건 공격 로직 구현
+        Debug.Log("MachineGun Fire");
     }
 }
