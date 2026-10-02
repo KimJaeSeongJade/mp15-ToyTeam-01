@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FpsUIController : MonoBehaviour
 {
+    [Header("UI 초기화 주기")]
     [SerializeField] private float _coolDown;
 
     private TextMeshProUGUI _fpsText;
