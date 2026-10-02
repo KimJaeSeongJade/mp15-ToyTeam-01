@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 1422779629}
   - component: {fileID: 1422779628}
   - component: {fileID: 1422779627}
-  - component: {fileID: 1422779626}
+  - component: {fileID: 1422779631}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -372,22 +372,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1422779626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422779625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd37caa6e8d3754781c0df2ad775737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _monsterType: 0
-  _moveSpeed: 20
-  _nexusPoint: {fileID: 349105437}
-  _arriveDistance: 0.5
 --- !u!136 &1422779627
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -476,6 +460,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1422779631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422779625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994cc6a178a84db4ca851c8a96751bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monsterType: 0
+  _moveSpeed: 20
+  _nexusPoint: {fileID: 349105437}
+  _arriveDistance: 0.5
 --- !u!1 &2135458753
 GameObject:
   m_ObjectHideFlags: 0
