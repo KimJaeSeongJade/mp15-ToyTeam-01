@@ -196,17 +196,4 @@ public class MonsterController : MonoBehaviour, IDamageable
     }
     
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
 }
