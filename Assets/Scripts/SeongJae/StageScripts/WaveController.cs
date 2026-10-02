@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,36 +8,43 @@ public class WaveController : MonoBehaviour
     //TODO: 몬스터 오브젝트 풀과 연동
     [SerializeField] private ObjectPool _monsterPool;
     [SerializeField] private Transform[] _spawnPoints;
-    [SerializeField] private int _maxMonster;
     [SerializeField] private float _spawnCoolDown = 2.0f;
 
+    public int MaxMonsterCount;
     private WaitForSeconds _waitSpawnCoolDown;
     private Coroutine _monsterSpawnRoutine;
     private int _monsterSpawnCount;
 
     private void Start() => Init();
 
-    /// <summary>
-    /// 웨이브 활성화 시 실행할 로직
-    /// </summary>
-    private void OnEnable()
+    public void OnEnter()
     {
         StartSpawnMonster();
+        //넥서스 체력 변동 시 호출하도록 구독 한 번?
+        Debug.Log($"{name} : 웨이브 시작");
     }
 
-    /// <summary>
-    /// 웨이브 비활성화 시 실행할 로직
-    /// </summary>
-    private void OnDisable()
+    public void OnRunning()
+    {
+
+    }
+
+    public void OnExit()
     {
         StopSpawnMonster();
+        Debug.Log($"{name} : 웨이브 종료");
+    }
+
+    private void CheckGameOver()
+    {
+
     }
 
     private void SpawnMonsterLine()
     {
         //TODO: 오브젝트 풀, 몬스터 연동, 소환 구현 필요
-
-        Debug.Log($"몬스터 {_monsterSpawnCount}번째 사이클 소환");
+        //TODO: 소환하는 알고리즘 푸아송 디스크? 사용하면 되나요
+        Debug.Log($"{name} : 몬스터 {_monsterSpawnCount}번째 사이클 소환");
         _monsterSpawnCount++;
     }
 
