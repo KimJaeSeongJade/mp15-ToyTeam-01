@@ -8,17 +8,18 @@ public class SoundPlayer : MonoBehaviour
 
     private void Awake() => CacheComponents();
     private void Update() => WaitForEndSound();
-    private void CacheComponents()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
-
+    
     private void WaitForEndSound()
     {
         if (_audioSource.isPlaying || _audioSource.loop) 
             return;
         
         Stop();
+    }
+    
+    private void CacheComponents()
+    {
+        _audioSource = GetComponent<AudioSource>();
     }
     
     public SoundPlayer SetSoundVolume(float soundVolume)
@@ -39,7 +40,7 @@ public class SoundPlayer : MonoBehaviour
         return this;
     }
 
-    public SoundPlayer MakeSourceToClip(AudioClip soundClip)
+    public SoundPlayer ConvertSourceToClip(AudioClip soundClip)
     {
         _audioSource.clip = soundClip;
         return this;
@@ -63,6 +64,6 @@ public class SoundPlayer : MonoBehaviour
 
     public void ReturnToList()
     {
-        AudioManager.Instance.ReturnSoundToList(this);
+        SoundManager.Instance.ReturnSoundToList(this);
     }
 }

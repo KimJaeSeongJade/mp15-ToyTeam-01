@@ -11,7 +11,6 @@ public class InGameUIController : MonoBehaviour
     private void Awake() => GameStart();
 
     private void OnEnable() => BindGameFlow();
-
     private void OnDisable() => UnbindGameFlow();
 
     private void BindGameFlow()

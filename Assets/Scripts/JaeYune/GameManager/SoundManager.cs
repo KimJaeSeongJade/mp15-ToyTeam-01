@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : Singleton<AudioManager>
+public class SoundManager : Singleton<SoundManager>
 {
     [SerializeField] private SoundPlayer _soundPlayerPrefab;
     [SerializeField] private int _trackSize;
