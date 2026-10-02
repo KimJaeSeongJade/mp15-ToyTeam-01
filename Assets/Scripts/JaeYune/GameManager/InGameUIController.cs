@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class InGameUIController : MonoBehaviour
 {
@@ -11,7 +13,6 @@ public class InGameUIController : MonoBehaviour
     private void Awake() => GameStart();
 
     private void OnEnable() => BindGameFlow();
-
     private void OnDisable() => UnbindGameFlow();
 
     private void BindGameFlow()
@@ -53,6 +54,35 @@ public class InGameUIController : MonoBehaviour
         _applyUis.SetActive(false);
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(true);
+    }
+    
+    // + 사운드
+    [SerializeField] private AudioClip _inGameBgm;
+    
+    private SoundPlayer _bgm;
+
+    private void Start() => PlayBgm();
+
+    private void OnDestroy() => StopBgm();
+
+    private void PlayBgm()
+    {
+        _bgm = SoundManager.Instance.TakeSoundPlayer();
+   
+        if (_inGameBgm == null)
+            return;
+        
+        _bgm.SetSoundVolume(0.3f)
+            .SetSoundLoop(true)
+            .PlaySoundWhenStart(true)
+            .ConvertSourceToClip(_inGameBgm)
+            .Play();
+    }
+
+    private void StopBgm()
+    {
+        _bgm.Stop();
+        _bgm = null;
     }
     
     /// <summary>

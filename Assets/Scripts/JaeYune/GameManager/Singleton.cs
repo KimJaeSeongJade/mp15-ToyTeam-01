@@ -6,9 +6,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
     
-    /// <summary>
-    /// GameManager.Instance 형식으로 출발할 것.
-    /// </summary>
     public static T Instance
     {
         get

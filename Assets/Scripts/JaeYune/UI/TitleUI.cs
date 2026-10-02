@@ -17,14 +17,18 @@ public class TitleUI : MonoBehaviour
 
     private void BindButtonEvents()
     {
+        _startButton.onClick.AddListener(ClickSounOn);
         _startButton.onClick.AddListener(StartGame);
+        _exitButton.onClick.AddListener(ClickSounOn);
         _exitButton.onClick.AddListener(ExitGame);
         //_creditsButton.onClick.AddListener();
     }
     
     private void UnBindButtonEvents()
     {
+        _startButton.onClick.RemoveListener(ClickSounOn);
         _startButton.onClick.RemoveListener(StartGame);
+        _exitButton.onClick.RemoveListener(ClickSounOn);
         _exitButton.onClick.RemoveListener(ExitGame);
         //_creditsButton.onClick.RemoveListener();
     }
@@ -37,5 +41,29 @@ public class TitleUI : MonoBehaviour
     private void ExitGame()
     {
         Application.Quit();
+    }
+    
+    // + 
+    [SerializeField] private AudioClip _clickSound;
+    private SoundPlayer _click;
+    
+    private void ClickSounOn()
+    {
+        _click = SoundManager.Instance.TakeSoundPlayer();
+   
+        if (_clickSound == null)
+            return;
+        
+        _click.SetSoundVolume(0.3f)
+            .SetSoundLoop(false)
+            .PlaySoundWhenStart(false)
+            .ConvertSourceToClip(_clickSound)
+            .Play();
+    }
+
+    private void ClickSoundOff()
+    {
+        _click.Stop();
+        _click = null;
     }
 }
