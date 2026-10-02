@@ -62,7 +62,7 @@ public class AudioManager : Singleton<AudioManager>
         return sound;
     }
 
-    private void ReturnSound(SoundPlayer soundPlayer)
+    public void ReturnSoundToList(SoundPlayer soundPlayer)
     {
         _soundPlayerList.Push(soundPlayer);
         soundPlayer.gameObject.SetActive(false);
