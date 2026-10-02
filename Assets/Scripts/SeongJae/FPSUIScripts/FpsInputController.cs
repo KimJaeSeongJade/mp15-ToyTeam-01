@@ -28,6 +28,6 @@ public class FpsInputController : MonoBehaviour
 
     private void Awake()
     {
-        _uiController = GetComponentInChildren<FpsUIController>();
+        _uiController = GetComponent<FpsUIController>();
     }
 }

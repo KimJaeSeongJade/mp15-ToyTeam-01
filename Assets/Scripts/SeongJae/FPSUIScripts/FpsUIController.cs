@@ -19,14 +19,14 @@ public class FpsUIController : MonoBehaviour
 
     public void ActiveFpsUI()
     {
-        _fpsText.gameObject.SetActive(true);
+        _fpsText.text = "START";
         _isActive = true;
         StartUIRefresh();
     }
 
     public void UnActiveFpsUI()
     {
-        _fpsText.gameObject.SetActive(false);
+        _fpsText.text = "";
         _isActive = false;
         StopUIRefresh();
     }
@@ -69,7 +69,7 @@ public class FpsUIController : MonoBehaviour
 
     private void Init()
     {
-        _fpsText.gameObject.SetActive(false);
+        _fpsText.text = "";
         _isActive = false;
     }
 }
