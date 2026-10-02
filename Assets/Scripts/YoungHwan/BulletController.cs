@@ -6,19 +6,7 @@ public class BulletController : MonoBehaviour, IPoolable
 {
     public GameObject GameObject { get; set; }
     public ObjectPool Source { get; set; }
-
-    private float _moveSpeed = 5.0f;
-    private float _lifeTime = 1.0f;
-
-    WaitForSeconds waitForDisable;
-
-    private void OnEnable()
-    {
-        // 만약 총알이라면, 데이터는 Turret 쪽에서 할당할 것입니다.
-        // 만약 몬스터라면, 데이터는 Wave 쪽에서 할당할 것입니다.
-        SetData();
-        StartCoroutine(DiasbleRoutine());
-    }
+    private BulletData _data;
 
     private void Update()
     {
@@ -27,19 +15,22 @@ public class BulletController : MonoBehaviour, IPoolable
 
     public void Move()
     {
-        transform.Translate(Vector3.forward * _moveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * _data.Speed * Time.deltaTime);
     }
 
-    private IEnumerator DiasbleRoutine()
+    public void SetData(BulletData data, Vector3 position, Quaternion rotation)
     {
-        yield return waitForDisable;
+        _data = data;
+        transform.position = position;
+        transform.rotation = rotation;
+
+        StartCoroutine(DisableRoutine());
+    }
+
+    private IEnumerator DisableRoutine()
+    {
+        yield return new WaitForSeconds(_data.ReturnDelay);
         ReturnToPool();
-    }
-
-    public void SetData()
-    {
-        transform.position = new Vector3(0, 0, 0);
-        waitForDisable = new WaitForSeconds(_lifeTime);
     }
 
     public void ReturnToPool()
