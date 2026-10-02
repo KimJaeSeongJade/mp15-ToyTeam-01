@@ -6,7 +6,15 @@ public class AudioManager : Singleton<AudioManager>
 {
     private void Awake() => SetSingleton();
     AudioSource audioSource;
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private void Foo()
     {
         //audioSource.PlayOneShot(audioSource.clip);
