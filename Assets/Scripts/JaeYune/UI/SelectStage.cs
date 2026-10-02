@@ -25,6 +25,11 @@ public class SelectStage : MonoBehaviour
         _hardStageButton.onClick.AddListener(SelectHardStageButton);
         _hellStageButton.onClick.AddListener(SelectHellStageButton);
         _backToMainMenuButton.onClick.AddListener(SelectBackToMainMenuButton);
+        
+        _easyStageButton.onClick.AddListener(ClickSounOn2);
+        _hardStageButton.onClick.AddListener(ClickSounOn2);
+        _hellStageButton.onClick.AddListener(ClickSounOn2);
+        _backToMainMenuButton.onClick.AddListener(ClickSounOn2);
     }
 
     private void UnbindButtonEvents()
@@ -33,6 +38,11 @@ public class SelectStage : MonoBehaviour
         _hardStageButton.onClick.RemoveListener(SelectHardStageButton);
         _hellStageButton.onClick.RemoveListener(SelectHellStageButton);
         _backToMainMenuButton.onClick.RemoveListener(SelectBackToMainMenuButton);
+        
+        _easyStageButton.onClick.RemoveListener(ClickSounOn2);
+        _hardStageButton.onClick.RemoveListener(ClickSounOn2);
+        _hellStageButton.onClick.RemoveListener(ClickSounOn2);
+        _backToMainMenuButton.onClick.RemoveListener(ClickSounOn2);
     }
 
     public void SelectEasyStageButton()
@@ -53,5 +63,28 @@ public class SelectStage : MonoBehaviour
     public void SelectBackToMainMenuButton()
     {
         titleController.ViewMainMenu();
+    }
+    
+    [SerializeField] private AudioClip _clickSound2;
+    private SoundPlayer _click2;
+    
+    private void ClickSounOn2()
+    {
+        _click2 = SoundManager.Instance.TakeSoundPlayer();
+   
+        if (_clickSound2 == null)
+            return;
+        
+        _click2.SetSoundVolume(0.3f)
+            .SetSoundLoop(false)
+            .PlaySoundWhenStart(false)
+            .ConvertSourceToClip(_clickSound2)
+            .Play();
+    }
+
+    private void ClickSoundOff()
+    {
+        _click2.Stop();
+        _click2 = null;
     }
 }
