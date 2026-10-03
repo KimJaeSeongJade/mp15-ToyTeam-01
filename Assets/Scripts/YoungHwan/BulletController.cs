@@ -4,23 +4,37 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour, IPoolable
 {
-    private int _damage;
-    private float _speed;
-    private float _returnDelay;
-    
     public GameObject GameObject { get; set; }
     public ObjectPool Source { get; set; }
-    public Transform tr { get => transform; }
+    private BulletData _data;
+
+    private void Update()
+    {
+        Move();
+    }
+
+    public void Move()
+    {
+        transform.Translate(Vector3.forward * _data.Speed * Time.deltaTime);
+    }
+
+    public void SetData(BulletData data, Vector3 position, Quaternion rotation)
+    {
+        _data = data;
+        transform.position = position;
+        transform.rotation = rotation;
+
+        StartCoroutine(DisableRoutine());
+    }
+
+    private IEnumerator DisableRoutine()
+    {
+        yield return new WaitForSeconds(_data.ReturnDelay);
+        ReturnToPool();
+    }
 
     public void ReturnToPool()
     {
         Source.Push(this);
-    }
-
-    public void SetData(int damage, float speed, float returnDelay)
-    {
-        _damage = damage;
-        _speed = speed;
-        _returnDelay = returnDelay;
     }
 }
