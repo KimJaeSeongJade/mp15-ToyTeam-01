@@ -25,8 +25,6 @@ public class BulletController : MonoBehaviour, IPoolable
         transform.rotation = rotation;
 
         StartCoroutine(DisableRoutine());
-        // +
-        ExplodeSoundOn();
     }
 
     private IEnumerator DisableRoutine()
@@ -34,6 +32,8 @@ public class BulletController : MonoBehaviour, IPoolable
         yield return new WaitForSeconds(_data.ReturnDelay);
         ReturnToPool();
         // +
+        ExplodeSoundOn();
+        yield return new WaitForSeconds(_data.ReturnDelay);
         ExplodeSoundOff();
     }
 
