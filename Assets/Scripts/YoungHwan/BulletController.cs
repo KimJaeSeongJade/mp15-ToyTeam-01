@@ -31,10 +31,39 @@ public class BulletController : MonoBehaviour, IPoolable
     {
         yield return new WaitForSeconds(_data.ReturnDelay);
         ReturnToPool();
+        // +
+        ExplodeSoundOn();
+        yield return new WaitForSeconds(_data.ReturnDelay);
+        ExplodeSoundOff();
     }
 
     public void ReturnToPool()
     {
         Source.Push(this);
+    }
+    
+    // +
+    private SoundPlayer _explode;
+
+    private void ExplodeSoundOn()
+    {
+        _explode = SoundManager.Instance.TakeSoundPlayer();
+
+        if (_explode == null)
+        {
+            return;
+        }
+        
+        _explode.SetSoundVolume(1f)
+                .SetSoundLoop(false)
+                .PlaySoundWhenStart(false)
+                .ConvertSourceToClip(_data.ExplodeSound)
+                .Play();
+    }
+
+    private void ExplodeSoundOff()
+    {
+        _explode.Stop();
+        _explode = null;
     }
 }
