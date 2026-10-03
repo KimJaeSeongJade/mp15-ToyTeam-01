@@ -176,6 +176,13 @@ MonoBehaviour:
   _bulletPool: {fileID: 437985020}
   _data: {fileID: 7505218}
   _fireDelay: 0.2
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _minBullets: 3
+  _maxBullets: 7
+  _range: 30
+  _spreadAngle: 2.5
 --- !u!65 &7505215
 BoxCollider:
   m_ObjectHideFlags: 0
