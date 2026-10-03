@@ -27,6 +27,9 @@ public abstract class TurretBase : MonoBehaviour
         
         yield return new WaitForSeconds(_fireDelay);
         _canFire = true;
+        
+        // + jay
+        FireSoundOff();
     }
 
     public void SpawnBullet()
@@ -35,7 +38,34 @@ public abstract class TurretBase : MonoBehaviour
         if (bullet == null) return;
         
         bullet.SetData(_data, _firePoint.position, _firePoint.rotation);
+        
+        // + jay
+        FireSoundOn();
     }
 
     public abstract void Attack();
+    
+    // + jay
+    [SerializeField] protected AudioClip _fireSound;
+    protected SoundPlayer _fire;
+
+    private void FireSoundOn()
+    {
+        _fire = SoundManager.Instance.TakeSoundPlayer();
+        
+        if (_fire == null)
+            return;
+
+        _fire.SetSoundVolume(1f)
+             .SetSoundLoop(false)
+             .PlaySoundWhenStart(false)
+             .ConvertSourceToClip(_fireSound)
+             .Play();
+    }
+
+    private void FireSoundOff()
+    {
+        _fire.Stop();
+        _fire = null;
+    }
 }
