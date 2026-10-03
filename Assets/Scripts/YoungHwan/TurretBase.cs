@@ -15,7 +15,6 @@ public abstract class TurretBase : MonoBehaviour
 
     public void Fire()
     {
-        Debug.Log("파이어 호출");
         if (!_canFire) return;
         StartCoroutine(FireRoutine());
     }
