@@ -23,6 +23,7 @@ public abstract class TurretBase : MonoBehaviour
     {
         _canFire = false;
         Attack();
+        FireSoundOn();
         
         yield return new WaitForSeconds(_fireDelay);
         _canFire = true;
@@ -37,9 +38,6 @@ public abstract class TurretBase : MonoBehaviour
         if (bullet == null) return;
         
         bullet.SetData(_data, _firePoint.position, _firePoint.rotation);
-        
-        // + jay
-        FireSoundOn();
     }
 
     public abstract void Attack();
@@ -64,6 +62,7 @@ public abstract class TurretBase : MonoBehaviour
 
     private void FireSoundOff()
     {
+        if (_fire == null) return;
         _fire.Stop();
         _fire = null;
     }
