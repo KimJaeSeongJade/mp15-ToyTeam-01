@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 public class TurretController : MonoBehaviour
@@ -15,9 +14,6 @@ public class TurretController : MonoBehaviour
     private int _turretIndex = 0;
     private float _pitch;
     private Camera _camera;
-    private Vector2 _currentRotation;
-    private bool _isChanged;
-
     private event Action _onFire;
     private void Start() => Init();
     private void Update()
@@ -30,15 +26,11 @@ public class TurretController : MonoBehaviour
         {
             ChangeTurret(1);
         }
-        else
-        {
-            Rotate();
-        }
-
         if (Input.GetKey(KeyCode.Mouse0))
         {
             FireNotify();
         }
+        Rotate();
     }
 
     private Vector3 ReadRotateInput()
@@ -52,13 +44,12 @@ public class TurretController : MonoBehaviour
     public void Rotate()
     {
         Vector3 input = ReadRotateInput() * _mouseSensitivity;
-        if (input == Vector3.zero) return;
-
+        
+        transform.Rotate(0, input.y, 0, Space.Self);
+        
         _pitch = Mathf.Clamp(_pitch + input.x, -_maxPitch, _maxPitch);
-
-        transform.Rotate(0, input.y, 0, Space.World);
+        
         _cameraPivot.localRotation = Quaternion.Euler(_pitch, 0, 0);
-
         _camera.gameObject.transform.position = _cameraPivot.position;
         _camera.gameObject.transform.rotation = _cameraPivot.rotation;
         _turrets[_turretIndex].transform.rotation = _cameraPivot.rotation;
@@ -69,15 +60,11 @@ public class TurretController : MonoBehaviour
         RemoveListener(_turrets[_turretIndex]);
         _turretIndex = index;
         AddListener(_turrets[_turretIndex]);
-
-        _currentRotation.x = _turrets[_turretIndex].transform.eulerAngles.x;
-        _currentRotation.y = _turrets[_turretIndex].transform.eulerAngles.y;
-
+        
+        Debug.Log($"변경된 터렛 위치 : {_turrets[_turretIndex].transform.position}");
         transform.position = _turrets[_turretIndex].transform.position;
-        transform.eulerAngles = new Vector3(_currentRotation.x, _currentRotation.y, 0);
-
-        _camera.gameObject.transform.position = _cameraPivot.position;
-        _camera.gameObject.transform.rotation = _cameraPivot.rotation;
+        Debug.Log(_turrets[_turretIndex].transform.rotation);
+        _cameraPivot.rotation = _turrets[_turretIndex].transform.rotation;
     }
 
     private void AddListener(TurretBase turret)
