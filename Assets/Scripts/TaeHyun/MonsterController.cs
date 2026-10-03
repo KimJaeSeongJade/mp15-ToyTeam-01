@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 // 몬스터 타입을 열거형 정의합니다.
@@ -11,7 +12,7 @@ public enum Monstertype
     middle,
     big
 }
-public class MonsterController : MonoBehaviour, IDamageable
+public class MonsterController : MonoBehaviour, IDamageable, IPoolable
 {
     [Header("Monster Settings")]
     [SerializeField] private Monstertype _monsterType;
@@ -26,7 +27,15 @@ public class MonsterController : MonoBehaviour, IDamageable
     /// 몬스터가 사망했는지 혹은 넥서스에 도착했는지를 체크하는 변수로 
     /// 두 상태가 중복으로 발생하지 않도록 방지합니다
     /// </summary>
-    private bool _isResolved; 
+    private bool _isResolved;
+
+    /// <summary>
+    /// 풀 반납 했는지 나타냅니다
+    /// </summary>
+    private bool _isReturned;   
+    GameObject IPoolable.GameObject { get; set; }
+    public ObjectPool Source { get; set; }
+
     /// <summary>
     /// 나중에 몬스터 사망시 점수 획득을 위한 이벤트 부분입니다.
     /// </summary>
@@ -38,6 +47,8 @@ public class MonsterController : MonoBehaviour, IDamageable
     // 몬스터 활성화 시 상태 초기화
     public void OnEnable()
     {
+        transform.position = _initialPosition;  //이부분도 필요없을시 제거
+        _isReturned = false;
         ResetState();
     }
     public void Update()
@@ -85,10 +96,23 @@ public class MonsterController : MonoBehaviour, IDamageable
     /// </summary>
     public void MoveToNexus()
     {
-        if(_isResolved || _nexusPoint == null)
+        if(_isResolved)
         {
             return;
         }
+        // 넥서스 포인트가 설정되어 있지 않을경우 오브젝트 명 Nexus를 찾아가게 합니다
+        if (_nexusPoint == null)
+        {
+            GameObject nexus = GameObject.Find("Nexus");
+
+            if (nexus == null)
+            {
+                return;
+            }
+
+            _nexusPoint = nexus.transform;
+        }
+
         transform.position = Vector3.MoveTowards(transform.position, 
         _nexusPoint.position, _moveSpeed * Time.deltaTime);
         //거리 측정하고 도착판정 범위를 검사하는 부분입니다
@@ -97,6 +121,7 @@ public class MonsterController : MonoBehaviour, IDamageable
         {
            ArriveNexus();
         }
+        
     }
     /// <summary>
     /// inspector에서 몬스터 타입에 따라 최대 체력을 반환하는 함수입니다.
@@ -175,6 +200,7 @@ public class MonsterController : MonoBehaviour, IDamageable
         // }
         OnKilled?.Invoke(this);
         gameObject.SetActive(false);
+        ReturnToPool();
     }
     /// <summary>
     /// 넥서스 도착 처리 함수입니다. 도착시 이벤트를 발생시키고 오브젝트를 비활성화 시킵니다.
@@ -193,7 +219,41 @@ public class MonsterController : MonoBehaviour, IDamageable
         // }
         OnNexusArrived?.Invoke(this);
         gameObject.SetActive(false);
+        ReturnToPool();
     }
+
     
+
+    public void ReturnToPool()
+    {
+        if(_isReturned)
+        {
+            return;
+        }
+
+        _isReturned = true;
+        _isResolved = true;
+
+        if(Source == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        Source.Push(this);
+    }
+
+    private Vector3 _initialPosition;
+    /// <summary>
+    /// 순전히 풀에 반납될때 테스트의 용이를 위해 기존 위치로 초기화 하기 위한 부분입니다
+    /// 추후 스폰 부분이 구현되어 위치값을 스폰에서 관리하게 되면
+    /// 삭제하면 됩니다 OnEnable() 부분의 50줄 같이 삭제하시면 됩니다
+    /// </summary>
+    private void Awake()
+    {
+        _initialPosition = transform.position;
+    }
+
+
 
 }

@@ -55,10 +55,10 @@ public class TitleUI : MonoBehaviour
             return;
         
         _click.SetSoundVolume(0.3f)
-            .SetSoundLoop(false)
-            .PlaySoundWhenStart(false)
-            .ConvertSourceToClip(_clickSound)
-            .Play();
+              .SetSoundLoop(false)
+              .PlaySoundWhenStart(false)
+              .ConvertSourceToClip(_clickSound)
+              .Play();
     }
 
     private void ClickSoundOff()
