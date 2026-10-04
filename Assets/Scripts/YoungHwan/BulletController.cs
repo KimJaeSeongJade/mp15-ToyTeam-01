@@ -7,22 +7,17 @@ public class BulletController : MonoBehaviour, IPoolable
     public GameObject GameObject { get; set; }
     public ObjectPool Source { get; set; }
     private BulletData _data;
+    private Rigidbody _rb;
 
-    private void Update()
-    {
-        Move();
-    }
-
-    public void Move()
-    {
-        transform.Translate(Vector3.forward * _data.Speed * Time.deltaTime);
-    }
-
+    private void Awake() => CacheComponenets();
+    
     public void SetData(BulletData data, Vector3 position, Quaternion rotation)
     {
         _data = data;
         transform.position = position;
         transform.rotation = rotation;
+        _rb.velocity = transform.forward * _data.Speed;
+        _rb.angularVelocity = Vector3.zero;
 
         StartCoroutine(DisableRoutine());
     }
@@ -65,5 +60,10 @@ public class BulletController : MonoBehaviour, IPoolable
     {
         _explode.Stop();
         _explode = null;
+    }
+
+    private void CacheComponenets()
+    {
+        _rb = GetComponent<Rigidbody>();
     }
 }

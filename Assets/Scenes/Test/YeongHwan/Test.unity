@@ -1670,7 +1670,7 @@ MonoBehaviour:
   _firePoint: {fileID: 1890129829}
   _bulletPool: {fileID: 437985020}
   _data: {fileID: 1654746518}
-  _fireDelay: 0.8
+  _fireDelay: 1
   _fireSound: {fileID: 8300000, guid: c6e2c3b7694375746b4874de115f29a5, type: 3}
 --- !u!65 &1654746515
 BoxCollider:
@@ -1756,7 +1756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 30
-  _speed: 15
+  _speed: 10
   _returnDelay: 2
   _explodeSound: {fileID: 0}
 --- !u!1 &1847525541
