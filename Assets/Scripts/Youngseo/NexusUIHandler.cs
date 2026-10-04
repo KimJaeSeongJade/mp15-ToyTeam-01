@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NexusUIHandler : MonoBehaviour
 {
-    private NexusData _nexusData;
+    [SerializeField] private NexusData _nexusData;
     private NexusUIController _nexusUIController;
 
     private void Awake() => CacheComponents();
@@ -13,7 +13,6 @@ public class NexusUIHandler : MonoBehaviour
 
     private void CacheComponents()
     {
-        _nexusData = GetComponent<NexusData>();
         _nexusUIController = GetComponent<NexusUIController>();
     }
 

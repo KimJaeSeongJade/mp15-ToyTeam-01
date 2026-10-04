@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class NexusUIController : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class NexusUIController : MonoBehaviour
     // 1. 현재 넥서스 체력 표기 (이미지)
     public void RefreshHealthBar(float currentHealth)
     {
-
+        _gauge.fillAmount = currentHealth / _maxHealth;
     }
     // 2. 현재 체력 / 전체 체력 (텍스트)
     public void RefreshCurrentHealthText(float currentHealth)
