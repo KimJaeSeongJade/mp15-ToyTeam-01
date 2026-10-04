@@ -14,11 +14,15 @@ public class StageController : MonoBehaviour
 
     [Header("한 웨이브 당 걸리는 시간")]
     [SerializeField] private float _timeForWave;
+
     private StageData _stageData;
     private WaitForSeconds _waitForCoolDown;
 
-    private bool _isFinished;
+    private bool _isCleared;
     private bool _isTimeStopped;
+    private bool _isDefeated;
+
+    private bool _isRunning => !_isCleared && !_isDefeated;
 
     private void Awake() => CacheComponents();
     private void Start() => Init();
@@ -32,7 +36,7 @@ public class StageController : MonoBehaviour
 
     public void CheckTimeOver(float time)
     {
-        if(time <= 0 && !_isFinished)
+        if(time <= 0 && _isRunning)
         {
             _waves[_stageData.CurrentWave].OnExit();
             _stageData.Time = _timeForWave;
@@ -51,14 +55,17 @@ public class StageController : MonoBehaviour
 
     private void StartNextWave()
     {
+        _waves[_stageData.CurrentWave].OnWaveDefeated -= SetDefeat;
+
         _stageData.CurrentWave++;
         if (_stageData.CurrentWave >= _stageData.MaxWave)
         {
             Debug.Log($"{name} : 스테이지 클리어");
             _isTimeStopped = true;
-            _isFinished = true;
+            _isCleared = true;
             return;
         }
+        _waves[_stageData.CurrentWave].OnWaveDefeated += SetDefeat;
         _waves[_stageData.CurrentWave].OnEnter();
     }
     private void Init()
@@ -70,7 +77,20 @@ public class StageController : MonoBehaviour
         _stageData.Time = _timeForWave;
         _stageData.OnTimeChanged += CheckTimeOver;
 
+        foreach(WaveController wave in _waves)
+        {
+            wave.SetNexus(_stageData.Nexus);
+        }
+
         _waves[_stageData.CurrentWave].OnEnter();
+        _waves[_stageData.CurrentWave].OnWaveDefeated += SetDefeat;
+    }
+
+    private void SetDefeat()
+    {
+        _isDefeated = true;
+        Debug.Log($"{name} : 패배 확인, 게임 오버");
+        _waves[_stageData.CurrentWave].OnExit();
     }
 
     private void CacheComponents()

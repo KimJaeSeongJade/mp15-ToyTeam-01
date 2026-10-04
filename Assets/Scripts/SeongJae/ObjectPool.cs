@@ -60,7 +60,5 @@ public class ObjectPool : MonoBehaviour
         poolable.GameObject.SetActive(false);
         _objectPool[_count] = poolable;
         _count++;
-
-        Debug.Log(_count);
     }
 }

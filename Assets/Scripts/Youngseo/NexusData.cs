@@ -9,7 +9,10 @@ public class NexusData : MonoBehaviour
     [SerializeField] private float _maxHealth;
     public float CurrentHealth
     {
-        get => _currentHealth;
+        get
+        {
+            return _currentHealth;
+        }
         set
         {
             _currentHealth = value;

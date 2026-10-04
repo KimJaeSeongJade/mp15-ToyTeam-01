@@ -60,6 +60,10 @@ public class StageData : MonoBehaviour
         }
     }
 
+
+    [Header("넥서스 객체 연동")]
+    public NexusController Nexus;
+
     public event Action<int> OnCurrentWaveChanged;
     public event Action<int> OnMaxWaveChanged;
     public event Action<int> OnMonsterCountChanged;
