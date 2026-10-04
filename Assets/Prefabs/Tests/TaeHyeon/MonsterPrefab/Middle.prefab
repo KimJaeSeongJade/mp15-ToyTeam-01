@@ -115,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5153223285982276860}
   - component: {fileID: 2849353519165901700}
+  - component: {fileID: -5410828793739841542}
   m_Layer: 0
   m_Name: Middle
   m_TagString: Untagged
@@ -131,7 +132,7 @@ Transform:
   m_GameObject: {fileID: 9068415000065021164}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.996235, y: 3.7795231, z: -36.81102}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -150,7 +151,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994cc6a178a84db4ca851c8a96751bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monsterType: 1
-  _moveSpeed: 10
-  _nexusPoint: {fileID: 0}
-  _arriveDistance: 0.5
+  _nexus: {fileID: 0}
+--- !u!114 &-5410828793739841542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9068415000065021164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd0b37197a546c45b28d8c2fb35a525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
+  MoveSpeed: 10
+  Health: 30
+  Damage: 30
+  Score: 30

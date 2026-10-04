@@ -5,22 +5,32 @@ using UnityEngine;
 
 public class WaveController : MonoBehaviour
 {
-    //TODO: 몬스터 오브젝트 풀과 연동
     [SerializeField] private ObjectPool _monsterPool;
-    [SerializeField] private Transform[] _spawnPoints;
-    [SerializeField] private float _spawnCoolDown = 2.0f;
+    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private float _spawnCoolDown = 1.0f;
+    [SerializeField] private float _monsterAmount = 50;
 
     public int MaxMonsterCount;
-    private WaitForSeconds _waitSpawnCoolDown;
-    private Coroutine _monsterSpawnRoutine;
     private int _monsterSpawnCount;
 
-    private void Start() => Init();
+    private WaitForSeconds _waitSpawnCoolDown;
+    private Coroutine _monsterSpawnRoutine;
 
+    private NexusController _nexusController;
+    private NexusData _nexusData;
+
+    public event Action OnWaveCleared;
+    public event Action OnWaveDefeated;
+
+    private bool _isDefeated;
+    private bool _isRunning;
+
+    private void Start() => Init();
     public void OnEnter()
     {
+        _isRunning = true;
         StartSpawnMonster();
-        //넥서스 체력 변동 시 호출하도록 구독 한 번?
+        _nexusData.OnHealthChanged += CheckGameOver;
         Debug.Log($"{name} : 웨이브 시작");
     }
 
@@ -31,26 +41,49 @@ public class WaveController : MonoBehaviour
 
     public void OnExit()
     {
+        _isRunning = false;
         StopSpawnMonster();
+        OnWaveCleared?.Invoke();
+        OnWaveCleared = null;
+        _nexusData.OnHealthChanged -= CheckGameOver;
         Debug.Log($"{name} : 웨이브 종료");
     }
 
-    private void CheckGameOver()
+    public void SetNexus(NexusController nexusController)
     {
+        _nexusController = nexusController;
+        _nexusData = _nexusController.GetComponent<NexusData>();
+    }
 
+    private void CheckGameOver(float health)
+    {
+        if(health <= 0 && !_isDefeated)
+        {
+            Debug.Log($"{name} : 방어물 체력 0 이하 확인");
+            _isDefeated = true;
+            OnWaveDefeated?.Invoke();
+        }
     }
 
     private void SpawnMonsterLine()
     {
         //TODO: 오브젝트 풀, 몬스터 연동, 소환 구현 필요
-        //TODO: 소환하는 알고리즘 푸아송 디스크? 사용하면 되나요
+        for(int i = 0; i < _monsterAmount; i++)
+        {
+            IPoolable monster = _monsterPool.Take();
+            OnWaveCleared += monster.ReturnToPool;
+
+            monster.GameObject.transform.position = _spawnPoint.position;
+            monster.GameObject.GetComponent<MonsterController>().SetNexus(_nexusController);         
+        }
+
         Debug.Log($"{name} : 몬스터 {_monsterSpawnCount}번째 사이클 소환");
         _monsterSpawnCount++;
     }
 
     private IEnumerator SpawnRoutine()
     {
-        while (true)
+        while (_isRunning)
         {
             yield return _waitSpawnCoolDown;
             SpawnMonsterLine();
