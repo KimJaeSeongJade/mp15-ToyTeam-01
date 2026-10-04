@@ -30,6 +30,10 @@ public class TurretController : MonoBehaviour
         {
             ChangeTurret(1);
         }
+        else if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ChangeTurret(2);
+        }
         else
         {
             Rotate();
