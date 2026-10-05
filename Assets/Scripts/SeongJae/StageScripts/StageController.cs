@@ -80,6 +80,7 @@ public class StageController : MonoBehaviour
         foreach(WaveController wave in _waves)
         {
             wave.SetNexus(_stageData.Nexus);
+            wave.SetStageData(_stageData);
         }
 
         _waves[_stageData.CurrentWave].OnEnter();

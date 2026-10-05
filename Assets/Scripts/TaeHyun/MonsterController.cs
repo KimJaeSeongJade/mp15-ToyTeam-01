@@ -12,8 +12,8 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
     public GameObject GameObject { get; set; }
     public ObjectPool Source { get; set; }
 
-    public event Action OnKilled;
-    public event Action OnNexusArrived;
+    public event Action<MonsterData> OnKilled;
+    public event Action<MonsterData> OnNexusArrived;
 
     private bool _isReturned = true;
 
@@ -45,7 +45,8 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
     // =============== Nexus 도착 시 수행할 로직 ===============
     private void ArriveNexus()
     {   
-        OnNexusArrived?.Invoke();
+        OnNexusArrived?.Invoke(_monsterData);
+        OnNexusArrived = null;
         _nexus.TakeDamage(_monsterData.Damage);
         gameObject.SetActive(false);
         ReturnToPool();
@@ -57,7 +58,8 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
         if (damage >= _monsterData.Health)
         {
             _monsterData.Health = 0;
-            OnKilled?.Invoke();
+            OnKilled?.Invoke(_monsterData);
+            OnKilled = null;
             ReturnToPool();
         }
         else
