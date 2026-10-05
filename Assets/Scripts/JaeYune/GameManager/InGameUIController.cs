@@ -26,6 +26,8 @@ public class InGameUIController : MonoBehaviour
         GameManager.Instance.OnGameResume += ViewResume;
         GameManager.Instance.OnGameClear += ViewGameClear;
         GameManager.Instance.OnGameOver += ViewGameOver;
+
+        _nexusData.OnHealthChanged += CheckNexusHealth;
     }
 
     private void UnbindGameFlow()
@@ -35,6 +37,8 @@ public class InGameUIController : MonoBehaviour
         GameManager.Instance.OnGameResume -= ViewResume;
         GameManager.Instance.OnGameClear -= ViewGameClear;
         GameManager.Instance.OnGameOver -= ViewGameOver;
+        
+        _nexusData.OnHealthChanged -= CheckNexusHealth;
     }
     
     private void GameStart()
@@ -43,6 +47,8 @@ public class InGameUIController : MonoBehaviour
         _pauseUi.SetActive(false);
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(false);
+
+        _isNexusHealthZero = false;
     }
 
     public void ViewGameClear()
@@ -58,9 +64,6 @@ public class InGameUIController : MonoBehaviour
 
     public void ViewGameOver()
     {
-        if (!_isGameOver) // 임시 코드
-            return;
-        
         _applyUis.SetActive(false);
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(true);
@@ -117,6 +120,7 @@ public class InGameUIController : MonoBehaviour
     
     /// <summary>
     /// UI 발생 확인을 위한 임시 키 배정 및 임시 코드
+    /// </summary>
     private KeyCode _gameClearKey = KeyCode.Keypad9;
     private KeyCode _gameOverKey = KeyCode.Keypad8;
 
@@ -126,8 +130,17 @@ public class InGameUIController : MonoBehaviour
     private void LateUpdate()
     {
         ViewGameClear();
-        ViewGameOver();
         ViewPause();
     }
-    /// </summary>
+    
+    // ++ 
+    [SerializeField] private NexusData _nexusData;
+    private bool _isNexusHealthZero;
+    private void CheckNexusHealth(float health)
+    {
+        if (health <= 0)
+        {
+            ViewGameOver();
+        }
+    }
 }

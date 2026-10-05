@@ -672,6 +672,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2010545479}
     - target: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
+      propertyPath: _nexusData
+      value: 
+      objectReference: {fileID: 517557234}
+    - target: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
       propertyPath: _gameOverUi
       value: 
       objectReference: {fileID: 923658359}
