@@ -47,6 +47,7 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
     {   
         OnNexusArrived?.Invoke(_monsterData);
         OnNexusArrived = null;
+        OnKilled = null;
         _nexus.TakeDamage(_monsterData.Damage);
         gameObject.SetActive(false);
         ReturnToPool();
@@ -59,6 +60,7 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
         {
             _monsterData.Health = 0;
             OnKilled?.Invoke(_monsterData);
+            OnNexusArrived = null;
             OnKilled = null;
             ReturnToPool();
         }
