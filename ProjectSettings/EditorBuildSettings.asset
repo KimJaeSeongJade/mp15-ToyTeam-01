@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test/JaeYun/TestInGame.unity
     guid: 99a4469dc42403543b51f5df6c9906c5
+  - enabled: 1
+    path: Assets/Scenes/Test/JaeYun/TestInGame2.unity
+    guid: 1093b1a9dffdc2344b1f88aba82c148e
   m_configObjects: {}

@@ -8,9 +8,8 @@ public class GameClear : MonoBehaviour
 {
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _returnMainButton;
-
-    private string _restartSceneName = "TestInGame";
-    private string _returnSceneName = "TestTitle";
+    [SerializeField] private string _restartSceneName;
+    [SerializeField] private string _returnSceneName;
     
     private void OnEnable()
     {

@@ -599,23 +599,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5328163136025482483, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
-      propertyPath: _clickSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 4da3074a6af56ea4eb77350f0aa60d93, type: 3}
-    - target: {fileID: 5328163136025482483, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
-      propertyPath: _clickSound2
-      value: 
-      objectReference: {fileID: 8300000, guid: 4da3074a6af56ea4eb77350f0aa60d93, type: 3}
-    - target: {fileID: 5328163136025482483, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
       propertyPath: titleController
-      value: 
-      objectReference: {fileID: 1982030717}
-    - target: {fileID: 5328163136025482483, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
-      propertyPath: _inGameSceneName
-      value: TestInGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 5328163136025482483, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
-      propertyPath: _testTitleController
       value: 
       objectReference: {fileID: 1982030717}
     m_RemovedComponents: []
