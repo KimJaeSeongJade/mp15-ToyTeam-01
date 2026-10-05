@@ -87,8 +87,8 @@ public class InGameUIController : MonoBehaviour
     
     /// <summary>
     /// UI 발생 확인을 위한 임시 키 배정 및 임시 코드
-    private KeyCode _gameClearKey = KeyCode.Alpha1;
-    private KeyCode _gameOverKey = KeyCode.Alpha2;
+    private KeyCode _gameClearKey = KeyCode.Keypad9;
+    private KeyCode _gameOverKey = KeyCode.Keypad8;
 
     private bool _isGameClear => Input.GetKeyDown(_gameClearKey);
     private bool _isGameOver => Input.GetKeyDown(_gameOverKey);
