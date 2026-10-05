@@ -82,7 +82,7 @@ public class SelectStage : MonoBehaviour
             .Play();
     }
 
-    private void ClickSoundOff()
+    private void ClickSoundOff2()
     {
         _click2.Stop();
         _click2 = null;

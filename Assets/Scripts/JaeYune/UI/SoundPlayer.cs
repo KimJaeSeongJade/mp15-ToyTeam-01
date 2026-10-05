@@ -56,6 +56,11 @@ public class SoundPlayer : MonoBehaviour
         _audioSource.Pause();
     }
 
+    public void Resume()
+    {
+        _audioSource.UnPause();
+    }
+
     public void Stop()
     {
         _audioSource.Stop();

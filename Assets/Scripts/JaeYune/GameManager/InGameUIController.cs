@@ -7,9 +7,13 @@ using UnityEngine.Serialization;
 public class InGameUIController : MonoBehaviour
 {
     [SerializeField] private GameObject _applyUis;
+    [SerializeField] private GameObject _pauseUi;
     [SerializeField] private GameObject _clearUi;
     [SerializeField] private GameObject _gameOverUi;
 
+    public KeyCode _pauseKey = KeyCode.Q;
+    public bool _isPausePressed => Input.GetKeyDown(_pauseKey);
+    
     private void Awake() => GameStart();
 
     private void OnEnable() => BindGameFlow();
@@ -18,6 +22,8 @@ public class InGameUIController : MonoBehaviour
     private void BindGameFlow()
     {
         GameManager.Instance.OnGameStart += GameStart;
+        GameManager.Instance.OnGamePause += ViewPause;
+        GameManager.Instance.OnGameResume += ViewResume;
         GameManager.Instance.OnGameClear += ViewGameClear;
         GameManager.Instance.OnGameOver += ViewGameOver;
     }
@@ -25,6 +31,8 @@ public class InGameUIController : MonoBehaviour
     private void UnbindGameFlow()
     {
         GameManager.Instance.OnGameStart -= GameStart;
+        GameManager.Instance.OnGamePause -= ViewPause;
+        GameManager.Instance.OnGameResume -= ViewResume;
         GameManager.Instance.OnGameClear -= ViewGameClear;
         GameManager.Instance.OnGameOver -= ViewGameOver;
     }
@@ -32,6 +40,7 @@ public class InGameUIController : MonoBehaviour
     private void GameStart()
     {
         _applyUis.SetActive(true);
+        _pauseUi.SetActive(false);
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(false);
     }
@@ -40,6 +49,7 @@ public class InGameUIController : MonoBehaviour
     {
         if (!_isGameClear) // 임시 코드
             return;
+        
         
         _applyUis.SetActive(false);
         _clearUi.SetActive(true);
@@ -55,6 +65,23 @@ public class InGameUIController : MonoBehaviour
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(true);
     }
+
+    public void ViewPause()
+    {
+        if(!_isPausePressed)
+            return;
+        
+        PauseBgm();
+        _applyUis.SetActive(false);
+        _pauseUi.SetActive(true);
+    }
+
+    public void ViewResume()
+    {
+        ResumeBgm();
+        _applyUis.SetActive(true);
+        _pauseUi.SetActive(false);
+    }
     
     // + 사운드
     [SerializeField] private AudioClip _inGameBgm;
@@ -65,7 +92,7 @@ public class InGameUIController : MonoBehaviour
 
     private void OnDestroy() => StopBgm();
 
-    private void PlayBgm()
+    public void PlayBgm()
     {
         _bgm = SoundManager.Instance.TakeSoundPlayer();
    
@@ -79,7 +106,10 @@ public class InGameUIController : MonoBehaviour
             .Play();
     }
 
-    private void StopBgm()
+    public void PauseBgm() => _bgm.Pause();
+    public void ResumeBgm() => _bgm.Resume();
+
+    public void StopBgm()
     {
         _bgm.Stop();
         _bgm = null;
@@ -87,8 +117,8 @@ public class InGameUIController : MonoBehaviour
     
     /// <summary>
     /// UI 발생 확인을 위한 임시 키 배정 및 임시 코드
-    private KeyCode _gameClearKey = KeyCode.Alpha1;
-    private KeyCode _gameOverKey = KeyCode.Alpha2;
+    private KeyCode _gameClearKey = KeyCode.Keypad9;
+    private KeyCode _gameOverKey = KeyCode.Keypad8;
 
     private bool _isGameClear => Input.GetKeyDown(_gameClearKey);
     private bool _isGameOver => Input.GetKeyDown(_gameOverKey);
@@ -97,6 +127,7 @@ public class InGameUIController : MonoBehaviour
     {
         ViewGameClear();
         ViewGameOver();
+        ViewPause();
     }
     /// </summary>
 }

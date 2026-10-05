@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 6116073056466099561}
   - component: {fileID: 1373673250599545011}
   - component: {fileID: 5368417405455629187}
+  - component: {fileID: 3929944118013327298}
   m_Layer: 5
   m_Name: Pref_03.PauseGame
   m_TagString: Untagged
@@ -374,6 +375,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3929944118013327298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3755691820856754837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b8820b35cd00645b243b3a4a3f56f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _continueButton: {fileID: 741687405425123126}
+  _restartButton: {fileID: 7159151017177939630}
+  _returnMainButton: {fileID: 1435976029048017804}
+  _restartScene: TestInGame
+  _returnMainScene: TestTitle
+  _inGameUIController: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
 --- !u!1 &4464639046019894647
 GameObject:
   m_ObjectHideFlags: 0
