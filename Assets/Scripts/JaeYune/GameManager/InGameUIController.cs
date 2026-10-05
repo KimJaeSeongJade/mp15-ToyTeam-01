@@ -7,9 +7,13 @@ using UnityEngine.Serialization;
 public class InGameUIController : MonoBehaviour
 {
     [SerializeField] private GameObject _applyUis;
+    [SerializeField] private GameObject _pauseUi;
     [SerializeField] private GameObject _clearUi;
     [SerializeField] private GameObject _gameOverUi;
 
+    public KeyCode _pauseKey = KeyCode.Q;
+    public bool _isPausePressed => Input.GetKeyDown(_pauseKey);
+    
     private void Awake() => GameStart();
 
     private void OnEnable() => BindGameFlow();
@@ -18,6 +22,7 @@ public class InGameUIController : MonoBehaviour
     private void BindGameFlow()
     {
         GameManager.Instance.OnGameStart += GameStart;
+        GameManager.Instance.OnGamePause += ViewPause;
         GameManager.Instance.OnGameClear += ViewGameClear;
         GameManager.Instance.OnGameOver += ViewGameOver;
     }
@@ -25,6 +30,7 @@ public class InGameUIController : MonoBehaviour
     private void UnbindGameFlow()
     {
         GameManager.Instance.OnGameStart -= GameStart;
+        GameManager.Instance.OnGamePause -= ViewPause;
         GameManager.Instance.OnGameClear -= ViewGameClear;
         GameManager.Instance.OnGameOver -= ViewGameOver;
     }
@@ -32,6 +38,7 @@ public class InGameUIController : MonoBehaviour
     private void GameStart()
     {
         _applyUis.SetActive(true);
+        _pauseUi.SetActive(false);
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(false);
     }
@@ -40,6 +47,7 @@ public class InGameUIController : MonoBehaviour
     {
         if (!_isGameClear) // 임시 코드
             return;
+        
         
         _applyUis.SetActive(false);
         _clearUi.SetActive(true);
@@ -55,6 +63,15 @@ public class InGameUIController : MonoBehaviour
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(true);
     }
+
+    public void ViewPause()
+    {
+        if(!_isPausePressed)
+            return;
+        
+        _applyUis.SetActive(false);
+        _pauseUi.SetActive(true);
+    }
     
     // + 사운드
     [SerializeField] private AudioClip _inGameBgm;
@@ -65,7 +82,7 @@ public class InGameUIController : MonoBehaviour
 
     private void OnDestroy() => StopBgm();
 
-    private void PlayBgm()
+    public void PlayBgm()
     {
         _bgm = SoundManager.Instance.TakeSoundPlayer();
    
@@ -79,7 +96,10 @@ public class InGameUIController : MonoBehaviour
             .Play();
     }
 
-    private void StopBgm()
+    public void PauseBgm() => _bgm.Pause();
+    public void ResumeBgm() => _bgm.Resume();
+
+    public void StopBgm()
     {
         _bgm.Stop();
         _bgm = null;
@@ -97,6 +117,7 @@ public class InGameUIController : MonoBehaviour
     {
         ViewGameClear();
         ViewGameOver();
+        ViewPause();
     }
     /// </summary>
 }
