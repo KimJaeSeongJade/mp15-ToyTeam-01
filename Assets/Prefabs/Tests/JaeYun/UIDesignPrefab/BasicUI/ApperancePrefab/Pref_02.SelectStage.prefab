@@ -335,8 +335,9 @@ MonoBehaviour:
   _hardStageButton: {fileID: 1335388486113378399}
   _hellStageButton: {fileID: 8610060522909722143}
   _backToMainMenuButton: {fileID: 7134449889348778841}
-  _testTitleController: {fileID: 0}
-  _inGameSceneName: TestScene
+  titleController: {fileID: 0}
+  _inGameSceneName: TestInGame2
+  _clickSound2: {fileID: 8300000, guid: 4da3074a6af56ea4eb77350f0aa60d93, type: 3}
 --- !u!1 &1488253868230002618
 GameObject:
   m_ObjectHideFlags: 0
