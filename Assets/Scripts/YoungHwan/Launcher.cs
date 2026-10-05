@@ -6,7 +6,6 @@ public class Launcher : TurretBase
 {
     public override void Attack()
     {
-        // TODO: 런처 공격 로직 구현
-        SpawnBullet();
+        SpawnBullet(_firePoint.position, _firePoint.rotation);
     }
 }

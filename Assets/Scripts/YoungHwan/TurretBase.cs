@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class TurretBase : MonoBehaviour
 {
+    [Header("공통")]
     [SerializeField] protected TurretType _type;
     [SerializeField] protected Transform _firePoint;
     [SerializeField] protected ObjectPool _bulletPool;
@@ -32,14 +33,14 @@ public abstract class TurretBase : MonoBehaviour
         FireSoundOff();
     }
 
-    public void SpawnBullet()
+    public void SpawnBullet(Vector3 position, Quaternion rotation)
     {
         BulletController bullet = _bulletPool.Take() as BulletController;
         if (bullet == null) return;
         
-        bullet.SetData(_data, _firePoint.position, _firePoint.rotation);
+        bullet.SetData(_data, position, rotation);
     }
-
+    
     public abstract void Attack();
     
     // + jay

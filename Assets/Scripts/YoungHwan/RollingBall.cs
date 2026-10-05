@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class RollingBall : TurretBase
 {
+    [SerializeField] private Transform _secondFirePoint;
+    [SerializeField] private float _spreadAngle; 
     public override void Attack()
     {
-        // TODO: 롤링볼 공격 로직 구현
-        SpawnBullet();
+        Vector3 direction = _firePoint.forward;
+        direction.y = 0;
+        if (direction == Vector3.zero) return;
+        
+        Quaternion rotation = Quaternion.LookRotation(direction.normalized);
+        
+        Quaternion leftRotation = rotation * Quaternion.Euler(0, -_spreadAngle, 0);
+        Quaternion rightRotation = rotation * Quaternion.Euler(0, _spreadAngle, 0);
+
+        SpawnBullet(_firePoint.position, leftRotation);
+        SpawnBullet(_secondFirePoint.position, rightRotation);
     }
 }
