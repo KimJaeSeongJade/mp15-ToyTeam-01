@@ -34,9 +34,10 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
     // =============== 기본 이동 로직 ===============
     private void MoveToNexus()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _nexus.transform.position, _monsterData.MoveSpeed * Time.deltaTime);
+        //이동 로직을 단순히 앞으로 이동하는 것으로 수정하였습니다. (추후 발판 등 도입)
+        transform.Translate(Vector3.forward * _monsterData.MoveSpeed * Time.deltaTime);
         float distance = Vector3.Distance(transform.position, _nexus.transform.position);
-        if (distance <= 0.5f)
+        if (distance <= 25f)
         {
             ArriveNexus();
         }
