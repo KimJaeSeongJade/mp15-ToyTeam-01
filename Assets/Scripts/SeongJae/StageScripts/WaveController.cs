@@ -1,53 +1,35 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WaveController : MonoBehaviour
 {
-    [Header("현재 사용할 몬스터 오브젝트 풀 참조")]
-    [SerializeField] private ObjectPool _monsterPool;
-
-    [Header("몬스터 소환 지점")]
-    [SerializeField] private Transform _spawnPoint;
-
-    [Header("몬스터 소환 주기")]
-    [SerializeField] private float _spawnCoolDown = 1.0f;
-
-    [Header("한 소환 주기에서 소환할 몬스터 수")]
-    [SerializeField] private float _monsterAmount = 10;
-
-    [Header("최대 몬스터 소환 수")]
-    public int MaxMonsterCount;
+    private WaveData _waveData;
 
     private WaitForSeconds _waitSpawnCoolDown;
     private Coroutine _monsterSpawnRoutine;
 
-    // 넥서스 데이터 연동
     private NexusController _nexusController;
     private NexusData _nexusData;
 
-    // 스테이지 데이터 연동
     private StageData _stageData;
-
-    public event Action OnWaveCleared;
-    public event Action OnWaveDefeated;
-
-    private bool _isDefeated;
     private bool _isRunning;
 
-    private Vector3 _originalPosition;
+    private Vector3 _tempSpawnPoint;
     private Vector2 _randomSpawnPoint;
+
+    [SerializeField] private float minOffset, maxOffset;
 
     // =============== 유니티 생명 주기 =============== 
 
     private void Start() => Init();
-
     // =============== 웨이브 진행 시점에서 수행할 행동 ===============
 
     public void OnEnter()
     {
         _isRunning = true;
-        StartSpawnMonster();
+        StartSpawn();
         _nexusData.OnHealthChanged += CheckGameOver;
         Debug.Log($"{name} : 웨이브 시작");
     }
@@ -55,63 +37,49 @@ public class WaveController : MonoBehaviour
     public void OnExit()
     {
         _isRunning = false;
-        StopSpawnMonster();
-        OnWaveCleared?.Invoke();
-        OnWaveCleared = null;
+        StopSpawn();
+        _waveData.IsCleared = true;
         _nexusData.OnHealthChanged -= CheckGameOver;
         Debug.Log($"{name} : 웨이브 종료");
     }
-
     // =============== 부모에서 넥서스 정보를 반환 ===============
 
-    public void SetNexus(NexusController nexusController)
-    {
-        _nexusController = nexusController;
-        _nexusData = _nexusController.GetComponent<NexusData>();
-    }
-
-    public void SetStageData(StageData stageData)
+    public void SetData(StageData stageData)
     {
         _stageData = stageData;
+        _nexusController = stageData.Nexus;
+        _nexusData = _nexusController.GetComponent<NexusData>();
     }
-
     // =============== 패배 조건 확인 ===============
     private void CheckGameOver(float health)
     {
-        if(health <= 0 && !_isDefeated)
+        if(health <= 0 && !_waveData.IsDefeated)
         {
-            Debug.Log($"{name} : 방어물 체력 0 이하 확인");
-            _isDefeated = true;
-            OnWaveDefeated?.Invoke();
+            _waveData.IsDefeated = true;
         }
     }
-
     // =============== 한 몬스터 소환 주기 ===============
 
-    private void SetSpawnPoint(float min, float max)
+    private void SetSpawnPoint(Transform tr)
     {
-        _randomSpawnPoint.x = UnityEngine.Random.Range(min, max);
-        _randomSpawnPoint.y = UnityEngine.Random.Range(min, max);
-        _spawnPoint.position = new Vector3(
-            _originalPosition.x + _randomSpawnPoint.x,
-            _originalPosition.y,
-            _originalPosition.z + _randomSpawnPoint.y);
+        _randomSpawnPoint.x = UnityEngine.Random.Range(minOffset, maxOffset);
+        _randomSpawnPoint.y = UnityEngine.Random.Range(minOffset, maxOffset);
+        _tempSpawnPoint = new Vector3(_waveData.SpawnPoint.position.x + _randomSpawnPoint.x, _tempSpawnPoint.y, _waveData.SpawnPoint.position.z + _randomSpawnPoint.y);
+        tr.position = _tempSpawnPoint;
     }
 
-    private void SpawnMonsterLine()
+    private void SpawnLine()
     {
-        for(int i = 0; i < _monsterAmount; i++)
+        for(int i = 0; i < _waveData.SpawnAmount; i++)
         {
-            IPoolable monster = _monsterPool.Take();
-            OnWaveCleared += monster.ReturnToPool;
+            IPoolable monster = _waveData.MonsterPool.Take();
+            _waveData.OnWaveCleared += monster.ReturnToPool;
 
-            SetSpawnPoint(-15f, 15f);
-            monster.GameObject.transform.position = _spawnPoint.position;
+            SetSpawnPoint(monster.GameObject.transform);
             monster.GameObject.GetComponent<MonsterController>().SetNexus(_nexusController);
-            monster.GameObject.GetComponent<MonsterController>().OnKilled += IncreaseScore;
+            monster.GameObject.GetComponent<MonsterController>().OnKilled += RefreshScore;
         }
     }
-
     // =============== 몬스터 소환 코루틴 ===============
 
     private IEnumerator SpawnRoutine()
@@ -119,47 +87,39 @@ public class WaveController : MonoBehaviour
         while (_isRunning)
         {
             yield return _waitSpawnCoolDown;
-            SpawnMonsterLine();
+            SpawnLine();
         }
         
     }
-
     // =============== 몬스터 소환 코루틴 실행 ===============
 
-    private void StartSpawnMonster()
+    private void StartSpawn()
     {
         if (_monsterSpawnRoutine != null) return;
 
         _monsterSpawnRoutine = StartCoroutine(SpawnRoutine());
     }
-
     // =============== 몬스터 소환 코루틴 정지 ===============
 
-    private void StopSpawnMonster()
+    private void StopSpawn()
     {
         if (_monsterSpawnRoutine == null) return;
 
         StopCoroutine(_monsterSpawnRoutine);
         _monsterSpawnRoutine = null;
     }
-
     // =============== 몬스터 사망 이벤트에 구독할 메서드 ===============
-    private void IncreaseScore(MonsterData monsterData)
+    private void RefreshScore(MonsterData monsterData)
     {
         _stageData.KillCount++;
         _stageData.Score += monsterData.Score;
-        Debug.Log($"{monsterData.Type} 몬스터 사망, 점수 {monsterData.Score} 상승 {_stageData.Score}");
-        Debug.Log($"현재 처치한 몬스터 수 : {_stageData.KillCount}");
     }
-
-
     // =============== 정보 초기화 메서드 ===============
 
     private void Init()
     {
-        _waitSpawnCoolDown = new WaitForSeconds(_spawnCoolDown);
-        _originalPosition = _spawnPoint.position;
+        _waveData = GetComponent<WaveData>();
+        _waitSpawnCoolDown = new WaitForSeconds(_waveData.SpawnCoolDown);
+        _tempSpawnPoint = _waveData.SpawnPoint.position;
     }
-
-    // =============== =============== ===============
 }

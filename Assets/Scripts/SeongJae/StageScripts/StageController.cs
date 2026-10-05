@@ -15,6 +15,7 @@ public class StageController : MonoBehaviour
     [Header("한 웨이브 당 걸리는 시간")]
     [SerializeField] private float _timeForWave;
 
+    private WaveData _currentWaveData;
     private StageData _stageData;
     private WaitForSeconds _waitForCoolDown;
 
@@ -55,7 +56,7 @@ public class StageController : MonoBehaviour
 
     private void StartNextWave()
     {
-        _waves[_stageData.CurrentWave].OnWaveDefeated -= SetDefeat;
+        _currentWaveData.OnDefeated -= SetDefeat;
 
         _stageData.CurrentWave++;
         if (_stageData.CurrentWave >= _stageData.MaxWave)
@@ -65,33 +66,28 @@ public class StageController : MonoBehaviour
             _isCleared = true;
             return;
         }
-        _waves[_stageData.CurrentWave].OnWaveDefeated += SetDefeat;
+        _currentWaveData = _waves[_stageData.CurrentWave].GetComponent<WaveData>();
+        _currentWaveData.OnDefeated += SetDefeat;
         _waves[_stageData.CurrentWave].OnEnter();
     }
     private void Init()
     {
-        _stageData.CurrentWave = 0;
-        _stageData.MaxWave = _waves.Count;
-        _stageData.MonsterCount = _waves[_stageData.CurrentWave].MaxMonsterCount;
-        _stageData.Score = 0;
-        _stageData.Time = _timeForWave;
+        _stageData.SetData(0, _waves.Count, 0, 0, _timeForWave);
         _stageData.OnTimeChanged += CheckTimeOver;
 
-        foreach(WaveController wave in _waves)
-        {
-            wave.SetNexus(_stageData.Nexus);
-            wave.SetStageData(_stageData);
-        }
+        _currentWaveData = _waves[_stageData.CurrentWave].GetComponent<WaveData>();
+
+        foreach (WaveController wave in _waves) wave.SetData(_stageData);
 
         _waves[_stageData.CurrentWave].OnEnter();
-        _waves[_stageData.CurrentWave].OnWaveDefeated += SetDefeat;
+        _currentWaveData.OnDefeated += SetDefeat;
     }
 
     private void SetDefeat()
     {
         _isDefeated = true;
-        Debug.Log($"{name} : 패배 확인, 게임 오버");
         _waves[_stageData.CurrentWave].OnExit();
+        Debug.Log("패배");
     }
 
     private void CacheComponents()
