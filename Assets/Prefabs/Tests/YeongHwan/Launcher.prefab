@@ -125,6 +125,10 @@ MonoBehaviour:
   _bulletPool: {fileID: 0}
   _data: {fileID: 5936313216743371391}
   _fireDelay: 1
+  _maxHeat: 100
+  _heatPerShot: 20
+  _coolPerSecond: 30
+  _coolDelay: 1.5
   _fireSound: {fileID: 8300000, guid: c6e2c3b7694375746b4874de115f29a5, type: 3}
 --- !u!114 &5936313216743371391
 MonoBehaviour:

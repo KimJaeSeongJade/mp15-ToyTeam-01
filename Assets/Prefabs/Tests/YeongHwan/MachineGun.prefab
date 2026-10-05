@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4581196354087622228}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.31, z: 0}
   m_LocalScale: {x: 0.75, y: 0.6, z: 0.75}
   m_ConstrainProportionsScale: 0
@@ -124,6 +124,10 @@ MonoBehaviour:
   _bulletPool: {fileID: 0}
   _data: {fileID: 0}
   _fireDelay: 0.06
+  _maxHeat: 100
+  _heatPerShot: 1.5
+  _coolPerSecond: 40
+  _coolDelay: 0.5
   _fireSound: {fileID: 8300000, guid: 24e71d9ab2ae43044b17b700b01189b5, type: 3}
   _targetLayer:
     serializedVersion: 2
@@ -133,10 +137,10 @@ MonoBehaviour:
     m_Bits: 256
   _minBullets: 1
   _maxBullets: 2
+  _spreadAngle: 1
   _bulletRange: 50
   _bulletRadius: 0.1
   _explosionRadius: 0.3
-  _spreadAngle: 1
 --- !u!1 &8482698811758597562
 GameObject:
   m_ObjectHideFlags: 0

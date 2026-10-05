@@ -5,18 +5,38 @@ using UnityEngine;
 public abstract class TurretBase : MonoBehaviour
 {
     [Header("공통")]
-    [SerializeField] protected TurretType _type;
+    [SerializeField] private TurretType _type;
     [SerializeField] protected Transform _firePoint;
-    [SerializeField] protected ObjectPool _bulletPool;
-    [SerializeField] protected BulletData _data;
-    [SerializeField] protected float _fireDelay;
+    [SerializeField] private ObjectPool _bulletPool;
+    [SerializeField] private BulletData _data;
+    [SerializeField] private float _fireDelay;
+    [Header("과열")]
+    [SerializeField] private float _maxHeat;
+    [SerializeField] private float _heatPerShot;
+    [SerializeField] private float _coolPerSecond;
+    [SerializeField] private float _coolDelay;
     
     private bool _canFire = true;
+    private float _currentHeat;
+    private bool _isOverHeat;
+    private float _lastFireTime;
     public TurretType Type => _type;
+    // UI 연동용 HeatGauge, IsOverHeat 프로퍼티 추가
+    public float HeatGauge => _currentHeat / _maxHeat;
+    public bool IsOverHeat => _isOverHeat;
+    
+    private void Update()
+    {
+        if (Time.time - _lastFireTime < _coolDelay) return;
+        _currentHeat -= _coolPerSecond * Time.deltaTime;
+        _currentHeat = Mathf.Max(0, _currentHeat);
 
+        if (_isOverHeat && _currentHeat == 0) _isOverHeat = false;
+    }
+    
     public void Fire()
     {
-        if (!_canFire) return;
+        if (!_canFire || _isOverHeat) return;
         StartCoroutine(FireRoutine());
     }
 
@@ -24,6 +44,9 @@ public abstract class TurretBase : MonoBehaviour
     {
         _canFire = false;
         Attack();
+        _currentHeat += _heatPerShot;
+        _lastFireTime = Time.time;
+        if (_currentHeat >= _maxHeat) _isOverHeat = true;
         FireSoundOn();
         
         yield return new WaitForSeconds(_fireDelay);
@@ -40,10 +63,11 @@ public abstract class TurretBase : MonoBehaviour
         
         bullet.SetData(_data, position, rotation);
     }
-    
+
     public abstract void Attack();
     
     // + jay
+    [Header("사운드")]
     [SerializeField] protected AudioClip _fireSound;
     protected SoundPlayer _fire;
 

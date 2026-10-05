@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RollingBall : TurretBase
 {
+    [Header("롤링볼")]
     [SerializeField] private Transform _secondFirePoint;
     [SerializeField] private float _spreadAngle; 
     public override void Attack()
