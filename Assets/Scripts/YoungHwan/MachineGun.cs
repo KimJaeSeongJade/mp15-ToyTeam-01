@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class MachineGun : TurretBase
 {
+    [Header("머신건 - 레이어")]
     [SerializeField] private LayerMask _targetLayer;
     [SerializeField] private LayerMask _monsterLayer;
+    [Header("머신건 - 발사")]
     [SerializeField] private int _minBullets;
     [SerializeField] private int _maxBullets;
+    [SerializeField] private float _spreadAngle = 1f;
+    [Header("머신건 - 판정")]
     [SerializeField] private float _bulletRange;
     [SerializeField] private float _bulletRadius = 0.1f;
     [SerializeField] private float _explosionRadius = 0.3f;
-    [SerializeField] private float _spreadAngle = 1f;
     public override void Attack()
     {
         int bullets = Random.Range(_minBullets, _maxBullets + 1);

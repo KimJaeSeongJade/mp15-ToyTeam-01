@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2011459628402651267}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.31, z: 0}
   m_LocalScale: {x: 0.75, y: 0.6, z: 0.75}
   m_ConstrainProportionsScale: 0
@@ -126,6 +126,10 @@ MonoBehaviour:
   _bulletPool: {fileID: 0}
   _data: {fileID: 5070712832607868266}
   _fireDelay: 2
+  _maxHeat: 100
+  _heatPerShot: 25
+  _coolPerSecond: 25
+  _coolDelay: 2.5
   _fireSound: {fileID: 0}
   _secondFirePoint: {fileID: 4315117611643155052}
   _spreadAngle: 3

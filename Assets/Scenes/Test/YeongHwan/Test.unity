@@ -1899,9 +1899,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4489161339804941397, guid: 5ab17b0fccc6ac94887145de4febb2d1, type: 3}
+      propertyPath: _maxHeat
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489161339804941397, guid: 5ab17b0fccc6ac94887145de4febb2d1, type: 3}
+      propertyPath: _coolDelay
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489161339804941397, guid: 5ab17b0fccc6ac94887145de4febb2d1, type: 3}
       propertyPath: _bulletPool
       value: 
       objectReference: {fileID: 437985020}
+    - target: {fileID: 4489161339804941397, guid: 5ab17b0fccc6ac94887145de4febb2d1, type: 3}
+      propertyPath: _heatPerShot
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489161339804941397, guid: 5ab17b0fccc6ac94887145de4febb2d1, type: 3}
+      propertyPath: _coolPerSecond
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4988982295327660349, guid: 5ab17b0fccc6ac94887145de4febb2d1, type: 3}
       propertyPath: m_Name
       value: Launcher
@@ -1924,9 +1940,25 @@ PrefabInstance:
       value: RollingBall
       objectReference: {fileID: 0}
     - target: {fileID: 5374024943320084937, guid: 6b7599c3de68ecd429ffab581ef4a2c2, type: 3}
+      propertyPath: _maxHeat
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374024943320084937, guid: 6b7599c3de68ecd429ffab581ef4a2c2, type: 3}
+      propertyPath: _coolDelay
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374024943320084937, guid: 6b7599c3de68ecd429ffab581ef4a2c2, type: 3}
       propertyPath: _bulletPool
       value: 
       objectReference: {fileID: 437985020}
+    - target: {fileID: 5374024943320084937, guid: 6b7599c3de68ecd429ffab581ef4a2c2, type: 3}
+      propertyPath: _heatPerShot
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374024943320084937, guid: 6b7599c3de68ecd429ffab581ef4a2c2, type: 3}
+      propertyPath: _coolPerSecond
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8777121061860704484, guid: 6b7599c3de68ecd429ffab581ef4a2c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2019,6 +2051,22 @@ PrefabInstance:
     - target: {fileID: 2196189413519315620, guid: 79ff5cbc1c93ee5468bf03cadf6d24c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289002562570263236, guid: 79ff5cbc1c93ee5468bf03cadf6d24c0, type: 3}
+      propertyPath: _maxHeat
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289002562570263236, guid: 79ff5cbc1c93ee5468bf03cadf6d24c0, type: 3}
+      propertyPath: _coolDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289002562570263236, guid: 79ff5cbc1c93ee5468bf03cadf6d24c0, type: 3}
+      propertyPath: _heatPerShot
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289002562570263236, guid: 79ff5cbc1c93ee5468bf03cadf6d24c0, type: 3}
+      propertyPath: _coolPerSecond
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4581196354087622228, guid: 79ff5cbc1c93ee5468bf03cadf6d24c0, type: 3}
       propertyPath: m_Name
