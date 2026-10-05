@@ -14,7 +14,7 @@ public class MachineGun : TurretBase
     [SerializeField] private float _spreadAngle = 1f;
     public override void Attack()
     {
-        int bullets = Random.Range(_minBullets, (_maxBullets + 1));
+        int bullets = Random.Range(_minBullets, _maxBullets + 1);
         for (int i = 0; i < bullets; i++)
         {
             Quaternion spread = Quaternion.Euler(

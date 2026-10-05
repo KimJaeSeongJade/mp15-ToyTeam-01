@@ -10,16 +10,44 @@ public class BulletController : MonoBehaviour, IPoolable
     public ObjectPool Source { get; set; }
     private BulletData _data;
     private Rigidbody _rb;
+    private bool _isGrounded;
+    private Vector3 _direction;
+    private List<Collider> _hitMonsters = new();
 
-    private void Awake() => CacheComponenets();
-    
+    private void Awake() => CacheComponents();
+
+    private void FixedUpdate()
+    {
+        if (_data == null) return;
+        if (_data.Type == BulletType.RollingBallBullet && _isGrounded)
+        {
+            Collider[] monsters = Physics.OverlapSphere(transform.position, _data.HitRadius, _monsterLayer);
+            foreach (Collider monster in monsters)
+            {
+                if (_hitMonsters.Contains(monster)) continue;
+                
+                _hitMonsters.Add(monster);
+                // TODO: 몬스터 피격 처리
+                Debug.Log($"롤링볼 맞는 중 {monster.gameObject.name}");
+            }
+        }
+    }
+
     public void SetData(BulletData data, Vector3 position, Quaternion rotation)
     {
         _data = data;
         transform.position = position;
         transform.rotation = rotation;
-        _rb.velocity = transform.forward * _data.Speed;
+
+        _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
+        _rb.AddForce(transform.forward * _data.Speed, ForceMode.Impulse);
+
+        _isGrounded = false;
+        _direction = transform.forward;
+        _direction.y = 0;
+        _direction.Normalize();
+        _hitMonsters.Clear();
 
         StartCoroutine(DisableRoutine());
     }
@@ -29,6 +57,12 @@ public class BulletController : MonoBehaviour, IPoolable
         if (_data.Type == BulletType.LauncherBullet)
         {
             Explode();
+        }
+        
+        if (_data.Type == BulletType.RollingBallBullet && !_isGrounded)
+        {
+            _isGrounded = true;
+            _rb.velocity = _direction * _data.RollSpeed;
         }
     }
     private void Explode()
@@ -83,7 +117,7 @@ public class BulletController : MonoBehaviour, IPoolable
         _explode = null;
     }
 
-    private void CacheComponenets()
+    private void CacheComponents()
     {
         _rb = GetComponent<Rigidbody>();
     }
