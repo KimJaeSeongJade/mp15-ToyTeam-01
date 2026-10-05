@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MonsterData : MonoBehaviour
 {
-    [Header("몬스터의 실제 충돌 판정")]
-    public Transform Body;
-
     [Header("몬스터의 종류 (SMALL, MIDDE, BIG)")]
     public MonsterType Type;
 
