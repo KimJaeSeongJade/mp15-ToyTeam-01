@@ -38,19 +38,9 @@ public class WaveController : MonoBehaviour
     private bool _isDefeated;
     private bool _isRunning;
 
-    public event Action<float> KillTest;
-
     // =============== 유니티 생명 주기 =============== 
 
     private void Start() => Init();
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            KillTest?.Invoke(1000);
-            KillTest = null;
-        }
-    }
 
     // =============== 웨이브 진행 시점에서 수행할 행동 ===============
 
@@ -108,7 +98,6 @@ public class WaveController : MonoBehaviour
             monster.GameObject.transform.position = _spawnPoint.position;
             monster.GameObject.GetComponent<MonsterController>().SetNexus(_nexusController);
             monster.GameObject.GetComponent<MonsterController>().OnKilled += IncreaseScore;
-            KillTest += (monster as IDamageable).TakeDamage;
         }
 
         Debug.Log($"{name} : 몬스터 {_monsterSpawnCount}번째 사이클 소환");
@@ -162,4 +151,6 @@ public class WaveController : MonoBehaviour
     {
         _waitSpawnCoolDown = new WaitForSeconds(_spawnCoolDown);
     }
+
+    // =============== =============== ===============
 }
