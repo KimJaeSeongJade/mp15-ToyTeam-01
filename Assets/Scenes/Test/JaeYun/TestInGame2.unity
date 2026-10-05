@@ -508,14 +508,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5891134050439016242, guid: 640a28a059632934e8ee8f2f3cad7951, type: 3}
-      propertyPath: _returnSceneName
-      value: TestTitle
-      objectReference: {fileID: 0}
-    - target: {fileID: 5891134050439016242, guid: 640a28a059632934e8ee8f2f3cad7951, type: 3}
-      propertyPath: _restartSceneName
-      value: TestInGame2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -750,10 +742,6 @@ PrefabInstance:
     - target: {fileID: 3755691820856754837, guid: 1cb429c6dcf7bc34e925f642cb2f7cf9, type: 3}
       propertyPath: m_Name
       value: Pref_03.PauseGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 3929944118013327298, guid: 1cb429c6dcf7bc34e925f642cb2f7cf9, type: 3}
-      propertyPath: _restartScene
-      value: TestInGame2
       objectReference: {fileID: 0}
     - target: {fileID: 3929944118013327298, guid: 1cb429c6dcf7bc34e925f642cb2f7cf9, type: 3}
       propertyPath: _inGameUIController
