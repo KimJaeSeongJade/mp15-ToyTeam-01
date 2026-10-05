@@ -23,6 +23,7 @@ public class InGameUIController : MonoBehaviour
     {
         GameManager.Instance.OnGameStart += GameStart;
         GameManager.Instance.OnGamePause += ViewPause;
+        GameManager.Instance.OnGameResume += ViewResume;
         GameManager.Instance.OnGameClear += ViewGameClear;
         GameManager.Instance.OnGameOver += ViewGameOver;
     }
@@ -31,6 +32,7 @@ public class InGameUIController : MonoBehaviour
     {
         GameManager.Instance.OnGameStart -= GameStart;
         GameManager.Instance.OnGamePause -= ViewPause;
+        GameManager.Instance.OnGameResume -= ViewResume;
         GameManager.Instance.OnGameClear -= ViewGameClear;
         GameManager.Instance.OnGameOver -= ViewGameOver;
     }
@@ -69,8 +71,16 @@ public class InGameUIController : MonoBehaviour
         if(!_isPausePressed)
             return;
         
+        PauseBgm();
         _applyUis.SetActive(false);
         _pauseUi.SetActive(true);
+    }
+
+    public void ViewResume()
+    {
+        ResumeBgm();
+        _applyUis.SetActive(true);
+        _pauseUi.SetActive(false);
     }
     
     // + 사운드

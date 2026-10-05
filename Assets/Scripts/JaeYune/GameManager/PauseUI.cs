@@ -12,12 +12,7 @@ public class PauseUI : MonoBehaviour
     [SerializeField] private string _restartScene;
     [SerializeField] private string _returnMainScene;
     
-    private InGameUIController _inGameUIController;
-
-    private void Awake()
-    {
-        gameObject.SetActive(false);
-    }
+    [SerializeField] private InGameUIController _inGameUIController;
     
     private void OnEnable()
     {
@@ -34,7 +29,7 @@ public class PauseUI : MonoBehaviour
         _restartButton.onClick.AddListener(PressToRestart);
         _returnMainButton.onClick.AddListener(PressToReturnMain);
     }
-
+    
     private void UnbindButtons()
     {
         if (GameManager.Instance == null)
@@ -45,50 +40,23 @@ public class PauseUI : MonoBehaviour
         _returnMainButton.onClick.RemoveListener(PressToReturnMain);
     }
     
-    private void LateUpdate()
+    public void PressToContinue()
     {
-        PauseKey();
-    }
-
-    public void PauseKey()
-    {
-        if (!_inGameUIController._isPausePressed)
-            return;
-
-        _inGameUIController.PauseBgm();
-        OnGamePause();
-        GameManager.Instance.PauseGame();
-    }
-    
-    private void PressToContinue()
-    {
-        _inGameUIController.ResumeBgm();
-        OnGameResume();
-        GameManager.Instance.ResumeGame();
+        _inGameUIController.ViewResume();
     }
 
     private void PressToRestart()
     {
-        _inGameUIController.StopBgm();
+        _inGameUIController.ResumeBgm();
         RestartGame();
         GameManager.Instance.LoadScene(_restartScene);
     }
 
     private void PressToReturnMain()
     {
-        _inGameUIController.StopBgm();
+        _inGameUIController.ResumeBgm();
         ReturnMain();
         GameManager.Instance.LoadScene(_returnMainScene);
-    }
-
-    private void OnGamePause()
-    {
-        gameObject.SetActive(true);
-    }
-
-    private void OnGameResume()
-    {
-        gameObject.SetActive(false);
     }
 
     private void RestartGame()
