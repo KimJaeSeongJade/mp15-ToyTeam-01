@@ -387,9 +387,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b8820b35cd00645b243b3a4a3f56f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _continueButton: {fileID: 7159151017177939630}
+  _continueButton: {fileID: 741687405425123126}
   _restartButton: {fileID: 7159151017177939630}
   _returnMainButton: {fileID: 1435976029048017804}
+  _restartScene: TestInGame
+  _returnMainScene: TestTitle
+  _inGameUIController: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
 --- !u!1 &4464639046019894647
 GameObject:
   m_ObjectHideFlags: 0

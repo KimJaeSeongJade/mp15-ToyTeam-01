@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3253503207213149246}
   - component: {fileID: 1639420515293060111}
   m_Layer: 0
-  m_Name: InGameUIManager
+  m_Name: InGameUIController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b693777b0a600d4497ed09ff5cdcbe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _applyUis: {fileID: 0}
-  _clearUi: {fileID: 0}
-  _gameOverUi: {fileID: 0}
+  _applyUis: {fileID: 5971203121313286054, guid: a47057666e23eaf4d9677b79e9b377bd, type: 3}
+  _pauseUi: {fileID: 3755691820856754837, guid: 1cb429c6dcf7bc34e925f642cb2f7cf9, type: 3}
+  _clearUi: {fileID: 8290920151885443800, guid: 9e86d5d142a8e474d91244c6125a1d19, type: 3}
+  _gameOverUi: {fileID: 2029917792951334319, guid: 640a28a059632934e8ee8f2f3cad7951, type: 3}
+  _pauseKey: 113
   _inGameBgm: {fileID: 8300000, guid: 3c77959d14545e6419afd1aae54313bf, type: 3}
