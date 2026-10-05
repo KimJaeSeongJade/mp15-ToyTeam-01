@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WaveController : MonoBehaviour
@@ -16,20 +14,19 @@ public class WaveController : MonoBehaviour
     [SerializeField] private float _spawnCoolDown = 1.0f;
 
     [Header("한 소환 주기에서 소환할 몬스터 수")]
-    [SerializeField] private float _monsterAmount = 50;
+    [SerializeField] private float _monsterAmount = 10;
 
     [Header("최대 몬스터 소환 수")]
     public int MaxMonsterCount;
 
-
-    private int _monsterSpawnCount;
-
     private WaitForSeconds _waitSpawnCoolDown;
     private Coroutine _monsterSpawnRoutine;
 
+    // 넥서스 데이터 연동
     private NexusController _nexusController;
     private NexusData _nexusData;
 
+    // 스테이지 데이터 연동
     private StageData _stageData;
 
     public event Action OnWaveCleared;
@@ -37,6 +34,9 @@ public class WaveController : MonoBehaviour
 
     private bool _isDefeated;
     private bool _isRunning;
+
+    private Vector3 _originalPosition;
+    private Vector2 _randomSpawnPoint;
 
     // =============== 유니티 생명 주기 =============== 
 
@@ -88,6 +88,16 @@ public class WaveController : MonoBehaviour
 
     // =============== 한 몬스터 소환 주기 ===============
 
+    private void SetSpawnPoint(float min, float max)
+    {
+        _randomSpawnPoint.x = UnityEngine.Random.Range(min, max);
+        _randomSpawnPoint.y = UnityEngine.Random.Range(min, max);
+        _spawnPoint.position = new Vector3(
+            _originalPosition.x + _randomSpawnPoint.x,
+            _originalPosition.y,
+            _originalPosition.z + _randomSpawnPoint.y);
+    }
+
     private void SpawnMonsterLine()
     {
         for(int i = 0; i < _monsterAmount; i++)
@@ -95,13 +105,11 @@ public class WaveController : MonoBehaviour
             IPoolable monster = _monsterPool.Take();
             OnWaveCleared += monster.ReturnToPool;
 
+            SetSpawnPoint(-15f, 15f);
             monster.GameObject.transform.position = _spawnPoint.position;
             monster.GameObject.GetComponent<MonsterController>().SetNexus(_nexusController);
             monster.GameObject.GetComponent<MonsterController>().OnKilled += IncreaseScore;
         }
-
-        Debug.Log($"{name} : 몬스터 {_monsterSpawnCount}번째 사이클 소환");
-        _monsterSpawnCount++;
     }
 
     // =============== 몬스터 소환 코루틴 ===============
@@ -150,6 +158,7 @@ public class WaveController : MonoBehaviour
     private void Init()
     {
         _waitSpawnCoolDown = new WaitForSeconds(_spawnCoolDown);
+        _originalPosition = _spawnPoint.position;
     }
 
     // =============== =============== ===============
