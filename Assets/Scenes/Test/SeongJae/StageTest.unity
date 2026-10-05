@@ -184,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonsterPool: {fileID: 707408190}
   SpawnPoint: {fileID: 846994833}
-  SpawnCoolDown: 0.5
+  SpawnCoolDown: 0.2
   SpawnAmount: 30
   AmountForClear: 100
 --- !u!1 &189552320

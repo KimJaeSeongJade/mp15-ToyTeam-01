@@ -85,11 +85,11 @@ public class WaveController : MonoBehaviour
         {
             IPoolable monster = _waveData.MonsterPool.Take();
             _waveData.OnWaveCleared += monster.ReturnToPool;
+            _waveData.OnDefeated += monster.ReturnToPool;
 
             SetSpawnPoint(monster.GameObject.transform);
             monster.GameObject.GetComponent<MonsterController>().SetNexus(_nexusController);
             monster.GameObject.GetComponent<MonsterController>().OnKilled += RefreshScore;
-
             KillTestEvent += (monster as IDamageable).TakeDamage;
         }
     }
