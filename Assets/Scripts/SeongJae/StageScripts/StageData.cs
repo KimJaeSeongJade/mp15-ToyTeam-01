@@ -49,6 +49,17 @@ public class StageData : MonoBehaviour
         }
     }
 
+    private int _killCount;
+    public int KillCount
+    {
+        get => _killCount;
+        set
+        {
+            _killCount = value;
+            OnKillCountChanged?.Invoke(_killCount);
+        }
+    }
+
     [SerializeField] private float _time;
     public float Time
     {
@@ -60,7 +71,6 @@ public class StageData : MonoBehaviour
         }
     }
 
-
     [Header("넥서스 객체 연동")]
     public NexusController Nexus;
 
@@ -68,5 +78,6 @@ public class StageData : MonoBehaviour
     public event Action<int> OnMaxWaveChanged;
     public event Action<int> OnMonsterCountChanged;
     public event Action<int> OnScoreChanged;
+    public event Action<int> OnKillCountChanged;
     public event Action<float> OnTimeChanged;
 }
