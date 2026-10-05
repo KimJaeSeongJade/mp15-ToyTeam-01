@@ -39,9 +39,8 @@ public class StageController : MonoBehaviour
     {
         if(time <= 0 && _isRunning)
         {
+            _waves[_stageData.CurrentWave].Clear();
             _waves[_stageData.CurrentWave].OnExit();
-            _stageData.Time = _timeForWave;
-            StartCoroutine(WaveCoolRoutine());
         }
     }
 
@@ -56,8 +55,6 @@ public class StageController : MonoBehaviour
 
     private void StartNextWave()
     {
-        _currentWaveData.OnDefeated -= SetDefeat;
-
         _stageData.CurrentWave++;
         if (_stageData.CurrentWave >= _stageData.MaxWave)
         {
@@ -67,7 +64,7 @@ public class StageController : MonoBehaviour
             return;
         }
         _currentWaveData = _waves[_stageData.CurrentWave].GetComponent<WaveData>();
-        _currentWaveData.OnDefeated += SetDefeat;
+        _currentWaveData.OnDefeated += CheckDefeat;
         _waves[_stageData.CurrentWave].OnEnter();
     }
     private void Init()
@@ -80,14 +77,23 @@ public class StageController : MonoBehaviour
         foreach (WaveController wave in _waves) wave.SetData(_stageData);
 
         _waves[_stageData.CurrentWave].OnEnter();
-        _currentWaveData.OnDefeated += SetDefeat;
+        _currentWaveData.OnDefeated += CheckDefeat;
+        _currentWaveData.OnWaveCleared += CheckWaveClear;
     }
 
-    private void SetDefeat()
+    private void CheckDefeat()
     {
         _isDefeated = true;
         _waves[_stageData.CurrentWave].OnExit();
         Debug.Log("패배");
+    }
+
+    private void CheckWaveClear()
+    {
+        _waves[_stageData.CurrentWave].OnExit();
+        Debug.Log("웨이브 클리어");
+        _stageData.Time = _timeForWave;
+        StartCoroutine(WaveCoolRoutine());
     }
 
     private void CacheComponents()

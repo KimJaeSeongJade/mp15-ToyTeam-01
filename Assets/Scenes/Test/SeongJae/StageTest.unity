@@ -186,7 +186,7 @@ MonoBehaviour:
   SpawnPoint: {fileID: 846994833}
   SpawnCoolDown: 0.5
   SpawnAmount: 30
-  AmountForClear: 1000
+  AmountForClear: 100
 --- !u!1 &189552320
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,6 +40,7 @@ public class WaveData : MonoBehaviour
         {
             _isDefeated = false;
             OnDefeated?.Invoke();
+            OnDefeated = null;
         }
     }
 

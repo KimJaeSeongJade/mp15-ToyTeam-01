@@ -21,9 +21,14 @@ public class WaveController : MonoBehaviour
 
     [SerializeField] private float minOffset, maxOffset;
 
+    private event Action<float> KillTestEvent;
     // =============== 유니티 생명 주기 =============== 
 
     private void Start() => Init();
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K)) KillTestEvent?.Invoke(1000);
+    }
     // =============== 웨이브 진행 시점에서 수행할 행동 ===============
 
     public void OnEnter()
@@ -38,9 +43,15 @@ public class WaveController : MonoBehaviour
     {
         _isRunning = false;
         StopSpawn();
-        _waveData.IsCleared = true;
+        //_waveData.IsCleared = true;
         _nexusData.OnHealthChanged -= CheckGameOver;
         Debug.Log($"{name} : 웨이브 종료");
+    }
+    
+    public void Clear()
+    {
+        if (_waveData.IsCleared) return;
+        _waveData.IsCleared = true;
     }
     // =============== 부모에서 넥서스 정보를 반환 ===============
 
@@ -78,6 +89,8 @@ public class WaveController : MonoBehaviour
             SetSpawnPoint(monster.GameObject.transform);
             monster.GameObject.GetComponent<MonsterController>().SetNexus(_nexusController);
             monster.GameObject.GetComponent<MonsterController>().OnKilled += RefreshScore;
+
+            KillTestEvent += (monster as IDamageable).TakeDamage;
         }
     }
     // =============== 몬스터 소환 코루틴 ===============
@@ -113,6 +126,11 @@ public class WaveController : MonoBehaviour
     {
         _stageData.KillCount++;
         _stageData.Score += monsterData.Score;
+        _waveData.AmountForClear--;
+        if(_waveData.AmountForClear <= 0)
+        {
+            _waveData.IsCleared = true;
+        }
     }
     // =============== 정보 초기화 메서드 ===============
 
