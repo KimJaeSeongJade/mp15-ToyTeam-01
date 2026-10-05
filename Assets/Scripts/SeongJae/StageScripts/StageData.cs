@@ -71,6 +71,15 @@ public class StageData : MonoBehaviour
         }
     }
 
+    public void SetData(int currentWave, int maxWave, int monsterCount, int score, float time)
+    {
+        _currentWave = currentWave;
+        _maxWave = maxWave;
+        _monsterCount = monsterCount;
+        _score = score;
+        _time = time;
+    }
+
     [Header("넥서스 객체 연동")]
     public NexusController Nexus;
 
