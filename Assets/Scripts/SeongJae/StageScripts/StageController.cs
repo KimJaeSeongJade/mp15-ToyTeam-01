@@ -36,10 +36,9 @@ public class StageController : MonoBehaviour
 
     public void CheckTimeOver(float time)
     {
-        if(time <= 0 && _isRunning)
+        if(time <= 0 && !_stageData.IsClear && !_isDefeated)
         {
             _waves[_stageData.CurrentWave].Clear();
-            _waves[_stageData.CurrentWave].OnExit();
         }
     }
 
@@ -63,15 +62,16 @@ public class StageController : MonoBehaviour
             return;
         }
         _currentWaveData = _waves[_stageData.CurrentWave].GetComponent<WaveData>();
+
+        _currentWaveData.OnWaveCleared += CheckWaveClear;
         _currentWaveData.OnDefeated += CheckDefeat;
         _waves[_stageData.CurrentWave].OnEnter();
     }
     private void Init()
     {
+        _currentWaveData = _waves[_stageData.CurrentWave].GetComponent<WaveData>();
         _stageData.SetData(_waves.Count, _currentWaveData.AmountForClear, _timeForWave);
         _stageData.OnTimeChanged += CheckTimeOver;
-
-        _currentWaveData = _waves[_stageData.CurrentWave].GetComponent<WaveData>();
 
         foreach (WaveController wave in _waves) wave.SetData(_stageData);
 
