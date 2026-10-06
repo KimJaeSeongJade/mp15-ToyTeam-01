@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RollingBall : TurretBase
@@ -20,5 +18,12 @@ public class RollingBall : TurretBase
 
         SpawnBullet(_firePoint.position, leftRotation);
         SpawnBullet(_secondFirePoint.position, rightRotation);
+    }
+    public override void SetFirePoint(Transform model)
+    {
+        base.SetFirePoint(model);
+
+        Transform second = model.Find("SecondFirePoint");
+        if (second != null) _secondFirePoint = second;
     }
 }

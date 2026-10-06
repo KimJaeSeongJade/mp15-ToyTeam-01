@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,6 +68,8 @@ public class BulletController : MonoBehaviour, IPoolable
     }
     private void Explode()
     {
+        ExplodeSoundOn();
+        
         Collider[] monsters = Physics.OverlapSphere(transform.position, _data.ExplosionRadius, _monsterLayer);
         foreach (Collider monster in monsters)
         {
@@ -82,10 +83,6 @@ public class BulletController : MonoBehaviour, IPoolable
     {
         yield return new WaitForSeconds(_data.ReturnDelay);
         ReturnToPool();
-        // +
-        ExplodeSoundOn();
-        yield return new WaitForSeconds(_data.ReturnDelay);
-        ExplodeSoundOff();
     }
 
     public void ReturnToPool()
@@ -111,12 +108,14 @@ public class BulletController : MonoBehaviour, IPoolable
                 .PlaySoundWhenStart(false)
                 .ConvertSourceToClip(_data.ExplodeSound)
                 .Play();
+        
+        SoundManager.Instance.StartCoroutine(SoundOffRoutine(_explode, _data.ExplodeSound.length));
     }
 
-    private void ExplodeSoundOff()
+    private IEnumerator SoundOffRoutine(SoundPlayer player, float time)
     {
-        _explode.Stop();
-        _explode = null;
+        yield return new WaitForSeconds(time);
+        player.Stop();
     }
 
     private void CacheComponents()
