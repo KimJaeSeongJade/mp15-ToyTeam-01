@@ -1300,8 +1300,7 @@ PrefabInstance:
       propertyPath: _nexusData
       value: 
       objectReference: {fileID: 1808546914}
-    m_RemovedComponents:
-    - {fileID: 6824423464039615632, guid: a47057666e23eaf4d9677b79e9b377bd, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
