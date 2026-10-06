@@ -210,14 +210,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2479173750267651822, guid: 9e86d5d142a8e474d91244c6125a1d19, type: 3}
-      propertyPath: _returnSceneName
-      value: TestTitle
-      objectReference: {fileID: 0}
-    - target: {fileID: 2479173750267651822, guid: 9e86d5d142a8e474d91244c6125a1d19, type: 3}
-      propertyPath: _restartSceneName
-      value: TestInGame2
-      objectReference: {fileID: 0}
+    - target: {fileID: 6037717858872124646, guid: 9e86d5d142a8e474d91244c6125a1d19, type: 3}
+      propertyPath: _stageData
+      value: 
+      objectReference: {fileID: 6636263475576984408}
     - target: {fileID: 8290920151885443800, guid: 9e86d5d142a8e474d91244c6125a1d19, type: 3}
       propertyPath: m_Name
       value: Pref_05.ClearStage
@@ -424,6 +420,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1646135974149492717, guid: 640a28a059632934e8ee8f2f3cad7951, type: 3}
+      propertyPath: _stageData
+      value: 
+      objectReference: {fileID: 6636263475576984408}
     - target: {fileID: 2029917792951334319, guid: 640a28a059632934e8ee8f2f3cad7951, type: 3}
       propertyPath: m_Name
       value: Pref_04.Gameover
@@ -1037,6 +1037,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28392537171183b42b206ee2aa5e68de, type: 3}
+--- !u!114 &6636263475576984408 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5454239089366431973, guid: 28392537171183b42b206ee2aa5e68de, type: 3}
+  m_PrefabInstance: {fileID: 6636263475576984407}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43f5754633c30140a5c1191b3b672b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8181965854654048115
 PrefabInstance:
   m_ObjectHideFlags: 0

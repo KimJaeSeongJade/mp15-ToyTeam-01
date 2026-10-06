@@ -47,8 +47,6 @@ public class InGameUIController : MonoBehaviour
         _pauseUi.SetActive(false);
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(false);
-
-        _isNexusHealthZero = false;
     }
 
     public void ViewGameClear()
@@ -135,7 +133,6 @@ public class InGameUIController : MonoBehaviour
     
     // ++ 
     [SerializeField] private NexusData _nexusData;
-    private bool _isNexusHealthZero;
     private void CheckNexusHealth(float health)
     {
         if (health <= 0)
