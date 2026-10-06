@@ -60,6 +60,7 @@ public class WaveController : MonoBehaviour
         _stageData = stageData;
         _nexusController = stageData.Nexus;
         _nexusData = _nexusController.GetComponent<NexusData>();
+        _stageData.MonsterCount = _waveData.AmountForClear;
     }
     // =============== 패배 조건 확인 ===============
     private void CheckGameOver(float health)
@@ -126,8 +127,10 @@ public class WaveController : MonoBehaviour
     {
         _stageData.KillCount++;
         _stageData.Score += monsterData.Score;
-        _waveData.AmountForClear--;
-        if(_waveData.AmountForClear <= 0)
+        _stageData.MonsterCount--;
+        Debug.Log("남은 몬스터 수 : " + _stageData.MonsterCount);
+        Debug.Log("지금까지 처치한 몬스터 수" + _stageData.KillCount);
+        if (_stageData.MonsterCount <= 0)
         {
             _waveData.IsCleared = true;
         }
