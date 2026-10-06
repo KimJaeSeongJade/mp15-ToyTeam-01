@@ -48,12 +48,12 @@ public class StatusWindow : MonoBehaviour
 
     private void CurrentWaveText(int currentWave)
     {
-        _currentWave.text = $"{currentWave}";
+        _currentWave.text = $"{currentWave + 1}";
     }
 
     private void TimeChanged(float time)
     {
-        _elapseTime.text = $"{time}";
+        _elapseTime.text = $"{Mathf.Round(time)}";
     }
 
     private void CurrentScoreText(int currentScore)

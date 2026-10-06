@@ -129,7 +129,8 @@ public class WaveController : MonoBehaviour
 
         _stageData.KillCount++;
         _stageData.MonsterCount--;
-
+        _stageData.Score += monsterData.Score;
+        
         Debug.Log("남은 몬스터 수 : " + _stageData.MonsterCount);
         Debug.Log("지금까지 처치한 몬스터 수" + _stageData.KillCount);
 
@@ -141,7 +142,7 @@ public class WaveController : MonoBehaviour
 
         
 
-        _stageData.Score += monsterData.Score;
+        
     }
     // =============== 정보 초기화 메서드 ===============
 

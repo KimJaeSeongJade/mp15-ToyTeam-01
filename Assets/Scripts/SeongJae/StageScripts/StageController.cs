@@ -72,6 +72,8 @@ public class StageController : MonoBehaviour
         _currentWaveData = _waves[_stageData.CurrentWave].GetComponent<WaveData>();
         _stageData.SetData(_waves.Count, _currentWaveData.AmountForClear, _timeForWave);
         _stageData.OnTimeChanged += CheckTimeOver;
+        _stageData.MaxWave = _waves.Count;
+        _stageData.CurrentWave = 0;
 
         foreach (WaveController wave in _waves) wave.SetData(_stageData);
 
