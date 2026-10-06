@@ -1039,7 +1039,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 257255660}
     - target: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
+      propertyPath: _clearResultBoard
+      value: 
+      objectReference: {fileID: 257255660}
+    - target: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
       propertyPath: _gameOverScoreBoard
+      value: 
+      objectReference: {fileID: 923658360}
+    - target: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
+      propertyPath: _gameOverResultBoard
       value: 
       objectReference: {fileID: 923658360}
     - target: {fileID: 3253503207213149246, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
