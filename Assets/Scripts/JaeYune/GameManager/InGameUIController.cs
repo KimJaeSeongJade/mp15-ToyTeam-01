@@ -28,6 +28,8 @@ public class InGameUIController : MonoBehaviour
         GameManager.Instance.OnGameOver += ViewGameOver;
 
         _nexusData.OnHealthChanged += CheckNexusHealth;
+        
+        _stageData.OnStageCleared += CheckStageClear;
     }
 
     private void UnbindGameFlow()
@@ -39,12 +41,15 @@ public class InGameUIController : MonoBehaviour
         GameManager.Instance.OnGameOver -= ViewGameOver;
         
         _nexusData.OnHealthChanged -= CheckNexusHealth;
+        
+        _stageData.OnStageCleared -= CheckStageClear;
     }
     
     private void GameStart()
     {
         _isPause = false;
         _isGameEnd = false;
+        _isGameClear = false;
         
         _applyUis.SetActive(true);
         _pauseUi.SetActive(false);
@@ -55,6 +60,7 @@ public class InGameUIController : MonoBehaviour
     public void ViewGameClear()
     {
         _isGameEnd = true;
+        _isGameClear = true;
 
         _clearResultBoard.ShowResult(_stageData);
         
@@ -127,14 +133,6 @@ public class InGameUIController : MonoBehaviour
         _bgm?.Stop();
         _bgm = null;
     }
-    
-    /// <summary>
-    /// UI 발생 확인을 위한 임시 키 배정 및 임시 코드
-    /// </summary>
-    private KeyCode _gameClearKey = KeyCode.Keypad9;
-    private KeyCode _gameOverKey = KeyCode.Keypad8;
-
-    private bool _isGameClear => Input.GetKeyDown(_gameClearKey);
 
     private void Update()
     {
@@ -166,6 +164,13 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] private StageData _stageData;
     [SerializeField] private ResultBoard _clearResultBoard;
     [SerializeField] private ResultBoard _gameOverResultBoard;
+
+    private bool _isGameClear;
+    
+    private void CheckStageClear()
+    {
+        _isGameClear = true;
+    }
     
     // ++++
     private bool _isPause;
