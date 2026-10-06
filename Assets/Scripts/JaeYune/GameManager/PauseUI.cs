@@ -42,20 +42,20 @@ public class PauseUI : MonoBehaviour
     
     public void PressToContinue()
     {
-        _inGameUIController.ViewResume();
+        GameManager.Instance.ResumeGame();
     }
 
     private void PressToRestart()
     {
         _inGameUIController.ResumeBgm();
-        RestartGame();
+        GameManager.Instance.StartGame();
         GameManager.Instance.LoadScene(_restartScene);
     }
 
     private void PressToReturnMain()
     {
         _inGameUIController.ResumeBgm();
-        ReturnMain();
+        GameManager.Instance.StartGame();
         GameManager.Instance.LoadScene(_returnMainScene);
     }
 
