@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3081860558150129938}
   - component: {fileID: 8612264654382540176}
   - component: {fileID: 4749320640879534867}
+  - component: {fileID: 6184393247581617904}
   m_Layer: 5
   m_Name: Pref_07.ScoreBoard
   m_TagString: Untagged
@@ -102,6 +103,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6184393247581617904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254075213020787186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e610280369875a142825b8eac3aa2bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monsterRemainText: {fileID: 2480716027452129206}
+  _waveText: {fileID: 6101200044417704283}
+  _elapseTimeText: {fileID: 3790675006234763397}
+  _scoreText: {fileID: 8019553644465998548}
 --- !u!1 &3497783883182412706
 GameObject:
   m_ObjectHideFlags: 0
