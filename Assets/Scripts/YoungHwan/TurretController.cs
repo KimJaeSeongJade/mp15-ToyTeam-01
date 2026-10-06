@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 public class TurretController : MonoBehaviour
 {
     [SerializeField] private Transform _cameraPivot;
+    [SerializeField] private Transform _weaponHolder;
     [SerializeField] private float _minPitch;
     [SerializeField] private float _maxPitch;
     [SerializeField] private float _mouseSensitivity;
@@ -16,6 +15,7 @@ public class TurretController : MonoBehaviour
     private float _pitch;
     private Camera _camera;
     private Vector2 _currentRotation;
+    private List<GameObject> _weaponModels = new();
     private bool _isChanged;
     public TurretBase CurrentTurret => _turrets[_turretIndex];
     public int CurrentIndex => _turretIndex;
@@ -72,6 +72,8 @@ public class TurretController : MonoBehaviour
 
     private void ChangeTurret(int index)
     {
+        if (index >= _turrets.Count) return;
+        
         RemoveListener(_turrets[_turretIndex]);
         _turretIndex = index;
         AddListener(_turrets[_turretIndex]);
@@ -84,8 +86,29 @@ public class TurretController : MonoBehaviour
 
         _camera.gameObject.transform.position = _cameraPivot.position;
         _camera.gameObject.transform.rotation = _cameraPivot.rotation;
+        
+        ShowWeaponModel(index);
     }
 
+    private void CreateWeaponModels()
+    {
+        foreach (TurretBase turret in _turrets)
+        {
+            GameObject model = Instantiate(turret.WeaponModel, _weaponHolder);
+            turret.SetFirePoint(model.transform);
+            model.SetActive(false);
+            _weaponModels.Add(model);
+        }
+    }
+    
+    private void ShowWeaponModel(int index)
+    {
+        for (int i = 0; i < _weaponModels.Count; i++)
+        {
+            _weaponModels[i].SetActive(i == index);
+        }
+    }
+    
     private void AddListener(TurretBase turret)
     {
         _onFire += turret.Fire;
@@ -104,6 +127,7 @@ public class TurretController : MonoBehaviour
     private void Init()
     {
         _camera = Camera.main;
+        CreateWeaponModels();
         ChangeTurret(0);
     }
     

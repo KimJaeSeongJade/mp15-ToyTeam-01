@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class TurretBase : MonoBehaviour
 {
     [Header("공통")]
     [SerializeField] private TurretType _type;
+    [SerializeField] private GameObject _weaponModel;
     [SerializeField] protected Transform _firePoint;
     [SerializeField] private ObjectPool _bulletPool;
     [SerializeField] private BulletData _data;
@@ -21,6 +21,7 @@ public abstract class TurretBase : MonoBehaviour
     private bool _isOverHeat;
     private float _lastFireTime;
     public TurretType Type => _type;
+    public GameObject WeaponModel => _weaponModel;
     // UI 연동용 HeatGauge, IsOverHeat 프로퍼티 추가
     public float HeatGauge => _currentHeat / _maxHeat;
     public bool IsOverHeat => _isOverHeat;
@@ -55,9 +56,6 @@ public abstract class TurretBase : MonoBehaviour
         
         yield return new WaitForSeconds(_fireDelay);
         _canFire = true;
-        
-        // + jay
-        FireSoundOff();
     }
 
     public void SpawnBullet(Vector3 position, Quaternion rotation)
@@ -66,6 +64,12 @@ public abstract class TurretBase : MonoBehaviour
         if (bullet == null) return;
         
         bullet.SetData(_data, position, rotation);
+    }
+    
+    public virtual void SetFirePoint(Transform model)
+    {
+        Transform point = model.Find("FirePoint");
+        if (point != null) _firePoint = point;
     }
 
     public abstract void Attack();
@@ -87,12 +91,13 @@ public abstract class TurretBase : MonoBehaviour
              .PlaySoundWhenStart(false)
              .ConvertSourceToClip(_fireSound)
              .Play();
+        
+        StartCoroutine(SoundOffRoutine(_fire, _fireSound.length));
     }
 
-    private void FireSoundOff()
+    private IEnumerator SoundOffRoutine(SoundPlayer player, float time)
     {
-        if (_fire == null) return;
-        _fire.Stop();
-        _fire = null;
+        yield return new WaitForSeconds(time);
+        player.Stop();
     }
 }
