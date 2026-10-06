@@ -38,6 +38,8 @@ public class BulletController : MonoBehaviour, IPoolable
         _data = data;
         transform.position = position;
         transform.rotation = rotation;
+        _rb.position = position;
+        _rb.rotation = rotation;
 
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
