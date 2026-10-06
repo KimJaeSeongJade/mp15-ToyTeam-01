@@ -77,6 +77,7 @@ public class WaveController : MonoBehaviour
         _randomSpawnPoint.y = UnityEngine.Random.Range(minOffset, maxOffset);
         _tempSpawnPoint = new Vector3(_waveData.SpawnPoint.position.x + _randomSpawnPoint.x, _tempSpawnPoint.y, _waveData.SpawnPoint.position.z + _randomSpawnPoint.y);
         tr.position = _tempSpawnPoint;
+        tr.rotation = _waveData.SpawnPoint.rotation;
     }
 
     private void SpawnLine()
@@ -88,7 +89,6 @@ public class WaveController : MonoBehaviour
             _waveData.OnDefeated += monster.ReturnToPool;
 
             SetSpawnPoint(monster.GameObject.transform);
-            monster.GameObject.GetComponent<MonsterController>().SetNexus(_nexusController);
             monster.GameObject.GetComponent<MonsterController>().OnKilled += RefreshScore;
             KillTestEvent += (monster as IDamageable).TakeDamage;
         }

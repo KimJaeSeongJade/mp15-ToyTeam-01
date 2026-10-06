@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class NexusController : MonoBehaviour, IDamageable
 {
+    [Header("몬스터 레이어 설정")]
+    [SerializeField] private LayerMask _monsterLayer;
+
     private NexusData _nexusData;
 
     private void Awake() => CacheComponents();
@@ -23,6 +26,15 @@ public class NexusController : MonoBehaviour, IDamageable
         else
         {
             _nexusData.CurrentHealth -= damage;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if((_monsterLayer & (1 << other.gameObject.layer)) != 0)
+        {
+            other.gameObject.GetComponent<MonsterController>().ArriveNexus();
+            TakeDamage(other.gameObject.GetComponent<MonsterData>().Damage);
         }
     }
 
