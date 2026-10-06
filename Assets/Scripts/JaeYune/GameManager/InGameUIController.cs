@@ -54,7 +54,6 @@ public class InGameUIController : MonoBehaviour
         if (!_isGameClear) // 임시 코드
             return;
         
-        
         _applyUis.SetActive(false);
         _clearUi.SetActive(true);
         _gameOverUi.SetActive(false);
@@ -112,7 +111,7 @@ public class InGameUIController : MonoBehaviour
 
     public void StopBgm()
     {
-        _bgm.Stop();
+        _bgm?.Stop();
         _bgm = null;
     }
     
@@ -123,7 +122,6 @@ public class InGameUIController : MonoBehaviour
     private KeyCode _gameOverKey = KeyCode.Keypad8;
 
     private bool _isGameClear => Input.GetKeyDown(_gameClearKey);
-    private bool _isGameOver => Input.GetKeyDown(_gameOverKey);
 
     private void LateUpdate()
     {
@@ -140,4 +138,6 @@ public class InGameUIController : MonoBehaviour
             ViewGameOver();
         }
     }
+    
+    // +++
 }

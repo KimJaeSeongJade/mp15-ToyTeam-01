@@ -58,7 +58,7 @@ public class TitleController : MonoBehaviour
 
     private void StopBgm()
     {
-        _bgm.Stop();
+        _bgm?.Stop();
         _bgm = null;
     }
 }

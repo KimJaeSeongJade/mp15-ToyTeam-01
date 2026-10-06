@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class StatusWindow : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _monsterRemainText;
-    [SerializeField] private TextMeshProUGUI _currentWaveText;
-    [SerializeField] private TextMeshProUGUI _maxWaveText;
-    [SerializeField] private TextMeshProUGUI _elapseTimeText;
+    [SerializeField] private TextMeshProUGUI _monsterRemain;
+    [SerializeField] private TextMeshProUGUI _currentWave;
+    [SerializeField] private TextMeshProUGUI _maxWave;
+    [SerializeField] private TextMeshProUGUI _elapseTime;
     [SerializeField] private TextMeshProUGUI _scoreText;
 
     [SerializeField] private StageData _stageData;
+    
+    public string MonsterRemain => _monsterRemain.text;
+    public string CurrentWave => _currentWave.text;
+    public string MaxWave => _maxWave.text;
+    public string ElapseTime => _elapseTime.text;
+    public string Score => _scoreText.text;
     
     private void OnEnable() => BindGameFlow();
     private void OnDisable() => UnbindGameFlow();
@@ -37,22 +44,23 @@ public class StatusWindow : MonoBehaviour
 
     private void CurrentMonsterRemainText(int monsterRemain)
     {
-        _monsterRemainText.text = $"{monsterRemain}";
+        _monsterRemain.text = $"{monsterRemain}";
     }
 
     private void MaxWaveText(int maxWave)
     {
-        _maxWaveText.text = $"{maxWave}";
+        _maxWave.text = $"{maxWave}";
     }
 
     private void CurrentWaveText(int currentWave)
     {
-        _currentWaveText.text = $"{currentWave}";
+        _currentWave.text = $"{currentWave}";
+        
     }
 
     private void TimeChanged(float time)
     {
-        _elapseTimeText.text = $"{time}";
+        _elapseTime.text = $"{time}";
     }
 
     private void CurrentScoreText(int currentScore)
