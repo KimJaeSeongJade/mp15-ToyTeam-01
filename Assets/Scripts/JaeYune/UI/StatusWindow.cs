@@ -15,12 +15,6 @@ public class StatusWindow : MonoBehaviour
 
     [SerializeField] private StageData _stageData;
     
-    public string MonsterRemain => _monsterRemain.text;
-    public string CurrentWave => _currentWave.text;
-    public string MaxWave => _maxWave.text;
-    public string ElapseTime => _elapseTime.text;
-    public string Score => _scoreText.text;
-    
     private void OnEnable() => BindGameFlow();
     private void OnDisable() => UnbindGameFlow();
 
@@ -55,7 +49,6 @@ public class StatusWindow : MonoBehaviour
     private void CurrentWaveText(int currentWave)
     {
         _currentWave.text = $"{currentWave}";
-        
     }
 
     private void TimeChanged(float time)
