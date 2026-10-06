@@ -5,6 +5,9 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
     [Header("몬스터 데이터")]
     private MonsterData _monsterData;
 
+    [Header("탄알 레이어")]
+    private LayerMask _bulletLayer;
+
     // =============== IPoolable 구현 ===============
     public GameObject GameObject { get; set; }
     public ObjectPool Source { get; set; }
@@ -20,6 +23,13 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
     private void OnEnable() => _isReturned = false;
     private void FixedUpdate() => MoveToNexus();
     private void OnDisable() => _isReturned = true;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if((_bulletLayer & (1 << other.gameObject.layer)) != 0){
+            TakeDamage(other.GetComponent<BulletData>().Damage);
+        }
+    }
 
     // =============== 기본 이동 로직 ===============
     private void MoveToNexus()
