@@ -19,7 +19,6 @@ public class StageController : MonoBehaviour
     private StageData _stageData;
     private WaitForSeconds _waitForCoolDown;
 
-    private bool _isCleared;
     private bool _isTimeStopped;
     private bool _isDefeated;
 
@@ -60,7 +59,7 @@ public class StageController : MonoBehaviour
         {
             Debug.Log($"{name} : 스테이지 클리어");
             _isTimeStopped = true;
-            _isCleared = true;
+            _stageData.IsClear = true;
             return;
         }
         _currentWaveData = _waves[_stageData.CurrentWave].GetComponent<WaveData>();
@@ -69,7 +68,7 @@ public class StageController : MonoBehaviour
     }
     private void Init()
     {
-        _stageData.SetData(0, _waves.Count, 0, 0, _timeForWave);
+        _stageData.SetData(_waves.Count, _currentWaveData.AmountForClear, _timeForWave);
         _stageData.OnTimeChanged += CheckTimeOver;
 
         _currentWaveData = _waves[_stageData.CurrentWave].GetComponent<WaveData>();
@@ -79,6 +78,8 @@ public class StageController : MonoBehaviour
         _waves[_stageData.CurrentWave].OnEnter();
         _currentWaveData.OnDefeated += CheckDefeat;
         _currentWaveData.OnWaveCleared += CheckWaveClear;
+
+        _stageData.OnStageCleared += TestStageClear;
     }
 
     private void CheckDefeat()
@@ -101,5 +102,10 @@ public class StageController : MonoBehaviour
         _stageData = GetComponent<StageData>();
         _waitForCoolDown = new WaitForSeconds(_waveCoolDown);
         _isTimeStopped = false;
+    }
+
+    private void TestStageClear()
+    {
+        Debug.Log("스테이지 클리어 발생");
     }
 }
