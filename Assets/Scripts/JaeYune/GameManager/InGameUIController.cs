@@ -11,8 +11,8 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] private GameObject _clearUi;
     [SerializeField] private GameObject _gameOverUi;
 
-    public KeyCode _pauseKey = KeyCode.Q;
-    public bool _isPausePressed => Input.GetKeyDown(_pauseKey);
+    private KeyCode _pauseKey = KeyCode.Q;
+    private bool _isPausePressed => Input.GetKeyDown(_pauseKey);
     
     private void Awake() => GameStart();
 
@@ -43,6 +43,9 @@ public class InGameUIController : MonoBehaviour
     
     private void GameStart()
     {
+        _isPause = false;
+        _isGameEnd = false;
+        
         _applyUis.SetActive(true);
         _pauseUi.SetActive(false);
         _clearUi.SetActive(false);
@@ -51,8 +54,9 @@ public class InGameUIController : MonoBehaviour
 
     public void ViewGameClear()
     {
-        if (!_isGameClear) // 임시 코드
-            return;
+        _isGameEnd = true;
+
+        _clearScoreBoard.ShowResult(_stageData);
         
         _applyUis.SetActive(false);
         _clearUi.SetActive(true);
@@ -61,6 +65,10 @@ public class InGameUIController : MonoBehaviour
 
     public void ViewGameOver()
     {
+        _isGameEnd = true;
+        
+        _gameOverScoreBoard.ShowResult(_stageData);
+        
         _applyUis.SetActive(false);
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(true);
@@ -68,8 +76,7 @@ public class InGameUIController : MonoBehaviour
 
     public void ViewPause()
     {
-        if(!_isPausePressed)
-            return;
+        _isPause = true;
         
         PauseBgm();
         _applyUis.SetActive(false);
@@ -78,6 +85,8 @@ public class InGameUIController : MonoBehaviour
 
     public void ViewResume()
     {
+        _isPause = false;
+        
         ResumeBgm();
         _applyUis.SetActive(true);
         _pauseUi.SetActive(false);
@@ -88,7 +97,11 @@ public class InGameUIController : MonoBehaviour
     
     private SoundPlayer _bgm;
 
-    private void Start() => PlayBgm();
+    private void Start()
+    {
+        PlayBgm();
+        GameManager.Instance.StartGame();
+    }
 
     private void OnDestroy() => StopBgm();
 
@@ -123,10 +136,20 @@ public class InGameUIController : MonoBehaviour
 
     private bool _isGameClear => Input.GetKeyDown(_gameClearKey);
 
-    private void LateUpdate()
+    private void Update()
     {
-        ViewGameClear();
-        ViewPause();
+        if (_isGameEnd)
+            return;
+
+        if (_isPausePressed)
+        {
+            JudgePaused();
+        }
+
+        if (_isGameClear)
+        {
+            GameManager.Instance.ClearGame();
+        }
     }
     
     // ++ 
@@ -135,9 +158,29 @@ public class InGameUIController : MonoBehaviour
     {
         if (health <= 0)
         {
-            ViewGameOver();
+            GameManager.Instance.GameOver();
         }
     }
     
     // +++
+    [SerializeField] private StageData _stageData;
+    [SerializeField] private ScoreBoard _clearScoreBoard;
+    [SerializeField] private ScoreBoard _gameOverScoreBoard;
+    
+    // ++++
+    private bool _isPause;
+    private bool _isGameEnd;
+
+    private void JudgePaused()
+    {
+        if (_isPause)
+        {
+            GameManager.Instance.ResumeGame();
+        }
+        
+        else
+        {
+            GameManager.Instance.PauseGame();
+        }
+    }
 }
