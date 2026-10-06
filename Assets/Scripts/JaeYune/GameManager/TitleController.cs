@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class TitleController : MonoBehaviour
 {
+    [Header("현재 Scene에서 다룰 UI 설정부")]
     [SerializeField] private GameObject _titleUi;
     [SerializeField] private GameObject _selectStageUi;
+    
+    [Header("현재 Scene에서 사용할 BGM")]
     [SerializeField] private AudioClip _selectBgm;
     
     private SoundPlayer _bgm;
@@ -41,7 +44,7 @@ public class TitleController : MonoBehaviour
         _selectStageUi.SetActive(false);
     }
     
-    // + 사운드 관련 추가중
+    // + 사운드
     private void PlayBgm()
     {
         _bgm = SoundManager.Instance.TakeSoundPlayer();

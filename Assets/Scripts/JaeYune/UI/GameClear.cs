@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class GameClear : MonoBehaviour
 {
+    [Header("클리어UI 내 버튼 설정부")]
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _returnMainButton;
+    [Header("이동할 Scene 설정부")]
     [SerializeField] private string _restartSceneName;
     [SerializeField] private string _returnSceneName;
     

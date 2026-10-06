@@ -6,11 +6,18 @@ using UnityEngine.UI;
 
 public class TitleUI : MonoBehaviour
 {
+    [Header("메인메뉴 버튼 설정부")]
     [SerializeField] private Button _startButton;
     [SerializeField] private Button _exitButton;
     //[SerializeField] private Button _creditsButton;
     
+    [Header("UI 컨트롤러 설정부")]
     [SerializeField] private TitleController titleController;
+    
+    [Header("클릭 사운드 설정부")]
+    [SerializeField] private AudioClip _clickSound;
+    
+    private SoundPlayer _click;
     
     private void OnEnable() => BindButtonEvents();
     private void OnDisable() => UnBindButtonEvents();
@@ -44,9 +51,6 @@ public class TitleUI : MonoBehaviour
     }
     
     // + 
-    [SerializeField] private AudioClip _clickSound;
-    private SoundPlayer _click;
-    
     private void ClickSounOn()
     {
         _click = SoundManager.Instance.TakeSoundPlayer();

@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class PauseUI : MonoBehaviour
 {
+    [Header("UI 내 버튼 설정부")]
     [SerializeField] private Button _continueButton;
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _returnMainButton;
    
+    [Header("이동할 Scene 설정부")]
     [SerializeField] private string _restartScene;
     [SerializeField] private string _returnMainScene;
     
+    [Header("인게임 UI 컨트롤러 설정부")]
     [SerializeField] private InGameUIController _inGameUIController;
     
     private void OnEnable()
@@ -57,15 +60,5 @@ public class PauseUI : MonoBehaviour
         _inGameUIController.ResumeBgm();
         GameManager.Instance.StartGame();
         GameManager.Instance.LoadScene(_returnMainScene);
-    }
-
-    private void RestartGame()
-    {
-        gameObject.SetActive(false);
-    }
-
-    private void ReturnMain()
-    {
-        gameObject.SetActive(false);
     }
 }

@@ -6,15 +6,23 @@ using UnityEngine.UI;
 
 public class SelectStage : MonoBehaviour
 {
+    [Header("버튼 설정부")]
     [SerializeField] private Button _easyStageButton;
     [SerializeField] private Button _hardStageButton;
     [SerializeField] private Button _hellStageButton;
     [SerializeField] private Button _backToMainMenuButton;
     
+    [Header("이동할 Scene 설정부")]
+    [SerializeField] private string _inGameSceneName;
+    
+    [Header("UI 컨트롤러 설정부")]
     [SerializeField] private TitleController titleController;
     
-    [SerializeField] private string _inGameSceneName;
-
+    [Header("클릭 사운드 설정부")]
+    [SerializeField] private AudioClip _clickSound2;
+    
+    private SoundPlayer _click2;
+    
     private void OnEnable() => BindButtonEvents();
 
     private void OnDisable() => UnbindButtonEvents();
@@ -64,9 +72,6 @@ public class SelectStage : MonoBehaviour
     {
         titleController.ViewMainMenu();
     }
-    
-    [SerializeField] private AudioClip _clickSound2;
-    private SoundPlayer _click2;
     
     private void ClickSounOn2()
     {

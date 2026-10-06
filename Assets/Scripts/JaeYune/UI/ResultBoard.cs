@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 public class ResultBoard : MonoBehaviour
 {
+    [Header("결과값 텍스트 설정부")]
     [SerializeField] private TextMeshProUGUI _monsterRemain;
     [SerializeField] private TextMeshProUGUI _currentWave;
     [SerializeField] private TextMeshProUGUI _maxWave;

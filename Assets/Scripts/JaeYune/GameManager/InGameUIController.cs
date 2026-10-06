@@ -6,19 +6,59 @@ using UnityEngine.Serialization;
 
 public class InGameUIController : MonoBehaviour
 {
+    [Header("HUD 묶음 적용부")]
     [SerializeField] private GameObject _applyUis;
+    
+    [Header("게임 플로우 UI 관련 항목 적용부")]
     [SerializeField] private GameObject _pauseUi;
     [SerializeField] private GameObject _clearUi;
     [SerializeField] private GameObject _gameOverUi;
 
-    private KeyCode _pauseKey = KeyCode.Q;
+    [Header("일시정지 키 선택부")]
+    [SerializeField] private KeyCode _pauseKey = KeyCode.Q;
+    
+    [Header("인게임 BGM 적용부")]
+    [SerializeField] private AudioClip _inGameBgm;
+    
+    [Header("넥서스 데이터 적용부")]
+    [SerializeField] private NexusData _nexusData;
+    
+    [Header("스테이지 설정 및 판단 관련 적용부")]
+    [SerializeField] private StageData _stageData;
+    [SerializeField] private ResultBoard _clearResultBoard;
+    [SerializeField] private ResultBoard _gameOverResultBoard;
+    
     private bool _isPausePressed => Input.GetKeyDown(_pauseKey);
+    private SoundPlayer _bgm;
+    private bool _isGameClear;
+    private bool _isPause;
+    private bool _isGameEnd;
     
     private void Awake() => GameStart();
-
+    private void Start()
+    {
+        PlayBgm();
+        GameManager.Instance.StartGame();
+    }
     private void OnEnable() => BindGameFlow();
-    private void OnDisable() => UnbindGameFlow();
+    private void Update()
+    {
+        if (_isGameEnd)
+            return;
 
+        if (_isPausePressed)
+        {
+            JudgePaused();
+        }
+
+        if (_isGameClear)
+        {
+            GameManager.Instance.ClearGame();
+        }
+    }
+    private void OnDisable() => UnbindGameFlow();
+    private void OnDestroy() => StopBgm();
+    
     private void BindGameFlow()
     {
         GameManager.Instance.OnGameStart += GameStart;
@@ -99,18 +139,6 @@ public class InGameUIController : MonoBehaviour
     }
     
     // + 사운드
-    [SerializeField] private AudioClip _inGameBgm;
-    
-    private SoundPlayer _bgm;
-
-    private void Start()
-    {
-        PlayBgm();
-        GameManager.Instance.StartGame();
-    }
-
-    private void OnDestroy() => StopBgm();
-
     public void PlayBgm()
     {
         _bgm = SoundManager.Instance.TakeSoundPlayer();
@@ -133,25 +161,8 @@ public class InGameUIController : MonoBehaviour
         _bgm?.Stop();
         _bgm = null;
     }
-
-    private void Update()
-    {
-        if (_isGameEnd)
-            return;
-
-        if (_isPausePressed)
-        {
-            JudgePaused();
-        }
-
-        if (_isGameClear)
-        {
-            GameManager.Instance.ClearGame();
-        }
-    }
     
     // ++ 
-    [SerializeField] private NexusData _nexusData;
     private void CheckNexusHealth(float health)
     {
         if (health <= 0)
@@ -160,21 +171,11 @@ public class InGameUIController : MonoBehaviour
         }
     }
     
-    // +++
-    [SerializeField] private StageData _stageData;
-    [SerializeField] private ResultBoard _clearResultBoard;
-    [SerializeField] private ResultBoard _gameOverResultBoard;
-
-    private bool _isGameClear;
-    
+    // +++ 
     private void CheckStageClear()
     {
         _isGameClear = true;
     }
-    
-    // ++++
-    private bool _isPause;
-    private bool _isGameEnd;
 
     private void JudgePaused()
     {
