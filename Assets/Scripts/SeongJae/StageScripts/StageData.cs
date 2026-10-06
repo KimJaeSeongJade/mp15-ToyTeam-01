@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class StageData : MonoBehaviour
 {
+    // ========= 데이터 =========
+
+    [Header("넥서스 객체 연동")]
+    public NexusController Nexus;
+
+    // 현재 웨이브 수
     private int _currentWave;
     public int CurrentWave
     {
@@ -16,6 +22,7 @@ public class StageData : MonoBehaviour
         }
     }
 
+    // 최대 웨이브 수
     private int _maxWave;
     public int MaxWave
     {
@@ -27,6 +34,7 @@ public class StageData : MonoBehaviour
         }
     }
 
+    // 현재 몬스터 수
     private int _monsterCount;
     public int MonsterCount
     {
@@ -38,6 +46,7 @@ public class StageData : MonoBehaviour
         }
     }
 
+    // 현재 점수
     private int _score;
     public int Score
     {
@@ -49,6 +58,7 @@ public class StageData : MonoBehaviour
         }
     }
 
+    // 처치한 몬스터 수
     private int _killCount;
     public int KillCount
     {
@@ -60,6 +70,7 @@ public class StageData : MonoBehaviour
         }
     }
 
+    [Header("웨이브 경과 시간")]
     [SerializeField] private float _time;
     public float Time
     {
@@ -70,23 +81,51 @@ public class StageData : MonoBehaviour
             OnTimeChanged?.Invoke(_time);
         }
     }
-
-    public void SetData(int currentWave, int maxWave, int monsterCount, int score, float time)
+    
+    // 스테이지 클리어 결과
+    private bool _isClear = false;
+    public bool IsClear
     {
-        _currentWave = currentWave;
+        get => _isClear;
+        set
+        {
+            _isClear = value;
+            OnStageCleared?.Invoke();
+            OnStageCleared = null;
+        }
+    }
+
+    // ========= 초기화 ========= 
+    public void SetData(int maxWave, int monsterCount, float time)
+    {
+        _currentWave = 0;
         _maxWave = maxWave;
         _monsterCount = monsterCount;
-        _score = score;
+        _killCount = 0;
+        _score = 0;
         _time = time;
     }
 
-    [Header("넥서스 객체 연동")]
-    public NexusController Nexus;
+    // ========= 스코어 관련 이벤트 ========= 
 
+    // 몬스터 웨이브 변동 이벤트
     public event Action<int> OnCurrentWaveChanged;
     public event Action<int> OnMaxWaveChanged;
+    
+    // 현재 몬스터 수 변동 이벤트
     public event Action<int> OnMonsterCountChanged;
+    
+    // 점수 변동 이벤트
     public event Action<int> OnScoreChanged;
+
+    // 몬스터 처치 수 변동 이벤트
     public event Action<int> OnKillCountChanged;
+    
+    // 웨이브 타이머 변동 이벤트
     public event Action<float> OnTimeChanged;
+
+    // ========= 스테이지 클리어 관련 이벤트 ========= 
+
+    // 스테이지 클리어 여부 변동 이벤트
+    public event Action OnStageCleared;
 }
