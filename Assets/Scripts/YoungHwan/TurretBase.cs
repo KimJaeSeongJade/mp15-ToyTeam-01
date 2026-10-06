@@ -46,7 +46,11 @@ public abstract class TurretBase : MonoBehaviour
         Attack();
         _currentHeat += _heatPerShot;
         _lastFireTime = Time.time;
-        if (_currentHeat >= _maxHeat) _isOverHeat = true;
+        if (_currentHeat >= _maxHeat)
+        {
+            _currentHeat = _maxHeat;
+            _isOverHeat = true;
+        }
         FireSoundOn();
         
         yield return new WaitForSeconds(_fireDelay);
