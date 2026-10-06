@@ -22,7 +22,7 @@ public class StageController : MonoBehaviour
     private bool _isTimeStopped;
     private bool _isDefeated;
 
-    private bool _isRunning => !_isCleared && !_isDefeated;
+    private bool _isRunning => !_stageData.IsClear && !_isDefeated;
 
     private void Awake() => CacheComponents();
     private void Start() => Init();
