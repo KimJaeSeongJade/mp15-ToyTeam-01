@@ -17,6 +17,8 @@ public class TurretController : MonoBehaviour
     private Camera _camera;
     private Vector2 _currentRotation;
     private bool _isChanged;
+    public TurretBase CurrentTurret => _turrets[_turretIndex];
+    public int CurrentIndex => _turretIndex;
 
     private event Action _onFire;
     private void Start() => Init();
