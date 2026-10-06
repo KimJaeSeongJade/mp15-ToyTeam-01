@@ -56,7 +56,7 @@ public class InGameUIController : MonoBehaviour
     {
         _isGameEnd = true;
 
-        _clearScoreBoard.ShowResult(_stageData);
+        _clearResultBoard.ShowResult(_stageData);
         
         _applyUis.SetActive(false);
         _clearUi.SetActive(true);
@@ -67,7 +67,7 @@ public class InGameUIController : MonoBehaviour
     {
         _isGameEnd = true;
         
-        _gameOverScoreBoard.ShowResult(_stageData);
+        _gameOverResultBoard.ShowResult(_stageData);
         
         _applyUis.SetActive(false);
         _clearUi.SetActive(false);
@@ -164,8 +164,8 @@ public class InGameUIController : MonoBehaviour
     
     // +++
     [SerializeField] private StageData _stageData;
-    [SerializeField] private ScoreBoard _clearScoreBoard;
-    [SerializeField] private ScoreBoard _gameOverScoreBoard;
+    [SerializeField] private ResultBoard _clearResultBoard;
+    [SerializeField] private ResultBoard _gameOverResultBoard;
     
     // ++++
     private bool _isPause;

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Serialization;
 
-public class ScoreBoard : MonoBehaviour
+public class ResultBoard : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _monsterRemain;
     [SerializeField] private TextMeshProUGUI _currentWave;
