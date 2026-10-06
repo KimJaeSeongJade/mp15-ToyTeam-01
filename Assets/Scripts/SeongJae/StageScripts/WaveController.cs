@@ -33,6 +33,7 @@ public class WaveController : MonoBehaviour
 
     public void OnEnter()
     {
+        _stageData.MonsterCount = _waveData.AmountForClear;
         _isRunning = true;
         StartSpawn();
         _nexusData.OnHealthChanged += CheckGameOver;
@@ -124,13 +125,23 @@ public class WaveController : MonoBehaviour
     // =============== 몬스터 사망 이벤트에 구독할 메서드 ===============
     private void RefreshScore(MonsterData monsterData)
     {
+        if (_stageData.MonsterCount <= 0) return;
+
         _stageData.KillCount++;
-        _stageData.Score += monsterData.Score;
-        _waveData.AmountForClear--;
-        if(_waveData.AmountForClear <= 0)
+        _stageData.MonsterCount--;
+
+        Debug.Log("남은 몬스터 수 : " + _stageData.MonsterCount);
+        Debug.Log("지금까지 처치한 몬스터 수" + _stageData.KillCount);
+
+        if (_stageData.MonsterCount == 0)
         {
             _waveData.IsCleared = true;
+            return;
         }
+
+        
+
+        _stageData.Score += monsterData.Score;
     }
     // =============== 정보 초기화 메서드 ===============
 
