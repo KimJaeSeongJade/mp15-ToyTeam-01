@@ -47,15 +47,12 @@ public class InGameUIController : MonoBehaviour
         _pauseUi.SetActive(false);
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(false);
-
-        _isNexusHealthZero = false;
     }
 
     public void ViewGameClear()
     {
         if (!_isGameClear) // 임시 코드
             return;
-        
         
         _applyUis.SetActive(false);
         _clearUi.SetActive(true);
@@ -114,7 +111,7 @@ public class InGameUIController : MonoBehaviour
 
     public void StopBgm()
     {
-        _bgm.Stop();
+        _bgm?.Stop();
         _bgm = null;
     }
     
@@ -125,7 +122,6 @@ public class InGameUIController : MonoBehaviour
     private KeyCode _gameOverKey = KeyCode.Keypad8;
 
     private bool _isGameClear => Input.GetKeyDown(_gameClearKey);
-    private bool _isGameOver => Input.GetKeyDown(_gameOverKey);
 
     private void LateUpdate()
     {
@@ -135,7 +131,6 @@ public class InGameUIController : MonoBehaviour
     
     // ++ 
     [SerializeField] private NexusData _nexusData;
-    private bool _isNexusHealthZero;
     private void CheckNexusHealth(float health)
     {
         if (health <= 0)
@@ -143,4 +138,6 @@ public class InGameUIController : MonoBehaviour
             ViewGameOver();
         }
     }
+    
+    // +++
 }

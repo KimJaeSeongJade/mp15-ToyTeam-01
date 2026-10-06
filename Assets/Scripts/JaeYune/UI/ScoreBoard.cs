@@ -8,9 +8,11 @@ using UnityEngine.Serialization;
 public class ScoreBoard : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _monsterRemainText;
-    [SerializeField] private TextMeshProUGUI _waveText;
+    [SerializeField] private TextMeshProUGUI _currentWaveText;
+    [SerializeField] private TextMeshProUGUI _maxWaveText;
     [SerializeField] private TextMeshProUGUI _elapseTimeText;
     [SerializeField] private TextMeshProUGUI _scoreText;
-    
-    
+
+    //[SerializeField] private InGameUIController _inGameUIController;
+
 }
