@@ -81,10 +81,10 @@ public class TurretController : MonoBehaviour
 
     private void ChangeTurret(int index)
     {
-        if (index >= _turrets.Count - 1) return;
+        if (index >= _turrets.Count) return;
         
         RemoveListener(_turrets[_turretIndex]);
-        _turretIndex = index;
+        CurrentIndex = index;
         AddListener(_turrets[_turretIndex]);
 
         _currentRotation.x = _turrets[_turretIndex].transform.eulerAngles.x;
