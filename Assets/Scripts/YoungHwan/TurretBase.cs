@@ -20,9 +20,10 @@ public abstract class TurretBase : MonoBehaviour
     private float _currentHeat;
     private bool _isOverHeat;
     private float _lastFireTime;
+    private WeaponRecoil _recoil;
+    
     public TurretType Type => _type;
     public GameObject WeaponModel => _weaponModel;
-    // UI 연동용 HeatGauge, IsOverHeat 프로퍼티 추가
     public float HeatGauge => _currentHeat / _maxHeat;
     public bool IsOverHeat => _isOverHeat;
     
@@ -45,6 +46,8 @@ public abstract class TurretBase : MonoBehaviour
     {
         _canFire = false;
         Attack();
+        if (_recoil != null) _recoil.Play();
+        
         _currentHeat += _heatPerShot;
         _lastFireTime = Time.time;
         if (_currentHeat >= _maxHeat)
@@ -65,11 +68,13 @@ public abstract class TurretBase : MonoBehaviour
         
         bullet.SetData(_data, position, rotation);
     }
-    
+
     public virtual void SetFirePoint(Transform model)
     {
         Transform point = model.Find("FirePoint");
         if (point != null) _firePoint = point;
+
+        _recoil = model.GetComponent<WeaponRecoil>();
     }
 
     public abstract void Attack();
