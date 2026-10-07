@@ -21,6 +21,7 @@ public class WeaponUIController : MonoBehaviour
     {
         foreach(Image slot in _weaponSlots)
         {
+            if (slot == _weaponSlots[_currentSlot]) continue;
             slot.gameObject.SetActive(false);
         }
     }
