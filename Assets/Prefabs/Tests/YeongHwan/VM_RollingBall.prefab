@@ -71,6 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3728881258479584712}
+  - component: {fileID: 8075283501212997042}
   m_Layer: 0
   m_Name: VM_RollingBall
   m_TagString: Untagged
@@ -96,6 +97,21 @@ Transform:
   - {fileID: 9073754250746419267}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8075283501212997042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161055739136908507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0360c7a8c1c00a44184d9affef01044c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _kickBack: 0.2
+  _kickUp: 1
+  _returnSpeed: 10
 --- !u!1001 &8819959124416741288
 PrefabInstance:
   m_ObjectHideFlags: 0
