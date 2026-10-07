@@ -26,8 +26,7 @@ public class BulletController : MonoBehaviour, IPoolable
                 if (_hitMonsters.Contains(monster)) continue;
                 
                 _hitMonsters.Add(monster);
-                // TODO: 몬스터 피격 처리
-                Debug.Log($"롤링볼 맞는 중 {monster.gameObject.name}");
+                monster.GetComponent<IDamageable>().TakeDamage(_data.Damage);
             }
         }
     }
@@ -73,8 +72,7 @@ public class BulletController : MonoBehaviour, IPoolable
         Collider[] monsters = Physics.OverlapSphere(transform.position, _data.ExplosionRadius, _monsterLayer);
         foreach (Collider monster in monsters)
         {
-            // TODO: 몬스터 피격 처리
-            Debug.Log($"런처 폭발 맞음 {monster.gameObject.name}");
+            monster.GetComponent<IDamageable>().TakeDamage(_data.Damage);
         }
         ReturnToPool();
     }
