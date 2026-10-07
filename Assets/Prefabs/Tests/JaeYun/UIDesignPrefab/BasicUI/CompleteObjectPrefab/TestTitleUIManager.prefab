@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207a6c95cbc6ad44abba97fd2df3bf74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _titleUi: {fileID: 3924787956215366691, guid: 224dcdc6b69d9a942a7e6b872720a0be, type: 3}
-  _selectStageUi: {fileID: 1153434386698457783, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
-  _selectBgm: {fileID: 8300000, guid: b44a78397d1385c4994a6d0a01f2b6c6, type: 3}
+  _titleUi: {fileID: 0}
+  _selectStageUi: {fileID: 0}
+  _selectBgm: {fileID: 8300000, guid: 8db2a95a846840b4684416bf318f1214, type: 3}

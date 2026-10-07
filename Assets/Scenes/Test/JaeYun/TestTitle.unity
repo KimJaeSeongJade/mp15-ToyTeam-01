@@ -313,20 +313,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pref_01.TitleUI
       objectReference: {fileID: 0}
-    - target: {fileID: 3924787956215366691, guid: 224dcdc6b69d9a942a7e6b872720a0be, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5175273925681450417, guid: 224dcdc6b69d9a942a7e6b872720a0be, type: 3}
-      propertyPath: _clickSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 4da3074a6af56ea4eb77350f0aa60d93, type: 3}
     - target: {fileID: 5175273925681450417, guid: 224dcdc6b69d9a942a7e6b872720a0be, type: 3}
       propertyPath: titleController
-      value: 
-      objectReference: {fileID: 1982030717}
-    - target: {fileID: 5175273925681450417, guid: 224dcdc6b69d9a942a7e6b872720a0be, type: 3}
-      propertyPath: _testTitleController
       value: 
       objectReference: {fileID: 1982030717}
     m_RemovedComponents: []
@@ -521,10 +509,6 @@ PrefabInstance:
     - target: {fileID: 1153434386698457783, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
       propertyPath: m_Name
       value: Pref_02.SelectStage
-      objectReference: {fileID: 0}
-    - target: {fileID: 1153434386698457783, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4205861672218131670, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
       propertyPath: m_Pivot.x
@@ -787,7 +771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2980881933230718518, guid: bb1ef0d98abb7164f940cb040f702799, type: 3}
       propertyPath: _trackSize
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5269960452820443033, guid: bb1ef0d98abb7164f940cb040f702799, type: 3}
       propertyPath: m_Name
