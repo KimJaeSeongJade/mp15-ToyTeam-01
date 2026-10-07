@@ -74,5 +74,6 @@ MonoBehaviour:
   _returnDelay: 2
   _explosionRadius: 1.5
   _explodeSound: {fileID: 8300000, guid: c401d00c96b512e488d2e3bf5d111509, type: 3}
+  _explodeEffect: {fileID: 100008, guid: 7075bd5fe1480184695a32611c15da57, type: 3}
   _hitRadius: 0
   _rollSpeed: 0

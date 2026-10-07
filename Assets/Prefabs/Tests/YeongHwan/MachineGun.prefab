@@ -61,9 +61,11 @@ MonoBehaviour:
   _monsterLayer:
     serializedVersion: 2
     m_Bits: 256
+  _hitEffect: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}
   _minBullets: 1
   _maxBullets: 2
   _spreadAngle: 1
   _bulletRange: 50
   _bulletRadius: 0.1
   _explosionRadius: 0.3
+  _bulletDamage: 5
