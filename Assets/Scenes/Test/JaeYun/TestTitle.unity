@@ -313,6 +313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pref_01.TitleUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3924787956215366691, guid: 224dcdc6b69d9a942a7e6b872720a0be, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5175273925681450417, guid: 224dcdc6b69d9a942a7e6b872720a0be, type: 3}
       propertyPath: _clickSound
       value: 
@@ -517,6 +521,10 @@ PrefabInstance:
     - target: {fileID: 1153434386698457783, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
       propertyPath: m_Name
       value: Pref_02.SelectStage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153434386698457783, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4205861672218131670, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
       propertyPath: m_Pivot.x
