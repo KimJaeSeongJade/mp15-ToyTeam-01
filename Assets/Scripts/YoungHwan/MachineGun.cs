@@ -13,6 +13,7 @@ public class MachineGun : TurretBase
     [SerializeField] private float _bulletRange;
     [SerializeField] private float _bulletRadius = 0.1f;
     [SerializeField] private float _explosionRadius = 0.3f;
+    [SerializeField] private float _bulletDamage = 5f;
     public override void Attack()
     {
         int bullets = Random.Range(_minBullets, _maxBullets + 1);
@@ -29,8 +30,7 @@ public class MachineGun : TurretBase
                 Collider[] monsters = Physics.OverlapSphere(hit.point, _explosionRadius, _monsterLayer);
                 foreach (Collider monster in monsters)
                 {
-                    // TODO: 몬스터 피격 처리
-                    Debug.Log($"hit{monster.gameObject.name}");
+                    monster.GetComponent<IDamageable>().TakeDamage(_bulletDamage);
                 }
             }
         }
