@@ -15,7 +15,11 @@ public class TitleController : MonoBehaviour
     private SoundPlayer _bgm;
     
     private void Awake() => ViewMainMenu();
-    private void Start() => PlayBgm();
+    private void Start()
+    {
+        Cursor.visible = true;
+        PlayBgm();
+    }
     
     private void OnEnable() => BindGameFlow();
     private void OnDisable() => UnbindGameFlow();
