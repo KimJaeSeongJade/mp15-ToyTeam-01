@@ -16,9 +16,18 @@ public class TurretController : MonoBehaviour
     private Camera _camera;
     private Vector2 _currentRotation;
     private List<GameObject> _weaponModels = new();
-    private bool _isChanged;
     public TurretBase CurrentTurret => _turrets[_turretIndex];
-    public int CurrentIndex => _turretIndex;
+    public int CurrentIndex
+    {
+        get => _turretIndex;
+        set
+        {
+            _turretIndex = value;
+            OnTurretChanged?.Invoke(_turretIndex);
+        }
+    }
+
+    public Action<int> OnTurretChanged;
 
     private event Action _onFire;
     private void Start() => Init();
@@ -72,7 +81,7 @@ public class TurretController : MonoBehaviour
 
     private void ChangeTurret(int index)
     {
-        if (index >= _turrets.Count) return;
+        if (index >= _turrets.Count - 1) return;
         
         RemoveListener(_turrets[_turretIndex]);
         _turretIndex = index;
@@ -109,20 +118,9 @@ public class TurretController : MonoBehaviour
         }
     }
     
-    private void AddListener(TurretBase turret)
-    {
-        _onFire += turret.Fire;
-    }
-
-    private void RemoveListener(TurretBase turret)
-    {
-        _onFire -= turret.Fire;
-    }
-
-    private void FireNotify()
-    {
-        _onFire?.Invoke();
-    }
+    private void AddListener(TurretBase turret) => _onFire += turret.Fire;
+    private void RemoveListener(TurretBase turret) => _onFire -= turret.Fire;
+    private void FireNotify() => _onFire?.Invoke();
 
     private void Init()
     {
@@ -130,5 +128,4 @@ public class TurretController : MonoBehaviour
         CreateWeaponModels();
         ChangeTurret(0);
     }
-    
 }
