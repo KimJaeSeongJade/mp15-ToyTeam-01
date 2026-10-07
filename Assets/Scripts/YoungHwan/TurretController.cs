@@ -118,20 +118,9 @@ public class TurretController : MonoBehaviour
         }
     }
     
-    private void AddListener(TurretBase turret)
-    {
-        _onFire += turret.Fire;
-    }
-
-    private void RemoveListener(TurretBase turret)
-    {
-        _onFire -= turret.Fire;
-    }
-
-    private void FireNotify()
-    {
-        _onFire?.Invoke();
-    }
+    private void AddListener(TurretBase turret) => _onFire += turret.Fire;
+    private void RemoveListener(TurretBase turret) => _onFire -= turret.Fire;
+    private void FireNotify() => _onFire?.Invoke();
 
     private void Init()
     {
@@ -139,5 +128,4 @@ public class TurretController : MonoBehaviour
         CreateWeaponModels();
         ChangeTurret(0);
     }
-    
 }
