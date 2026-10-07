@@ -19,44 +19,39 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()
     {
-        OnGameStart?.Invoke();
         Time.timeScale = 1;
         IsGameRunning = true;
         IsGameClear = false;
+        OnGameStart?.Invoke();
     }
 
     public void PauseGame()
     {
-        OnGamePause?.Invoke();
         Time.timeScale = 0;
         IsGameRunning = false;
+        OnGamePause?.Invoke();
     }
 
     public void ResumeGame()
     {
-        OnGameResume?.Invoke();
         Time.timeScale = 1;
         IsGameRunning = true;
+        OnGameResume?.Invoke();
     }
 
     public void ClearGame()
     {
-        OnGameClear?.Invoke();
         Time.timeScale = 0;
         IsGameRunning = false;
         IsGameClear = true;
+        OnGameClear?.Invoke();
     }
 
     public void GameOver()
     {
-        OnGameOver?.Invoke();
         Time.timeScale = 0;
         IsGameRunning = false;
-    }
-
-    public void RestartGame()
-    {
-        IsGameClear = false;
+        OnGameOver?.Invoke();
     }
     
     public void LoadScene(string sceneName)

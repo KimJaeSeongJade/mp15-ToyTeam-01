@@ -6,19 +6,59 @@ using UnityEngine.Serialization;
 
 public class InGameUIController : MonoBehaviour
 {
+    [Header("HUD 묶음 적용부")]
     [SerializeField] private GameObject _applyUis;
+    
+    [Header("게임 플로우 UI 관련 항목 적용부")]
     [SerializeField] private GameObject _pauseUi;
     [SerializeField] private GameObject _clearUi;
     [SerializeField] private GameObject _gameOverUi;
 
-    public KeyCode _pauseKey = KeyCode.Q;
-    public bool _isPausePressed => Input.GetKeyDown(_pauseKey);
+    [Header("일시정지 키 선택부")]
+    [SerializeField] private KeyCode _pauseKey = KeyCode.Q;
+    
+    [Header("인게임 BGM 적용부")]
+    [SerializeField] private AudioClip _inGameBgm;
+    
+    [Header("넥서스 데이터 적용부")]
+    [SerializeField] private NexusData _nexusData;
+    
+    [Header("스테이지 설정 및 판단 관련 적용부")]
+    [SerializeField] private StageData _stageData;
+    [SerializeField] private ResultBoard _clearResultBoard;
+    [SerializeField] private ResultBoard _gameOverResultBoard;
+    
+    private bool _isPausePressed => Input.GetKeyDown(_pauseKey);
+    private SoundPlayer _bgm;
+    private bool _isGameClear;
+    private bool _isPause;
+    private bool _isGameEnd;
     
     private void Awake() => GameStart();
-
+    private void Start()
+    {
+        PlayBgm();
+        GameManager.Instance.StartGame();
+    }
     private void OnEnable() => BindGameFlow();
-    private void OnDisable() => UnbindGameFlow();
+    private void Update()
+    {
+        if (_isGameEnd)
+            return;
 
+        if (_isPausePressed)
+        {
+            JudgePaused();
+        }
+
+        if (_isGameClear)
+        {
+            GameManager.Instance.ClearGame();
+        }
+    }
+    private void OnDisable() => UnbindGameFlow();
+    private void OnDestroy() => StopBgm();
+    
     private void BindGameFlow()
     {
         GameManager.Instance.OnGameStart += GameStart;
@@ -28,6 +68,8 @@ public class InGameUIController : MonoBehaviour
         GameManager.Instance.OnGameOver += ViewGameOver;
 
         _nexusData.OnHealthChanged += CheckNexusHealth;
+        
+        _stageData.OnStageCleared += CheckStageClear;
     }
 
     private void UnbindGameFlow()
@@ -39,10 +81,16 @@ public class InGameUIController : MonoBehaviour
         GameManager.Instance.OnGameOver -= ViewGameOver;
         
         _nexusData.OnHealthChanged -= CheckNexusHealth;
+        
+        _stageData.OnStageCleared -= CheckStageClear;
     }
     
     private void GameStart()
     {
+        _isPause = false;
+        _isGameEnd = false;
+        _isGameClear = false;
+        
         _applyUis.SetActive(true);
         _pauseUi.SetActive(false);
         _clearUi.SetActive(false);
@@ -51,8 +99,10 @@ public class InGameUIController : MonoBehaviour
 
     public void ViewGameClear()
     {
-        if (!_isGameClear) // 임시 코드
-            return;
+        _isGameEnd = true;
+        _isGameClear = true;
+
+        _clearResultBoard.ShowResult(_stageData);
         
         _applyUis.SetActive(false);
         _clearUi.SetActive(true);
@@ -61,6 +111,10 @@ public class InGameUIController : MonoBehaviour
 
     public void ViewGameOver()
     {
+        _isGameEnd = true;
+        
+        _gameOverResultBoard.ShowResult(_stageData);
+        
         _applyUis.SetActive(false);
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(true);
@@ -68,8 +122,7 @@ public class InGameUIController : MonoBehaviour
 
     public void ViewPause()
     {
-        if(!_isPausePressed)
-            return;
+        _isPause = true;
         
         PauseBgm();
         _applyUis.SetActive(false);
@@ -78,20 +131,14 @@ public class InGameUIController : MonoBehaviour
 
     public void ViewResume()
     {
+        _isPause = false;
+        
         ResumeBgm();
         _applyUis.SetActive(true);
         _pauseUi.SetActive(false);
     }
     
     // + 사운드
-    [SerializeField] private AudioClip _inGameBgm;
-    
-    private SoundPlayer _bgm;
-
-    private void Start() => PlayBgm();
-
-    private void OnDestroy() => StopBgm();
-
     public void PlayBgm()
     {
         _bgm = SoundManager.Instance.TakeSoundPlayer();
@@ -115,29 +162,31 @@ public class InGameUIController : MonoBehaviour
         _bgm = null;
     }
     
-    /// <summary>
-    /// UI 발생 확인을 위한 임시 키 배정 및 임시 코드
-    /// </summary>
-    private KeyCode _gameClearKey = KeyCode.Keypad9;
-    private KeyCode _gameOverKey = KeyCode.Keypad8;
-
-    private bool _isGameClear => Input.GetKeyDown(_gameClearKey);
-
-    private void LateUpdate()
-    {
-        ViewGameClear();
-        ViewPause();
-    }
-    
     // ++ 
-    [SerializeField] private NexusData _nexusData;
     private void CheckNexusHealth(float health)
     {
         if (health <= 0)
         {
-            ViewGameOver();
+            GameManager.Instance.GameOver();
         }
     }
     
-    // +++
+    // +++ 
+    private void CheckStageClear()
+    {
+        _isGameClear = true;
+    }
+
+    private void JudgePaused()
+    {
+        if (_isPause)
+        {
+            GameManager.Instance.ResumeGame();
+        }
+        
+        else
+        {
+            GameManager.Instance.PauseGame();
+        }
+    }
 }

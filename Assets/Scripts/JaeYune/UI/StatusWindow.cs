@@ -7,12 +7,14 @@ using UnityEngine.Serialization;
 
 public class StatusWindow : MonoBehaviour
 {
+    [Header("상태창 텍스트 설정부")]
     [SerializeField] private TextMeshProUGUI _monsterRemain;
     [SerializeField] private TextMeshProUGUI _currentWave;
     [SerializeField] private TextMeshProUGUI _maxWave;
     [SerializeField] private TextMeshProUGUI _elapseTime;
     [SerializeField] private TextMeshProUGUI _scoreText;
-
+    
+    [Header("스테이지 데이터 설정부")]
     [SerializeField] private StageData _stageData;
     
     private void OnEnable() => BindGameFlow();

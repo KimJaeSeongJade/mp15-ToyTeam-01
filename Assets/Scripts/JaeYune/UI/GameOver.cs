@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
+    [Header("게임오버 UI 버튼 설정부")]
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _returnMainButton;
+    [Header("이동할 Scene 설정부")]
     [SerializeField] private string _restartSceneName;
     [SerializeField] private string _returnSceneName;
     

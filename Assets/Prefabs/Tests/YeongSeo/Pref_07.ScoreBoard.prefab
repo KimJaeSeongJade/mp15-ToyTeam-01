@@ -120,7 +120,6 @@ MonoBehaviour:
   _maxWaveText: {fileID: 1878456912592363623}
   _elapseTimeText: {fileID: 3790675006234763397}
   _scoreText: {fileID: 8019553644465998548}
-  _stageData: {fileID: 0}
 --- !u!1 &1001247376118888545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,14 +1260,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.17401248, g: 0.16192955, b: 0.21509439, a: 0.92156863}
+  m_Color: {r: 0.17401248, g: 0.16192955, b: 0.21509439, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: a26968f8224297f4aa01b52334c90ba4, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
