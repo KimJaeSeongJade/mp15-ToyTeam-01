@@ -11,6 +11,7 @@ public class WeaponUIHandler : MonoBehaviour
     [SerializeField] private TurretController _turretController;
 
     private void OnEnable() => BindEvent();
+    private void OnDisable() => UnBindEvent();
 
     private void BindEvent() => _turretController.OnTurretChanged += _weaponUIController.SwapWeaponSlot;
     private void UnBindEvent() => _turretController.OnTurretChanged -= _weaponUIController.SwapWeaponSlot;
