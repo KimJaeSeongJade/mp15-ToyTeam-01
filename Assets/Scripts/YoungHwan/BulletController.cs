@@ -67,6 +67,9 @@ public class BulletController : MonoBehaviour, IPoolable
     }
     private void Explode()
     {
+        GameObject effect = Instantiate(_data.ExplodeEffect);
+        effect.transform.position = transform.position;
+        Destroy(effect, 2f);
         ExplodeSoundOn();
         
         Collider[] monsters = Physics.OverlapSphere(transform.position, _data.ExplosionRadius, _monsterLayer);

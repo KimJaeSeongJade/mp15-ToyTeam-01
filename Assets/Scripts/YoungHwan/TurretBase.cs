@@ -21,6 +21,7 @@ public abstract class TurretBase : MonoBehaviour
     private bool _isOverHeat;
     private float _lastFireTime;
     private WeaponRecoil _recoil;
+    private FlameEffect _muzzleFlame;
     
     public TurretType Type => _type;
     public GameObject WeaponModel => _weaponModel;
@@ -47,6 +48,7 @@ public abstract class TurretBase : MonoBehaviour
         _canFire = false;
         Attack();
         if (_recoil != null) _recoil.Play();
+        if (_muzzleFlame != null) _muzzleFlame.Play();
         
         _currentHeat += _heatPerShot;
         _lastFireTime = Time.time;
@@ -75,6 +77,7 @@ public abstract class TurretBase : MonoBehaviour
         if (point != null) _firePoint = point;
 
         _recoil = model.GetComponent<WeaponRecoil>();
+        _muzzleFlame = _firePoint.GetComponentInChildren<FlameEffect>(true);
     }
 
     public abstract void Attack();
