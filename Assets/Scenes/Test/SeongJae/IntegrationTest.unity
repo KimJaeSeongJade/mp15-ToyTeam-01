@@ -2107,6 +2107,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1501417689980400270, guid: 8d307ef13e91784499ecaa05e331d2e9, type: 3}
+      propertyPath: _smoothingSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501417689980400270, guid: 8d307ef13e91784499ecaa05e331d2e9, type: 3}
       propertyPath: _turrets.Array.size
       value: 3
       objectReference: {fileID: 0}
