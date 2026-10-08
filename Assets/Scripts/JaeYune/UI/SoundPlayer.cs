@@ -5,13 +5,21 @@ using UnityEngine;
 public class SoundPlayer : MonoBehaviour
 {
     private AudioSource _audioSource;
-
+    
+    private bool _isReturn;
+    private bool _isStart;
+    
     private void Awake() => CacheComponents();
+    private void OnEnable()
+    {
+        _isReturn = false;
+        _isStart = false;
+    }
     private void Update() => WaitForEndSound();
     
     private void WaitForEndSound()
     {
-        if (_audioSource.isPlaying || _audioSource.loop) 
+        if (!_isStart ||_audioSource.isPlaying || _audioSource.loop) 
             return;
         
         Stop();
@@ -49,6 +57,7 @@ public class SoundPlayer : MonoBehaviour
     public void Play()
     {
         _audioSource.Play();
+        _isStart = true;
     }
 
     public void Pause()
@@ -63,6 +72,11 @@ public class SoundPlayer : MonoBehaviour
 
     public void Stop()
     {
+        if (_isReturn)
+            return;
+
+        _isReturn = true;
+        
         _audioSource.Stop();
         ReturnToList();
     }
