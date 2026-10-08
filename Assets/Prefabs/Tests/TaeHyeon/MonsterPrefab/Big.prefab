@@ -910,7 +910,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7542937212466122577}
@@ -1140,7 +1140,7 @@ GameObject:
   - component: {fileID: 1046940133094403871}
   - component: {fileID: 7227684272049894041}
   - component: {fileID: 1509079611305317782}
-  - component: {fileID: 6844537332041414923}
+  - component: {fileID: 1594352848281996360}
   m_Layer: 8
   m_Name: Big
   m_TagString: Untagged
@@ -1158,7 +1158,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6265206175713501824}
@@ -1189,12 +1189,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 2
-  MoveSpeed: 2
+  MoveSpeed: 0.01
   Health: 50
   Damage: 50
   Score: 50
---- !u!65 &6844537332041414923
-BoxCollider:
+--- !u!135 &1594352848281996360
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1212,5 +1212,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Radius: 0.06
+  m_Center: {x: -0.05, y: 0.03, z: 0}
