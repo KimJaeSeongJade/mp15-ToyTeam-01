@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 0
-  _weaponModel: {fileID: 5954075491006461222, guid: 95e75643334c1894ca54786630ea2e34, type: 3}
+  _weaponModel: {fileID: 5547978313672878975, guid: 6e7a8a3dd8b6b3744be4193abcfac77a, type: 3}
   _firePoint: {fileID: 0}
   _bulletPool: {fileID: 0}
   _data: {fileID: 0}
@@ -54,14 +54,14 @@ MonoBehaviour:
   _heatPerShot: 0.5
   _coolPerSecond: 16
   _coolDelay: 0.15
-  _fireSound: {fileID: 8300000, guid: f293b714c6a3e5b4c9bfa46bc796d946, type: 3}
+  _fireSound: {fileID: 8300000, guid: ba1a4a95f22190f488212d8de090ba5a, type: 3}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 1984
   _monsterLayer:
     serializedVersion: 2
     m_Bits: 256
-  _hitEffect: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}
+  _hitEffect: {fileID: 100002, guid: 6a0cbe92b86696944b95e4ccda0418c8, type: 3}
   _minBullets: 1
   _maxBullets: 2
   _spreadAngle: 1

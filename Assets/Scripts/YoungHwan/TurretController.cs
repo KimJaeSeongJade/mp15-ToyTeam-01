@@ -108,16 +108,15 @@ public class TurretController : MonoBehaviour
     private void Smoothing()
     {
         if (!_isSmoothing) return;
-        Debug.Log("Smoothing");
         Vector3 smoothing = Vector3.Lerp(transform.position, _turrets[_turretIndex].transform.position, _smoothingSpeed * Time.deltaTime);
         transform.position = smoothing;
         transform.eulerAngles = new Vector3(_currentRotation.x, _currentRotation.y, 0);
         _camera.gameObject.transform.position = _cameraPivot.position;
         _camera.gameObject.transform.rotation = _cameraPivot.rotation;
         float dist = Vector3.Distance(transform.position, _turrets[_turretIndex].transform.position);
-        if (dist <= 0.1f) _isSmoothing = false;
+        if (dist <= 0.05f) _isSmoothing = false;
     }
-
+    
     private void CreateWeaponModels()
     {
         foreach (TurretBase turret in _turrets)

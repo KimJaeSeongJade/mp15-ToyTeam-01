@@ -55,7 +55,7 @@ MonoBehaviour:
   _heatPerShot: 10
   _coolPerSecond: 25
   _coolDelay: 0.3
-  _fireSound: {fileID: 8300000, guid: c0f9ee6d45e1a794c8834af29db0d6da, type: 3}
+  _fireSound: {fileID: 8300000, guid: 348ebf7309de57247ba1b528d815393c, type: 3}
 --- !u!114 &5333672503220058241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
   _speed: 8
   _returnDelay: 2
   _explosionRadius: 1.5
-  _explodeSound: {fileID: 8300000, guid: c401d00c96b512e488d2e3bf5d111509, type: 3}
-  _explodeEffect: {fileID: 100008, guid: 7075bd5fe1480184695a32611c15da57, type: 3}
+  _explodeSound: {fileID: 8300000, guid: 093f8f816b270f94395fd68ce5ac5897, type: 3}
+  _explodeEffect: {fileID: 100008, guid: adc81be9cbfd4b149ab81eeaa1b66ac3, type: 3}
   _hitRadius: 0
   _rollSpeed: 0
