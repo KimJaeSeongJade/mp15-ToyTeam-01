@@ -44,14 +44,17 @@ public class TurretController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            if (_turretIndex == 0) return;
             ChangeTurret(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            if (_turretIndex == 1) return;
             ChangeTurret(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            if (_turretIndex == 2) return;
             ChangeTurret(2);
         }
         else
