@@ -16,6 +16,8 @@ public abstract class TurretBase : MonoBehaviour
     [SerializeField] private float _coolPerSecond;
     [SerializeField] private float _coolDelay;
     
+    public bool OverHeat => _isOverHeat;
+    
     private bool _canFire = true;
     private float _currentHeat;
     private bool _isOverHeat;
