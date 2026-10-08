@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,13 +11,15 @@ public class TurretController : MonoBehaviour
     [SerializeField] private float _maxPitch;
     [SerializeField] private float _mouseSensitivity;
     [SerializeField] private List<TurretBase> _turrets;
-    
+    [SerializeField] private float _smoothingSpeed;
+
     private int _turretIndex = 0;
     private float _pitch;
     private Camera _camera;
     private Vector2 _currentRotation;
     private List<GameObject> _weaponModels = new();
     public TurretBase CurrentTurret => _turrets[_turretIndex];
+    private bool _isSmoothing;
     public int CurrentIndex
     {
         get => _turretIndex;
@@ -33,16 +36,25 @@ public class TurretController : MonoBehaviour
     private void Start() => Init();
     private void Update()
     {
+        if (_isSmoothing)
+        {
+            Smoothing();
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            if (_turretIndex == 0) return;
             ChangeTurret(0);
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            if (_turretIndex == 1) return;
             ChangeTurret(1);
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            if (_turretIndex == 2) return;
             ChangeTurret(2);
         }
         else
@@ -63,7 +75,7 @@ public class TurretController : MonoBehaviour
 
         return new Vector3(-y, x, 0);
     }
-    
+
     public void Rotate()
     {
         Vector3 input = ReadRotateInput() * _mouseSensitivity;
@@ -82,21 +94,28 @@ public class TurretController : MonoBehaviour
     private void ChangeTurret(int index)
     {
         if (index >= _turrets.Count) return;
-        
+
         RemoveListener(_turrets[_turretIndex]);
         CurrentIndex = index;
         AddListener(_turrets[_turretIndex]);
 
         _currentRotation.x = _turrets[_turretIndex].transform.eulerAngles.x;
         _currentRotation.y = _turrets[_turretIndex].transform.eulerAngles.y;
+        ShowWeaponModel(index);
+        _isSmoothing = true;
+    }
 
-        transform.position = _turrets[_turretIndex].transform.position;
+    private void Smoothing()
+    {
+        if (!_isSmoothing) return;
+        Debug.Log("Smoothing");
+        Vector3 smoothing = Vector3.Lerp(transform.position, _turrets[_turretIndex].transform.position, _smoothingSpeed * Time.deltaTime);
+        transform.position = smoothing;
         transform.eulerAngles = new Vector3(_currentRotation.x, _currentRotation.y, 0);
-
         _camera.gameObject.transform.position = _cameraPivot.position;
         _camera.gameObject.transform.rotation = _cameraPivot.rotation;
-        
-        ShowWeaponModel(index);
+        float dist = Vector3.Distance(transform.position, _turrets[_turretIndex].transform.position);
+        if (dist <= 0.1f) _isSmoothing = false;
     }
 
     private void CreateWeaponModels()
@@ -109,7 +128,7 @@ public class TurretController : MonoBehaviour
             _weaponModels.Add(model);
         }
     }
-    
+
     private void ShowWeaponModel(int index)
     {
         for (int i = 0; i < _weaponModels.Count; i++)
@@ -117,7 +136,7 @@ public class TurretController : MonoBehaviour
             _weaponModels[i].SetActive(i == index);
         }
     }
-    
+
     private void AddListener(TurretBase turret) => _onFire += turret.Fire;
     private void RemoveListener(TurretBase turret) => _onFire -= turret.Fire;
     private void FireNotify() => _onFire?.Invoke();
