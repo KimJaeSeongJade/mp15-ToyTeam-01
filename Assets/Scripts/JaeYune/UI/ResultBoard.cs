@@ -16,10 +16,10 @@ public class ResultBoard : MonoBehaviour
 
     public void ShowResult(StageData dataResult)
     {
-        _monsterRemain.text = $"{dataResult.MonsterCount}";
+        _monsterRemain.text = $"{dataResult.MonsterCount.Value}";
         _currentWave.text = $"{dataResult.CurrentWave.Value + 1}";
-        _maxWave.text = $"{dataResult.MaxWave}";
+        _maxWave.text = $"{dataResult.MaxWave.Value}";
         _elapseTime.text = $"{Mathf.Round(dataResult.Time.Value)}";
-        _score.text = $"{dataResult.Score}";
+        _score.text = $"{dataResult.Score.Value}";
     }
 }
