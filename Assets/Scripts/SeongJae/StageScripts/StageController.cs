@@ -20,26 +20,14 @@ public class StageController : MonoBehaviour
     private WaitForSeconds _waitForCoolDown;
 
     private bool _isTimeStopped;
-    private bool _isDefeated;
-
-    private bool _isRunning => !_stageData.IsClear && !_isDefeated;
-
     private void Awake() => CacheComponents();
     private void Start() => Init();
-    private void Update() => UpdateTime();
-
-    public void UpdateTime()
+    private void Update() => RefreshTime();
+    private void RefreshTime()
     {
         if (_isTimeStopped) return;
-        _stageData.Time -= Time.deltaTime;
-    }
 
-    public void CheckTimeOver(float time)
-    {
-        if(time <= 0 && !_stageData.IsClear && !_isDefeated)
-        {
-            _waves[_stageData.CurrentWave].Clear();
-        }
+        _stageData.Time.Value -= Time.deltaTime;
     }
 
     private IEnumerator WaveCoolRoutine()
@@ -53,50 +41,49 @@ public class StageController : MonoBehaviour
 
     private void StartNextWave()
     {
-        _stageData.CurrentWave++;
-        if (_stageData.CurrentWave >= _stageData.MaxWave)
+        _stageData.CurrentWave.Value++;
+        if (_stageData.CurrentWave.Value >= _stageData.MaxWave.Value)
         {
             Debug.Log($"{name} : 스테이지 클리어");
             _isTimeStopped = true;
-            _stageData.IsClear = true;
+            _stageData.IsStageClear.Value = true;
             return;
         }
-        _currentWaveData = _waves[_stageData.CurrentWave].GetComponent<WaveData>();
+        _currentWaveData = _waves[_stageData.CurrentWave.Value].GetComponent<WaveData>();
 
-        _currentWaveData.OnWaveCleared += CheckWaveClear;
-        _currentWaveData.OnDefeated += CheckDefeat;
-        _waves[_stageData.CurrentWave].OnEnter();
+        _currentWaveData.IsWaveClear.OnValueChanged += CheckWaveClear;
+        _waves[_stageData.CurrentWave.Value].OnEnter();
     }
     private void Init()
     {
-        _currentWaveData = _waves[_stageData.CurrentWave].GetComponent<WaveData>();
+        _currentWaveData = _waves[_stageData.CurrentWave.Value].GetComponent<WaveData>();
         _stageData.SetData(_waves.Count, _currentWaveData.AmountForClear, _timeForWave);
-        _stageData.OnTimeChanged += CheckTimeOver;
-        _stageData.MaxWave = _waves.Count;
-        _stageData.CurrentWave = 0;
+        _stageData.NexusData.OnHealthChanged += CheckDefeat;
 
-        foreach (WaveController wave in _waves) wave.SetData(_stageData);
+        foreach(WaveController wave in _waves)
+        {
+            wave.SetData(_stageData);
+        }
 
-        _waves[_stageData.CurrentWave].OnEnter();
-        _currentWaveData.OnDefeated += CheckDefeat;
-        _currentWaveData.OnWaveCleared += CheckWaveClear;
-
-        _stageData.OnStageCleared += TestStageClear;
+        _waves[_stageData.CurrentWave.Value].OnEnter();
+        _currentWaveData.IsWaveClear.OnValueChanged += CheckWaveClear;
     }
 
-    private void CheckDefeat()
+    private void CheckDefeat(float health)
     {
-        _isDefeated = true;
-        _waves[_stageData.CurrentWave].OnExit();
-        Debug.Log("패배");
+        if(health <= 0 && !_stageData.IsDefeated.Value)
+        {
+            _stageData.IsDefeated.Value = true;
+            _waves[_stageData.CurrentWave.Value].OnExit();
+        }
     }
 
-    private void CheckWaveClear()
+    private void CheckWaveClear(bool isClear)
     {
-        _waves[_stageData.CurrentWave].OnExit();
+        _waves[_stageData.CurrentWave.Value].OnExit();
         Debug.Log("웨이브 클리어");
-        _stageData.Time = _timeForWave;
         StartCoroutine(WaveCoolRoutine());
+        _stageData.Time.Value = _timeForWave;
     }
 
     private void CacheComponents()
@@ -104,10 +91,5 @@ public class StageController : MonoBehaviour
         _stageData = GetComponent<StageData>();
         _waitForCoolDown = new WaitForSeconds(_waveCoolDown);
         _isTimeStopped = false;
-    }
-
-    private void TestStageClear()
-    {
-        Debug.Log("스테이지 클리어 발생");
     }
 }

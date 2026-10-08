@@ -6,7 +6,11 @@ using UnityEngine;
 public class WaveData : MonoBehaviour
 {
     [Header("소환할 몬스터가 담긴 오브젝트 풀")]
-    public ObjectPool MonsterPool;
+    public ObjectPool SmallMonsterPool;
+    public ObjectPool MiddleMonsterPool;
+    public ObjectPool BigMonsterPool;
+
+    public Dictionary<MonsterType, ObjectPool> MonsterPool = new();
 
     [Header("몬스터 생성이 발생하는 중심점")]
     public Transform SpawnPoint;
@@ -20,31 +24,14 @@ public class WaveData : MonoBehaviour
     [Header("처치 해야 하는 몬스터 수")]
     public int AmountForClear;
 
-    private bool _isCleared = false;
-    public bool IsCleared
+    public ObserveableProperty<bool> IsWaveClear = new();
+
+    private void Start() => Init();
+
+    private void Init()
     {
-        get => _isCleared;
-        set
-        {
-            _isCleared = value;
-            OnWaveCleared?.Invoke();
-            OnWaveCleared = null;
-        }
+        MonsterPool.Add(MonsterType.SMALL, SmallMonsterPool);
+        MonsterPool.Add(MonsterType.MIDDLE, MiddleMonsterPool);
+        MonsterPool.Add(MonsterType.BIG, BigMonsterPool);
     }
-
-    private bool _isDefeated = false;
-    public bool IsDefeated
-    {
-        get => _isDefeated;
-        set
-        {
-            _isDefeated = false;
-            OnDefeated?.Invoke();
-            OnDefeated = null;
-        }
-    }
-
-    public event Action OnWaveCleared;
-    public event Action OnDefeated;
-
 }

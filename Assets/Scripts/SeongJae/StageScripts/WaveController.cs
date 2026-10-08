@@ -10,9 +10,6 @@ public class WaveController : MonoBehaviour
     private WaitForSeconds _waitSpawnCoolDown;
     private Coroutine _monsterSpawnRoutine;
 
-    private NexusController _nexusController;
-    private NexusData _nexusData;
-
     private StageData _stageData;
     private bool _isRunning;
 
@@ -20,23 +17,21 @@ public class WaveController : MonoBehaviour
     private Vector2 _randomSpawnPoint;
 
     [SerializeField] private float minOffset, maxOffset;
-
-    private event Action<float> KillTestEvent;
-    // =============== 유니티 생명 주기 =============== 
+    private event Action OnClearMonster;
+    private event Action<float> TestKill;
 
     private void Start() => Init();
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K)) KillTestEvent?.Invoke(1000);
+        if (Input.GetKeyDown(KeyCode.K)) TestKill?.Invoke(1000);
     }
-    // =============== 웨이브 진행 시점에서 수행할 행동 ===============
 
     public void OnEnter()
     {
-        _stageData.MonsterCount = _waveData.AmountForClear;
         _isRunning = true;
         StartSpawn();
-        _nexusData.OnHealthChanged += CheckGameOver;
+        _stageData.MonsterCount.Value = _waveData.AmountForClear;
+        _stageData.Time.OnValueChanged += CheckTimeOver;
         Debug.Log($"{name} : 웨이브 시작");
     }
 
@@ -44,33 +39,16 @@ public class WaveController : MonoBehaviour
     {
         _isRunning = false;
         StopSpawn();
-        //_waveData.IsCleared = true;
-        _nexusData.OnHealthChanged -= CheckGameOver;
+        _stageData.Time.OnValueChanged -= CheckTimeOver;
+        OnClearMonster?.Invoke();
+        OnClearMonster = null;
         Debug.Log($"{name} : 웨이브 종료");
     }
-    
-    public void Clear()
-    {
-        if (_waveData.IsCleared) return;
-        _waveData.IsCleared = true;
-    }
-    // =============== 부모에서 넥서스 정보를 반환 ===============
 
     public void SetData(StageData stageData)
     {
         _stageData = stageData;
-        _nexusController = stageData.Nexus;
-        _nexusData = _nexusController.GetComponent<NexusData>();
     }
-    // =============== 패배 조건 확인 ===============
-    private void CheckGameOver(float health)
-    {
-        if(health <= 0 && !_waveData.IsDefeated)
-        {
-            _waveData.IsDefeated = true;
-        }
-    }
-    // =============== 한 몬스터 소환 주기 ===============
 
     private void SetSpawnPoint(Transform tr)
     {
@@ -85,16 +63,14 @@ public class WaveController : MonoBehaviour
     {
         for(int i = 0; i < _waveData.SpawnAmount; i++)
         {
-            IPoolable monster = _waveData.MonsterPool.Take();
-            _waveData.OnWaveCleared += monster.ReturnToPool;
-            _waveData.OnDefeated += monster.ReturnToPool;
+            IPoolable monster = _waveData.MonsterPool[MonsterType.SMALL].Take();
+            OnClearMonster += monster.ReturnToPool;
+            TestKill += (monster as IDamageable).TakeDamage;
 
             SetSpawnPoint(monster.GameObject.transform);
             monster.GameObject.GetComponent<MonsterController>().OnKilled += RefreshScore;
-            KillTestEvent += (monster as IDamageable).TakeDamage;
         }
     }
-    // =============== 몬스터 소환 코루틴 ===============
 
     private IEnumerator SpawnRoutine()
     {
@@ -103,9 +79,7 @@ public class WaveController : MonoBehaviour
             yield return _waitSpawnCoolDown;
             SpawnLine();
         }
-        
     }
-    // =============== 몬스터 소환 코루틴 실행 ===============
 
     private void StartSpawn()
     {
@@ -113,7 +87,6 @@ public class WaveController : MonoBehaviour
 
         _monsterSpawnRoutine = StartCoroutine(SpawnRoutine());
     }
-    // =============== 몬스터 소환 코루틴 정지 ===============
 
     private void StopSpawn()
     {
@@ -122,29 +95,29 @@ public class WaveController : MonoBehaviour
         StopCoroutine(_monsterSpawnRoutine);
         _monsterSpawnRoutine = null;
     }
-    // =============== 몬스터 사망 이벤트에 구독할 메서드 ===============
+
     private void RefreshScore(MonsterData monsterData)
     {
-        if (_stageData.MonsterCount <= 0) return;
+        if (_stageData.MonsterCount.Value <= 0) return;
 
-        _stageData.KillCount++;
-        _stageData.MonsterCount--;
-        _stageData.Score += monsterData.Score;
-        
-        Debug.Log("남은 몬스터 수 : " + _stageData.MonsterCount);
-        Debug.Log("지금까지 처치한 몬스터 수" + _stageData.KillCount);
+        _stageData.KillCount.Value++;
+        _stageData.MonsterCount.Value--;
+        _stageData.Score.Value += monsterData.Score;
 
-        if (_stageData.MonsterCount == 0)
+        if (_stageData.MonsterCount.Value == 0)
         {
-            _waveData.IsCleared = true;
+            _waveData.IsWaveClear.Value = true;
             return;
         }
-
-        
-
-        
     }
-    // =============== 정보 초기화 메서드 ===============
+
+    private void CheckTimeOver(float time)
+    {
+        if(time <= 0 && !_waveData.IsWaveClear.Value)
+        {
+            _waveData.IsWaveClear.Value = true;
+        }
+    }
 
     private void Init()
     {
