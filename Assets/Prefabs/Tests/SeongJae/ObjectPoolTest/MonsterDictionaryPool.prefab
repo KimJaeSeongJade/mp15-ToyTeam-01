@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 2603684841559686002}
   - component: {fileID: 1198131538288502061}
   m_Layer: 0
-  m_Name: MonsterPool
+  m_Name: MonsterDictionaryPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
