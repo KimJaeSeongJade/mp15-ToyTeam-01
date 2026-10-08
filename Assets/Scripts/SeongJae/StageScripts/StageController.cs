@@ -75,6 +75,7 @@ public class StageController : MonoBehaviour
         {
             _stageData.IsDefeated.Value = true;
             _waves[_stageData.CurrentWave.Value].OnExit();
+            Debug.Log("스테이지 종료");
         }
     }
 
