@@ -62,4 +62,21 @@ public class StatusWindow : MonoBehaviour
     {
         _scoreText.text = $"{currentScore}";
     }
+
+    private void ScoreTextShaker(int currentScore)
+    {
+        int _startScore = currentScore;
+        float _elapseTime = 0f;
+        float _duration = 0.5f;
+
+        while (_elapseTime < _duration)
+        {
+            _elapseTime += Time.deltaTime;
+            float progress = _elapseTime / _duration;
+            
+            _startScore = (int)Mathf.Lerp(currentScore, _startScore, progress);
+        }
+        
+        _scoreText.text = $"{currentScore}";
+    }
 }
