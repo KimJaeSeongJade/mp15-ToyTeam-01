@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class WaveController : MonoBehaviour
 {
@@ -63,7 +63,7 @@ public class WaveController : MonoBehaviour
     {
         for(int i = 0; i < _waveData.SpawnAmount; i++)
         {
-            IPoolable monster = _waveData.MonsterPool[MonsterType.SMALL].Take();
+            IPoolable monster = _waveData.Source.MonsterPool[_waveData.Type].Take();
             OnClearMonster += monster.ReturnToPool;
             TestKill += (monster as IDamageable).TakeDamage;
 
