@@ -22,20 +22,20 @@ public class StatusWindow : MonoBehaviour
 
     private void BindGameFlow()
     {
-        _stageData.OnMonsterCountChanged += CurrentMonsterRemainText;
-        _stageData.OnMaxWaveChanged += MaxWaveText;
-        _stageData.OnCurrentWaveChanged += CurrentWaveText;
-        _stageData.OnTimeChanged += TimeChanged;
-        _stageData.OnScoreChanged += CurrentScoreText;
+        _stageData.MonsterCount.OnValueChanged += CurrentMonsterRemainText;
+        _stageData.MaxWave.OnValueChanged += MaxWaveText;
+        _stageData.CurrentWave.OnValueChanged += CurrentWaveText;
+        _stageData.Time.OnValueChanged += TimeChanged;
+        _stageData.Score.OnValueChanged += CurrentScoreText;
     }
 
     private void UnbindGameFlow()
     {
-        _stageData.OnMonsterCountChanged -= CurrentMonsterRemainText;
-        _stageData.OnMaxWaveChanged -= MaxWaveText;
-        _stageData.OnCurrentWaveChanged -= CurrentWaveText;
-        _stageData.OnTimeChanged -= TimeChanged;
-        _stageData.OnScoreChanged -= CurrentScoreText;
+        _stageData.MonsterCount.OnValueChanged -= CurrentMonsterRemainText;
+        _stageData.MaxWave.OnValueChanged -= MaxWaveText;
+        _stageData.CurrentWave.OnValueChanged -= CurrentWaveText;
+        _stageData.Time.OnValueChanged -= TimeChanged;
+        _stageData.Score.OnValueChanged -= CurrentScoreText;
     }
 
     private void CurrentMonsterRemainText(int monsterRemain)

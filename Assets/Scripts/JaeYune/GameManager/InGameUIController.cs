@@ -70,7 +70,7 @@ public class InGameUIController : MonoBehaviour
 
         _nexusData.OnHealthChanged += CheckNexusHealth;
         
-        _stageData.OnStageCleared += CheckStageClear;
+        _stageData.IsStageClear.OnValueChanged += CheckStageClear;
     }
 
     private void UnbindGameFlow()
@@ -83,7 +83,7 @@ public class InGameUIController : MonoBehaviour
         
         _nexusData.OnHealthChanged -= CheckNexusHealth;
         
-        _stageData.OnStageCleared -= CheckStageClear;
+        _stageData.IsStageClear.OnValueChanged -= CheckStageClear;
     }
     
     private void GameStart()
@@ -178,9 +178,9 @@ public class InGameUIController : MonoBehaviour
     }
     
     // +++ 
-    private void CheckStageClear()
+    private void CheckStageClear(bool isStageClear)
     {
-        _isGameClear = true;
+        _isGameClear = isStageClear;
     }
 
     private void JudgePaused()
