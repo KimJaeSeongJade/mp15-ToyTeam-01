@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
-  MoveSpeed: 0.01
+  MoveSpeed: 0.5
   Health: 30
   Damage: 30
   Score: 30

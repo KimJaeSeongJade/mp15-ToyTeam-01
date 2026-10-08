@@ -54,7 +54,7 @@ public class WaveController : MonoBehaviour
     {
         _randomSpawnPoint.x = UnityEngine.Random.Range(minOffset, maxOffset);
         _randomSpawnPoint.y = UnityEngine.Random.Range(minOffset, maxOffset);
-        _tempSpawnPoint = new Vector3(_waveData.SpawnPoint.position.x + _randomSpawnPoint.x, _tempSpawnPoint.y, _waveData.SpawnPoint.position.z + _randomSpawnPoint.y);
+        _tempSpawnPoint = new Vector3(_waveData.SpawnPoint.position.x, _tempSpawnPoint.y, _waveData.SpawnPoint.position.z + _randomSpawnPoint.y);
         tr.position = _tempSpawnPoint;
         tr.rotation = _waveData.SpawnPoint.rotation;
     }
