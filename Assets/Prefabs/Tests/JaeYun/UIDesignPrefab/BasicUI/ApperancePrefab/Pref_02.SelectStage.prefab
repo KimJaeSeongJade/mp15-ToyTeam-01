@@ -411,8 +411,10 @@ MonoBehaviour:
   _hellStageButton: {fileID: 8610060522909722143}
   _backToMainMenuButton: {fileID: 7134449889348778841}
   _inGameSceneName: GameScene
+  _easySceneName: EasyStage
+  _hardSceneName: HardStage
   titleController: {fileID: 0}
-  _clickSound2: {fileID: 8300000, guid: 4da3074a6af56ea4eb77350f0aa60d93, type: 3}
+  _clickSound: {fileID: 0}
 --- !u!95 &994956433456265404
 Animator:
   serializedVersion: 5
