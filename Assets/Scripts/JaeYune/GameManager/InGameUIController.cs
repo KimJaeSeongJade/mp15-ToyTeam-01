@@ -152,7 +152,7 @@ public class InGameUIController : MonoBehaviour
         if (_inGameBgm == null)
             return;
         
-        _bgm.SetSoundVolume(0.3f)
+        _bgm.SetSoundVolume(0.1f)
             .SetSoundLoop(true)
             .PlaySoundWhenStart(true)
             .ConvertSourceToClip(_inGameBgm)
