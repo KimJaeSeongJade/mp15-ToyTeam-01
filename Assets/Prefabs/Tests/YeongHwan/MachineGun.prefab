@@ -67,5 +67,5 @@ MonoBehaviour:
   _spreadAngle: 1
   _bulletRange: 50
   _bulletRadius: 0.2
-  _explosionRadius: 0.4
-  _bulletDamage: 10
+  _explosionRadius: 0.3
+  _bulletDamage: 20
