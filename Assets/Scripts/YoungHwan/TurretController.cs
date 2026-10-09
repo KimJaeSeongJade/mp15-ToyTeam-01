@@ -36,6 +36,8 @@ public class TurretController : MonoBehaviour
     private void Start() => Init();
     private void Update()
     {
+        if (!GameManager.Instance.IsGameRunning) return;
+
         if (_isSmoothing)
         {
             Smoothing();
