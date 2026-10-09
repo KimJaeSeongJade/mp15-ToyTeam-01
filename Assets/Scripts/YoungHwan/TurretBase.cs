@@ -102,7 +102,7 @@ public abstract class TurretBase : MonoBehaviour
              .ConvertSourceToClip(_fireSound)
              .Play();
         
-        //StartCoroutine(SoundOffRoutine(_fire, _fireSound.length));
+        StartCoroutine(SoundOffRoutine(_fire, _fireSound.length));
     }
 
     private IEnumerator SoundOffRoutine(SoundPlayer player, float time)

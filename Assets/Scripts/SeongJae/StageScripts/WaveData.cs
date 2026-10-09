@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveData : MonoBehaviour
@@ -6,7 +7,7 @@ public class WaveData : MonoBehaviour
     public MonsterPoolController Source;
 
     [Header("몬스터 생성이 발생하는 중심점")]
-    public Transform SpawnPoint;
+    public List<Transform> SpawnPoint = new();
 
     [Header("소환 주기")]
     public float SpawnCoolDown;

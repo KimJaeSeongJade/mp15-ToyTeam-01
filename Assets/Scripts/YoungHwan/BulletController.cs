@@ -67,7 +67,7 @@ public class BulletController : MonoBehaviour, IPoolable
     }
     private void Explode()
     {
-        //ExplodeSoundOn();
+        ExplodeSoundOn();
         
         Collider[] monsters = Physics.OverlapSphere(transform.position, _data.ExplosionRadius, _monsterLayer);
         foreach (Collider monster in monsters)
