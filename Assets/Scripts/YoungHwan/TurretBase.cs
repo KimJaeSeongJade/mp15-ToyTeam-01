@@ -59,7 +59,7 @@ public abstract class TurretBase : MonoBehaviour
             _currentHeat = _maxHeat;
             _isOverHeat = true;
         }
-        //FireSoundOn();
+        FireSoundOn();
         
         yield return new WaitForSeconds(_fireDelay);
         _canFire = true;

@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 0
-  _weaponModel: {fileID: 5547978313672878975, guid: 6e7a8a3dd8b6b3744be4193abcfac77a, type: 3}
+  _weaponModel: {fileID: 5954075491006461222, guid: 95e75643334c1894ca54786630ea2e34, type: 3}
   _firePoint: {fileID: 0}
   _bulletPool: {fileID: 0}
   _data: {fileID: 0}
@@ -66,6 +66,6 @@ MonoBehaviour:
   _maxBullets: 2
   _spreadAngle: 1
   _bulletRange: 50
-  _bulletRadius: 0.1
-  _explosionRadius: 0.3
-  _bulletDamage: 5
+  _bulletRadius: 0.2
+  _explosionRadius: 0.4
+  _bulletDamage: 10
