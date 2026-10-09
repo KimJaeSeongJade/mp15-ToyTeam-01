@@ -412,69 +412,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 44020610801976454, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: _timeForWave
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1271315993620675504, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: maxOffset
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1271315993620675504, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: minOffset
-      value: -15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2095295034874945698, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2095295034874945698, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2095295034874945698, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 3675264360252724819, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3675264360252724819, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3675264360252724819, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 4159463856374962556, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
       propertyPath: m_Name
       value: Stage
-      objectReference: {fileID: 0}
-    - target: {fileID: 5003895704638433481, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: SpawnAmount
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5003895704638433481, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: SpawnCoolDown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5973358269567978040, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: Nexus
-      value: 
-      objectReference: {fileID: 1808546913}
-    - target: {fileID: 6113820115103457695, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6113820115103457695, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6113820115103457695, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8045139541957765986, guid: 7f44b4b1af4bb27458fbddda8bf35e76, type: 3}
       propertyPath: m_LocalPosition.x
@@ -931,10 +871,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3181456723404495816, guid: 629675dfebaaaeb4ab687be72b714588, type: 3}
-      propertyPath: _maxHealth
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 5006941437810645630, guid: 629675dfebaaaeb4ab687be72b714588, type: 3}
       propertyPath: m_LocalPosition.x
       value: 220
@@ -984,17 +920,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 629675dfebaaaeb4ab687be72b714588, type: 3}
---- !u!114 &1808546913 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7026151348474081615, guid: 629675dfebaaaeb4ab687be72b714588, type: 3}
-  m_PrefabInstance: {fileID: 1808546912}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee5dd6da9f7f247479707b1389a9520c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1808546914 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3181456723404495816, guid: 629675dfebaaaeb4ab687be72b714588, type: 3}
@@ -1039,17 +964,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 923658359}
     - target: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
-      propertyPath: _clearScoreBoard
-      value: 
-      objectReference: {fileID: 257255660}
-    - target: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
       propertyPath: _clearResultBoard
       value: 
       objectReference: {fileID: 257255660}
-    - target: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
-      propertyPath: _gameOverScoreBoard
-      value: 
-      objectReference: {fileID: 923658360}
     - target: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
       propertyPath: _gameOverResultBoard
       value: 
@@ -1125,10 +1042,6 @@ PrefabInstance:
     - target: {fileID: 3755691820856754837, guid: 1cb429c6dcf7bc34e925f642cb2f7cf9, type: 3}
       propertyPath: m_Name
       value: Pref_03.PauseGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 3755691820856754837, guid: 1cb429c6dcf7bc34e925f642cb2f7cf9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3929944118013327298, guid: 1cb429c6dcf7bc34e925f642cb2f7cf9, type: 3}
       propertyPath: _inGameUIController
@@ -1279,6 +1192,10 @@ PrefabInstance:
     - target: {fileID: 5971203121313286054, guid: a47057666e23eaf4d9677b79e9b377bd, type: 3}
       propertyPath: m_Name
       value: InGameUIs
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971203121313286054, guid: a47057666e23eaf4d9677b79e9b377bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6967704981248284099, guid: a47057666e23eaf4d9677b79e9b377bd, type: 3}
       propertyPath: _nexusData
