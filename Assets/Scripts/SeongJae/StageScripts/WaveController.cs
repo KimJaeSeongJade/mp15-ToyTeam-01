@@ -13,8 +13,6 @@ public class WaveController : MonoBehaviour
     private bool _isRunning;
 
     private Vector3 _tempSpawnPoint;
-    private Vector2 _randomSpawnPoint;
-
     [SerializeField] private float minOffset, maxOffset;
     private event Action OnClearMonster;
     private event Action<float> TestKill;
@@ -49,11 +47,15 @@ public class WaveController : MonoBehaviour
 
     private void SetSpawnPoint(Transform tr, int index)
     {
-        _randomSpawnPoint.x = UnityEngine.Random.Range(minOffset, maxOffset);
-        _randomSpawnPoint.y = UnityEngine.Random.Range(minOffset, maxOffset);
-        _tempSpawnPoint = new Vector3(_waveData.SpawnPoint[index].position.x, _tempSpawnPoint.y, _waveData.SpawnPoint[index].position.z + _randomSpawnPoint.y);
+        float randomX = UnityEngine.Random.Range(minOffset, maxOffset);
+        float randomZ = UnityEngine.Random.Range(minOffset, maxOffset);
+
+        Transform targetPoint = _waveData.SpawnPoint[index];
+
+        _tempSpawnPoint = targetPoint.position + (targetPoint.right * randomX) + (targetPoint.forward * randomZ);
+
         tr.position = _tempSpawnPoint;
-        tr.rotation = _waveData.SpawnPoint[index].rotation;
+        tr.rotation = targetPoint.rotation;
     }
 
     private void SpawnLine()
