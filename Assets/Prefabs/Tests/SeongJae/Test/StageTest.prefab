@@ -41,6 +41,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8045139541957765986}
     m_Modifications:
+    - target: {fileID: 1091337569619598261, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
+      propertyPath: _timeForWave
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345074924780224401, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345074924780224401, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345074924780224401, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 2403834715954871513, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -85,10 +101,38 @@ PrefabInstance:
       propertyPath: MonsterPool
       value: 
       objectReference: {fileID: 5714837022815667066}
+    - target: {fileID: 4375379294966729056, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375379294966729056, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375379294966729056, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5388620306300581882, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
       propertyPath: MonsterPool
       value: 
       objectReference: {fileID: 5714837022815667066}
+    - target: {fileID: 5388620306300581882, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
+      propertyPath: SpawnAmount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584814882648112812, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584814882648112812, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584814882648112812, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 6674035543340840879, guid: 1814deb6ef937504a9860e4410308e84, type: 3}
       propertyPath: MonsterPool
       value: 

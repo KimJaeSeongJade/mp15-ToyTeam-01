@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soundPlayerPrefab: {fileID: 5300634745223333407, guid: e90b920952b6bb443982e1cc60d4ead4, type: 3}
-  _trackSize: 10
+  _trackSize: 30
