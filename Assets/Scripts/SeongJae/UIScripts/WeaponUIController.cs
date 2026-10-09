@@ -11,6 +11,7 @@ public class WeaponUIController : MonoBehaviour
 
     [Header("슬롯 텍스트")]
     [SerializeField] private List<TextMeshProUGUI> _weaponTexts;
+
     private int _currentSlot = 0;
     private void Start() => Init();
     public void SwapWeaponSlot(int index)
@@ -22,10 +23,17 @@ public class WeaponUIController : MonoBehaviour
 
     private void Init()
     {
+        int index = 1;
         foreach(Image slot in _weaponSlots)
         {
             if (slot == _weaponSlots[_currentSlot]) continue;
             slot.gameObject.SetActive(false);
+        }
+
+        foreach(TextMeshProUGUI post in _weaponTexts)
+        {
+            post.text = "POST " + index;
+            index++;
         }
     }
 }
