@@ -65,7 +65,16 @@ public class WaveController : MonoBehaviour
             for (int i = 0; i < _waveData.SpawnAmount; i++)
             {
                 IPoolable monster = _waveData.Source.MonsterPool[_waveData.Type].Take();
+                
+                // +
+                if (monster == null) 
+                    continue;
+                
+                // ++
+                OnClearMonster -= monster.ReturnToPool;
                 OnClearMonster += monster.ReturnToPool;
+                // ++
+                TestKill -= (monster as IDamageable).TakeDamage;
                 TestKill += (monster as IDamageable).TakeDamage;
 
                 SetSpawnPoint(monster.GameObject.transform, j);

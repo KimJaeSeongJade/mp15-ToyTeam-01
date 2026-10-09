@@ -765,6 +765,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5328163136025482483, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
+      propertyPath: _easySceneName
+      value: GameScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328163136025482483, guid: 20979d292dba3d4418fe3c2c41869802, type: 3}
       propertyPath: titleController
       value: 
       objectReference: {fileID: 1345646690}
