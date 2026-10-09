@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SelectStage : MonoBehaviour
@@ -14,14 +15,16 @@ public class SelectStage : MonoBehaviour
     
     [Header("이동할 Scene 설정부")]
     [SerializeField] private string _inGameSceneName;
+    [SerializeField] private string _easySceneName;
+    [SerializeField] private string _hardSceneName;
     
     [Header("UI 컨트롤러 설정부")]
     [SerializeField] private TitleController titleController;
     
     [Header("클릭 사운드 설정부")]
-    [SerializeField] private AudioClip _clickSound2;
+    [SerializeField] private AudioClip _clickSound;
     
-    private SoundPlayer _click2;
+    private SoundPlayer _click;
     
     private void OnEnable() => BindButtonEvents();
 
@@ -34,10 +37,10 @@ public class SelectStage : MonoBehaviour
         _hellStageButton.onClick.AddListener(SelectHellStageButton);
         _backToMainMenuButton.onClick.AddListener(SelectBackToMainMenuButton);
         
-        _easyStageButton.onClick.AddListener(ClickSounOn2);
-        _hardStageButton.onClick.AddListener(ClickSounOn2);
-        _hellStageButton.onClick.AddListener(ClickSounOn2);
-        _backToMainMenuButton.onClick.AddListener(ClickSounOn2);
+        _easyStageButton.onClick.AddListener(ClickSounOn);
+        _hardStageButton.onClick.AddListener(ClickSounOn);
+        _hellStageButton.onClick.AddListener(ClickSounOn);
+        _backToMainMenuButton.onClick.AddListener(ClickSounOn);
     }
 
     private void UnbindButtonEvents()
@@ -47,20 +50,20 @@ public class SelectStage : MonoBehaviour
         _hellStageButton.onClick.RemoveListener(SelectHellStageButton);
         _backToMainMenuButton.onClick.RemoveListener(SelectBackToMainMenuButton);
         
-        _easyStageButton.onClick.RemoveListener(ClickSounOn2);
-        _hardStageButton.onClick.RemoveListener(ClickSounOn2);
-        _hellStageButton.onClick.RemoveListener(ClickSounOn2);
-        _backToMainMenuButton.onClick.RemoveListener(ClickSounOn2);
+        _easyStageButton.onClick.RemoveListener(ClickSounOn);
+        _hardStageButton.onClick.RemoveListener(ClickSounOn);
+        _hellStageButton.onClick.RemoveListener(ClickSounOn);
+        _backToMainMenuButton.onClick.RemoveListener(ClickSounOn);
     }
 
     public void SelectEasyStageButton()
     {
-        GameManager.Instance.LoadScene(_inGameSceneName);
+        GameManager.Instance.LoadScene(_easySceneName);
     }
 
     public void SelectHardStageButton()
     {
-        GameManager.Instance.LoadScene(_inGameSceneName);
+        GameManager.Instance.LoadScene(_hardSceneName);
     }
 
     public void SelectHellStageButton()
@@ -73,23 +76,17 @@ public class SelectStage : MonoBehaviour
         titleController.ViewMainMenu();
     }
     
-    private void ClickSounOn2()
+    private void ClickSounOn()
     {
-        _click2 = SoundManager.Instance.TakeSoundPlayer();
+        _click = SoundManager.Instance.TakeSoundPlayer();
    
-        if (_clickSound2 == null)
+        if (_clickSound == null)
             return;
         
-        _click2.SetSoundVolume(0.3f)
+        _click.SetSoundVolume(0.3f)
             .SetSoundLoop(false)
             .PlaySoundWhenStart(false)
-            .ConvertSourceToClip(_clickSound2)
+            .ConvertSourceToClip(_clickSound)
             .Play();
-    }
-
-    private void ClickSoundOff2()
-    {
-        _click2.Stop();
-        _click2 = null;
     }
 }
