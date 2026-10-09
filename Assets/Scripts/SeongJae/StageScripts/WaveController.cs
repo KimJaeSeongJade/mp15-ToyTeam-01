@@ -13,12 +13,9 @@ public class WaveController : MonoBehaviour
     private bool _isRunning;
 
     private Vector3 _tempSpawnPoint;
-    private Vector2 _randomSpawnPoint;
-
     [SerializeField] private float minOffset, maxOffset;
     private event Action OnClearMonster;
     private event Action<float> TestKill;
-
     private void Awake() => CacheComponents();
     private void Start() => Init();
     private void Update()
@@ -48,26 +45,34 @@ public class WaveController : MonoBehaviour
         _stageData = stageData;
     }
 
-    private void SetSpawnPoint(Transform tr)
+    private void SetSpawnPoint(Transform tr, int index)
     {
-        _randomSpawnPoint.x = UnityEngine.Random.Range(minOffset, maxOffset);
-        _randomSpawnPoint.y = UnityEngine.Random.Range(minOffset, maxOffset);
-        _tempSpawnPoint = new Vector3(_waveData.SpawnPoint.position.x, _tempSpawnPoint.y, _waveData.SpawnPoint.position.z + _randomSpawnPoint.y);
+        float randomX = UnityEngine.Random.Range(minOffset, maxOffset);
+        float randomZ = UnityEngine.Random.Range(minOffset, maxOffset);
+
+        Transform targetPoint = _waveData.SpawnPoint[index];
+
+        _tempSpawnPoint = targetPoint.position + (targetPoint.right * randomX) + (targetPoint.forward * randomZ);
+
         tr.position = _tempSpawnPoint;
-        tr.rotation = _waveData.SpawnPoint.rotation;
+        tr.rotation = targetPoint.rotation;
     }
 
     private void SpawnLine()
     {
-        for(int i = 0; i < _waveData.SpawnAmount; i++)
+        for(int j  = 0; j < _waveData.SpawnPoint.Count; j++)
         {
-            IPoolable monster = _waveData.Source.MonsterPool[_waveData.Type].Take();
-            OnClearMonster += monster.ReturnToPool;
-            TestKill += (monster as IDamageable).TakeDamage;
+            for (int i = 0; i < _waveData.SpawnAmount; i++)
+            {
+                IPoolable monster = _waveData.Source.MonsterPool[_waveData.Type].Take();
+                OnClearMonster += monster.ReturnToPool;
+                TestKill += (monster as IDamageable).TakeDamage;
 
-            SetSpawnPoint(monster.GameObject.transform);
-            monster.GameObject.GetComponent<MonsterController>().OnKilled += RefreshScore;
+                SetSpawnPoint(monster.GameObject.transform, j);
+                monster.GameObject.GetComponent<MonsterController>().OnKilled += RefreshScore;
+            }
         }
+        
     }
 
     private IEnumerator SpawnRoutine()
@@ -120,7 +125,6 @@ public class WaveController : MonoBehaviour
     private void Init()
     {
         _waitSpawnCoolDown = new WaitForSeconds(_waveData.SpawnCoolDown);
-        _tempSpawnPoint = _waveData.SpawnPoint.position;
     }
     
     private void CacheComponents()
