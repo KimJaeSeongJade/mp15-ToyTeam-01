@@ -893,6 +893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6265206175713501824}
   - component: {fileID: 5162232971360506}
+  - component: {fileID: 304120893185562473}
   m_Layer: 8
   m_Name: TurtleShellPolyart
   m_TagString: Untagged
@@ -925,7 +926,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6753617674297473082}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 942e6d5330e147fe84c5ab6ab2193ca1, type: 3}
   m_Controller: {fileID: 9100000, guid: 1f68948a5bb74f2fa9e9087a872750e9, type: 2}
   m_CullingMode: 1
@@ -938,6 +939,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &304120893185562473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753617674297473082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48a557ab22e86643bef288fb7e51636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6861681153245785469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,7 +1170,7 @@ Transform:
   m_GameObject: {fileID: 9147545902976906600}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.18, y: 0, z: -4.44}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1176,6 +1189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994cc6a178a84db4ca851c8a96751bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _decalLifetime: 10
+  _deathDecalPrefab: {fileID: 8102881671203728731, guid: 3faf562716ca9744d95bffdc2daaffa1, type: 3}
 --- !u!114 &1509079611305317782
 MonoBehaviour:
   m_ObjectHideFlags: 0
