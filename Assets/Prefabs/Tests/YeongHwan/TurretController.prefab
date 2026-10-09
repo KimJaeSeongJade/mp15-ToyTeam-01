@@ -116,5 +116,4 @@ MonoBehaviour:
   _turrets:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   _smoothingSpeed: 15
