@@ -30,7 +30,6 @@ public class StageController : MonoBehaviour
 
     private IEnumerator WaveCoolRoutine()
     {
-        Debug.Log($"{_waveCoolDown} 초 후, 다음 웨이브 시작");
         _isTimeStopped = true;
         yield return _waitForCoolDown;
         _isTimeStopped = false;
@@ -42,7 +41,6 @@ public class StageController : MonoBehaviour
         _stageData.CurrentWave.Value++;
         if (_stageData.CurrentWave.Value >= _stageData.MaxWave.Value)
         {
-            Debug.Log($"{name} : 스테이지 클리어");
             _isTimeStopped = true;
             _stageData.IsStageClear.Value = true;
             return;
@@ -73,14 +71,12 @@ public class StageController : MonoBehaviour
         {
             _stageData.IsDefeated.Value = true;
             _waves[_stageData.CurrentWave.Value].OnExit();
-            Debug.Log("스테이지 종료");
         }
     }
 
     private void CheckWaveClear(bool isClear)
     {
         _waves[_stageData.CurrentWave.Value].OnExit();
-        Debug.Log("웨이브 클리어");
         StartCoroutine(WaveCoolRoutine());
         _stageData.Time.Value = _timeForWave;
     }

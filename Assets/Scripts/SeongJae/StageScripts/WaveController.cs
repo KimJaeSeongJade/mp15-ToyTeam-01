@@ -32,7 +32,6 @@ public class WaveController : MonoBehaviour
         StartSpawn();
         _stageData.MonsterCount.Value = _waveData.AmountForClear;
         _stageData.Time.OnValueChanged += CheckTimeOver;
-        Debug.Log($"{name} : 웨이브 시작");
     }
 
     public void OnExit()
@@ -42,7 +41,6 @@ public class WaveController : MonoBehaviour
         _stageData.Time.OnValueChanged -= CheckTimeOver;
         OnClearMonster?.Invoke();
         OnClearMonster = null;
-        Debug.Log($"{name} : 웨이브 종료");
     }
 
     public void SetData(StageData stageData)
