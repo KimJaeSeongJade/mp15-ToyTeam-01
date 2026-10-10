@@ -52,8 +52,8 @@ MonoBehaviour:
   _data: {fileID: 8958523402315487608}
   _fireDelay: 1.5
   _maxHeat: 100
-  _heatPerShot: 20
-  _coolPerSecond: 12
+  _heatPerShot: 30
+  _coolPerSecond: 8
   _coolDelay: 0.7
   _fireSound: {fileID: 8300000, guid: c6e2c3b7694375746b4874de115f29a5, type: 3}
   _secondFirePoint: {fileID: 0}
@@ -77,5 +77,5 @@ MonoBehaviour:
   _explosionRadius: 0
   _explodeSound: {fileID: 0}
   _explodeEffect: {fileID: 0}
-  _hitRadius: 0.15
+  _hitRadius: 0.16
   _rollSpeed: 5
