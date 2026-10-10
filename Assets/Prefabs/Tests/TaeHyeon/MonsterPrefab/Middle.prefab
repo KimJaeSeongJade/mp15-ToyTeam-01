@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7857259459952145721}
-  - component: {fileID: 3852546790644999409}
   - component: {fileID: 8685818754432992514}
+  - component: {fileID: 3333669632325578537}
   m_Layer: 8
   m_Name: Slime
   m_TagString: Untagged
@@ -33,7 +33,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5095347998199370185}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &3852546790644999409
+--- !u!33 &8685818754432992514
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19318609298331807}
+  m_Mesh: {fileID: 4300000, guid: b2c5dad1c2b246f48024751ad65ef02b, type: 3}
+--- !u!23 &3333669632325578537
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,8 +49,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19318609298331807}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -53,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 755175c69cd9b8f4fa8f9eb1c645b808, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,14 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &8685818754432992514
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19318609298331807}
-  m_Mesh: {fileID: 4300000, guid: b2c5dad1c2b246f48024751ad65ef02b, type: 3}
 --- !u!1 &1237443717210215900
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994cc6a178a84db4ca851c8a96751bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _decal: {fileID: 7468040021798842466, guid: 47175f18359cb7145a72fff52f5c72f0, type: 3}
 --- !u!135 &3453687236022315184
 SphereCollider:
   m_ObjectHideFlags: 0
