@@ -913,7 +913,7 @@ PrefabInstance:
     - target: {fileID: 4261433362642387620, guid: 6b7599c3de68ecd429ffab581ef4a2c2, type: 3}
       propertyPath: _fireSound
       value: 
-      objectReference: {fileID: 8300000, guid: c6e2c3b7694375746b4874de115f29a5, type: 3}
+      objectReference: {fileID: 8300000, guid: a62d2a799d126a94c8f62067bf808c2c, type: 3}
     - target: {fileID: 4261433362642387620, guid: 6b7599c3de68ecd429ffab581ef4a2c2, type: 3}
       propertyPath: _bulletPool
       value: 
