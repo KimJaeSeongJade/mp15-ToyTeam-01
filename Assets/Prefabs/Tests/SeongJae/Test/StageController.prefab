@@ -45,11 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49124cb1f55bd4408551a9ad69144e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterPool: {fileID: 0}
+  Source: {fileID: 0}
   SpawnPoint: {fileID: 1345074924780224401}
   SpawnCoolDown: 3
   SpawnAmount: 50
   AmountForClear: 1000
+  Type: 0
 --- !u!114 &4943937261385005131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,11 +110,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49124cb1f55bd4408551a9ad69144e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterPool: {fileID: 0}
+  Source: {fileID: 0}
   SpawnPoint: {fileID: 4375379294966729056}
   SpawnCoolDown: 3
   SpawnAmount: 50
   AmountForClear: 1000
+  Type: 0
 --- !u!114 &3219009077416834831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,8 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43f5754633c30140a5c1191b3b672b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Nexus: {fileID: 0}
-  _time: 0
+  NexusData: {fileID: 0}
 --- !u!114 &1091337569619598261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +197,7 @@ MonoBehaviour:
   - {fileID: 3941643932308526945}
   - {fileID: 3219009077416834831}
   - {fileID: 4943937261385005131}
-  _waveCoolDown: 5
+  _waveCoolDown: 50
   _timeForWave: 60
 --- !u!1 &8940972539098488888
 GameObject:
@@ -243,11 +244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49124cb1f55bd4408551a9ad69144e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterPool: {fileID: 0}
+  Source: {fileID: 0}
   SpawnPoint: {fileID: 6584814882648112812}
   SpawnCoolDown: 3
   SpawnAmount: 50
   AmountForClear: 1000
+  Type: 0
 --- !u!114 &3941643932308526945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,11 +309,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49124cb1f55bd4408551a9ad69144e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterPool: {fileID: 0}
+  Source: {fileID: 0}
   SpawnPoint: {fileID: 7117326364648101376}
   SpawnCoolDown: 1
   SpawnAmount: 10
   AmountForClear: 1000
+  Type: 0
 --- !u!114 &2170117193501205635
 MonoBehaviour:
   m_ObjectHideFlags: 0

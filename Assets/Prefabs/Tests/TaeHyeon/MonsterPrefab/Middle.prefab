@@ -52,7 +52,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 02d811e96fe012c4a869951317c6d1ed, type: 2}
+  - {fileID: 2100000, guid: 42c648e1213db484c98579b697e74692, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -361,7 +361,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7498142190150400792}
   - component: {fileID: 8035681660144644490}
-  - component: {fileID: 4012525031038569398}
   m_Layer: 8
   m_Name: SlimePolyart
   m_TagString: Untagged
@@ -407,18 +406,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4012525031038569398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7153141402127884706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d48a557ab22e86643bef288fb7e51636, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7446019047767849115
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,11 +485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994cc6a178a84db4ca851c8a96751bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  _decalLifetime: 10
-  _deathDecalPrefab: {fileID: 2142281375421422382, guid: 38a87cab63bff2f4ca03a27a0310cd6f, type: 3}
 --- !u!114 &-5410828793739841542
 MonoBehaviour:
   m_ObjectHideFlags: 0

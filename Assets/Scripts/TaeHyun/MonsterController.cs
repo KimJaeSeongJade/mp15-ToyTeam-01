@@ -8,12 +8,7 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
     [Header("탄알 레이어")]
     private LayerMask _bulletLayer;
 
-    [Header("사망 자국")]
-    
-    [SerializeField] private LayerMask _groundLayer;
-    [SerializeField] private float _decalLifetime = 10f;
 
-    [SerializeField] private GameObject _deathDecalPrefab;
 
     // =============== IPoolable 구현 ===============
     public GameObject GameObject { get; set; }
@@ -77,13 +72,11 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
         if (damage >= _monsterData.Health)
         {
             _monsterData.Health = 0f;
-            _animator.Play("Base Layer.Die", 0, 0f); //사망애니메이션 호출
-
-            SpawnDeathDecal(); //데칼 생성 함수 호출
-
+         
             OnKilled?.Invoke(_monsterData);
             OnNexusArrived = null;
             OnKilled = null;
+            ReturnToPool();
         }
         else
         {
@@ -102,51 +95,13 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
 
     // =============== Awake() 초기화 메서드 ===============
 
-    private Animator _animator;
+   
 
     private void CacheComponents()
     {
         _monsterData = GetComponent<MonsterData>();
-        _animator = GetComponentInChildren<Animator>();
+       
     }
 
-
-    // 데칼 생성 함수
-    private void SpawnDeathDecal()
-    {
-        if (_deathDecalPrefab == null)
-        {
-            return;
-        }
-
-        Vector3 origin = transform.position + Vector3.up;
-
-        if (!Physics.Raycast(origin,Vector3.down,out RaycastHit hit,3f,
-            _groundLayer,QueryTriggerInteraction.Ignore))
-        {
-            return;
-        }
-
-        Vector3 position = hit.point + hit.normal * 0.01f;
-        Quaternion rotation = Quaternion.LookRotation(-hit.normal);
-
-        GameObject decal = Instantiate(
-        _deathDecalPrefab,
-        position,
-        rotation
-    );
-
-    Destroy(decal, _decalLifetime);
-}
-    //추후 주석처리 해주세요
-    private void Start()
-    {
-        Invoke(nameof(TestDie), 5f);
-    }
-
-    private void TestDie()
-    {
-        TakeDamage(_monsterData.Health);
-    }
     
 }
