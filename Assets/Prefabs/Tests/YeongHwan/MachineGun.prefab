@@ -51,8 +51,8 @@ MonoBehaviour:
   _data: {fileID: 0}
   _fireDelay: 0.09
   _maxHeat: 100
-  _heatPerShot: 0.5
-  _coolPerSecond: 16
+  _heatPerShot: 1.5
+  _coolPerSecond: 17
   _coolDelay: 0.15
   _fireSound: {fileID: 8300000, guid: ba1a4a95f22190f488212d8de090ba5a, type: 3}
   _targetLayer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   _minBullets: 1
   _maxBullets: 2
   _spreadAngle: 1
-  _bulletRange: 50
-  _bulletRadius: 0.2
-  _explosionRadius: 0.3
+  _bulletRange: 100
+  _bulletRadius: 0.1
+  _explosionRadius: 0.15
   _bulletDamage: 20

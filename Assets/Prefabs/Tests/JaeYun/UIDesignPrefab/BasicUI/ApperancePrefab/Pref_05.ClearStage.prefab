@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -293.09354, y: -26.7}
-  m_SizeDelta: {x: 894.0129, y: 2.5}
+  m_AnchoredPosition: {x: -234.02866, y: -26.7}
+  m_SizeDelta: {x: 1122.4648, y: 2.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9167472679826490572
 CanvasRenderer:
@@ -1883,7 +1883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &178545532563059938
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1986,7 +1986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _restartButton: {fileID: 148686740954024680}
   _returnMainButton: {fileID: 5910955555533701220}
-  _restartSceneName: GameScene
+  _restartSceneName: EasyStage
   _returnSceneName: TitleScene
 --- !u!1 &8893909806843980814
 GameObject:
@@ -2290,7 +2290,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -591.69, y: -487}
+  m_AnchoredPosition: {x: -304, y: -471}
   m_SizeDelta: {x: 1183.3838, y: 242.6151}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7504634183986921969
@@ -2321,7 +2321,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Congratulations !!!
+  m_text: '
+
+    CONGRATULATIONS !!!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2348,8 +2350,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
