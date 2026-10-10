@@ -294,11 +294,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4331390743261409561, guid: 5ab17b0fccc6ac94887145de4febb2d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000004768372
+      value: -0.000005960465
       objectReference: {fileID: 0}
     - target: {fileID: 4331390743261409561, guid: 5ab17b0fccc6ac94887145de4febb2d1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.750004
+      value: 25.000006
       objectReference: {fileID: 0}
     - target: {fileID: 4331390743261409561, guid: 5ab17b0fccc6ac94887145de4febb2d1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -888,11 +888,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6472359773852568289, guid: 6b7599c3de68ecd429ffab581ef4a2c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000004768372
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6472359773852568289, guid: 6b7599c3de68ecd429ffab581ef4a2c2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.750004
+      value: 21.07
       objectReference: {fileID: 0}
     - target: {fileID: 6472359773852568289, guid: 6b7599c3de68ecd429ffab581ef4a2c2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1117,7 +1117,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
