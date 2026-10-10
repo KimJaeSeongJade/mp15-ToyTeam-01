@@ -38,13 +38,15 @@ public class StageController : MonoBehaviour
 
     private void StartNextWave()
     {
-        _stageData.CurrentWave.Value++;
-        if (_stageData.CurrentWave.Value >= _stageData.MaxWave.Value)
+        if (_stageData.CurrentWave.Value + 1>= _stageData.MaxWave.Value)
         {
             _isTimeStopped = true;
             _stageData.IsStageClear.Value = true;
             return;
         }
+        
+        _stageData.CurrentWave.Value++;
+        
         _currentWaveData = _waves[_stageData.CurrentWave.Value].GetComponent<WaveData>();
 
         _currentWaveData.IsWaveClear.OnValueChanged += CheckWaveClear;
