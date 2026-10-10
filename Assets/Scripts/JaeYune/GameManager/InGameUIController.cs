@@ -93,6 +93,7 @@ public class InGameUIController : MonoBehaviour
         _isGameClear = false;
         
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
         _applyUis.SetActive(true);
         _pauseUi.SetActive(false);
         _clearUi.SetActive(false);
@@ -107,6 +108,7 @@ public class InGameUIController : MonoBehaviour
         _clearResultBoard.ShowResult(_stageData);
         
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         _applyUis.SetActive(false);
         _clearUi.SetActive(true);
         _gameOverUi.SetActive(false);
@@ -119,6 +121,7 @@ public class InGameUIController : MonoBehaviour
         _gameOverResultBoard.ShowResult(_stageData);
         
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         _applyUis.SetActive(false);
         _clearUi.SetActive(false);
         _gameOverUi.SetActive(true);
@@ -130,6 +133,7 @@ public class InGameUIController : MonoBehaviour
         
         PauseBgm();
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         _applyUis.SetActive(false);
         _pauseUi.SetActive(true);
     }
@@ -140,6 +144,7 @@ public class InGameUIController : MonoBehaviour
         
         ResumeBgm();
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined; 
         _applyUis.SetActive(true);
         _pauseUi.SetActive(false);
     }
