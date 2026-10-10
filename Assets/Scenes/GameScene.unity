@@ -586,31 +586,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2603684841559686002, guid: f2ad14601be9c7349bb901110faf4d6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 6.76
       objectReference: {fileID: 0}
     - target: {fileID: 2603684841559686002, guid: f2ad14601be9c7349bb901110faf4d6a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -5.406
       objectReference: {fileID: 0}
     - target: {fileID: 2603684841559686002, guid: f2ad14601be9c7349bb901110faf4d6a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.92
       objectReference: {fileID: 0}
     - target: {fileID: 2603684841559686002, guid: f2ad14601be9c7349bb901110faf4d6a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7033174
       objectReference: {fileID: 0}
     - target: {fileID: 2603684841559686002, guid: f2ad14601be9c7349bb901110faf4d6a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2603684841559686002, guid: f2ad14601be9c7349bb901110faf4d6a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7108761
       objectReference: {fileID: 0}
     - target: {fileID: 2603684841559686002, guid: f2ad14601be9c7349bb901110faf4d6a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2603684841559686002, guid: f2ad14601be9c7349bb901110faf4d6a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -618,12 +618,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2603684841559686002, guid: f2ad14601be9c7349bb901110faf4d6a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90.612
       objectReference: {fileID: 0}
     - target: {fileID: 2603684841559686002, guid: f2ad14601be9c7349bb901110faf4d6a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5080107704722714653, guid: f2ad14601be9c7349bb901110faf4d6a, type: 3}
+      propertyPath: _prefab
+      value: 
+      objectReference: {fileID: 1237443717210215900, guid: 9c6989050ae8d3142a44ff334fe242f9, type: 3}
     - target: {fileID: 8502144962199692532, guid: f2ad14601be9c7349bb901110faf4d6a, type: 3}
       propertyPath: m_Name
       value: MonsterDictionaryPool
@@ -2123,6 +2127,10 @@ PrefabInstance:
       propertyPath: _applyUis
       value: 
       objectReference: {fileID: 1676298891}
+    - target: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
+      propertyPath: _inGameBgm
+      value: 
+      objectReference: {fileID: 8300000, guid: e54ac093dab1efb4aa0f2a7651108b4d, type: 3}
     - target: {fileID: 1639420515293060111, guid: 02caf954d5030b24488a972759ea7d74, type: 3}
       propertyPath: _nexusData
       value: 

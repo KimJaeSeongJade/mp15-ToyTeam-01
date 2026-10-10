@@ -7,7 +7,7 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
 
     [Header("탄알 레이어")]
     private LayerMask _bulletLayer;
-
+    
     // =============== IPoolable 구현 ===============
     public GameObject GameObject { get; set; }
     public ObjectPool Source { get; set; }
@@ -22,7 +22,14 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
     private void Awake() => CacheComponents();
     private void OnEnable() => _isReturned = false;
     private void FixedUpdate() => MoveToNexus();
-    private void OnDisable() => _isReturned = true;
+    private void OnDisable()
+    {
+        _isReturned = true;
+        
+        // +
+        OnNexusArrived = null;
+        OnKilled = null;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,9 +49,9 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
     public void ArriveNexus()
     {   
         OnNexusArrived?.Invoke(_monsterData);
-        OnNexusArrived = null;
-        OnKilled = null;
-        gameObject.SetActive(false);
+        // OnNexusArrived = null;
+        // OnKilled = null;
+        //gameObject.SetActive(false);
         ReturnToPool();
     }
 
@@ -53,7 +60,15 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
     {
         if (damage >= _monsterData.Health)
         {
+            if (_isReturned)
+                return;
+            
             _monsterData.Health = 0;
+            
+            // ++
+            if (DecalSpawner.Instance != null)
+                DecalSpawner.Instance.Spawn(_monsterData.Type, transform.position);
+            
             OnKilled?.Invoke(_monsterData);
             OnNexusArrived = null;
             OnKilled = null;
@@ -69,7 +84,9 @@ public class MonsterController : MonoBehaviour, IDamageable, IPoolable
 
     public void ReturnToPool()
     {
-        if (_isReturned) return;
+        // +++
+        if (_isReturned) 
+            return;
 
         Source.Push(this);
     }

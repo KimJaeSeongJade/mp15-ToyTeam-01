@@ -45,11 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49124cb1f55bd4408551a9ad69144e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterPool: {fileID: 0}
-  SpawnPoint: {fileID: 1345074924780224401}
+  Source: {fileID: 0}
+  SpawnPoint:
+  - {fileID: 0}
   SpawnCoolDown: 3
   SpawnAmount: 50
   AmountForClear: 1000
+  Type: 0
 --- !u!114 &4943937261385005131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +66,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minOffset: -15
   maxOffset: 15
+  _smallMonsterDeath: {fileID: -2808051973218809083, guid: 5027ff0cd9791274bba9584ce433c042, type: 3}
+  _mideumMonsterDeath: {fileID: -7943472143168675222, guid: 47175f18359cb7145a72fff52f5c72f0, type: 3}
+  _bigMonsterDeath: {fileID: -357489499632663238, guid: 1b5232a2ab4ac4c4493ae471bff16847, type: 3}
 --- !u!1 &5682731649174027120
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,11 +114,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49124cb1f55bd4408551a9ad69144e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterPool: {fileID: 0}
-  SpawnPoint: {fileID: 4375379294966729056}
+  Source: {fileID: 0}
+  SpawnPoint:
+  - {fileID: 0}
   SpawnCoolDown: 3
   SpawnAmount: 50
   AmountForClear: 1000
+  Type: 0
 --- !u!114 &3219009077416834831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +135,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minOffset: -15
   maxOffset: 15
+  _smallMonsterDeath: {fileID: -2808051973218809083, guid: 5027ff0cd9791274bba9584ce433c042, type: 3}
+  _mideumMonsterDeath: {fileID: -7943472143168675222, guid: 47175f18359cb7145a72fff52f5c72f0, type: 3}
+  _bigMonsterDeath: {fileID: -357489499632663238, guid: 1b5232a2ab4ac4c4493ae471bff16847, type: 3}
 --- !u!1 &7927060060458927859
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,8 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43f5754633c30140a5c1191b3b672b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Nexus: {fileID: 0}
-  _time: 0
+  NexusData: {fileID: 0}
 --- !u!114 &1091337569619598261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,11 +252,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49124cb1f55bd4408551a9ad69144e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterPool: {fileID: 0}
-  SpawnPoint: {fileID: 6584814882648112812}
+  Source: {fileID: 0}
+  SpawnPoint:
+  - {fileID: 0}
   SpawnCoolDown: 3
   SpawnAmount: 50
   AmountForClear: 1000
+  Type: 0
 --- !u!114 &3941643932308526945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +273,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minOffset: -15
   maxOffset: 15
+  _smallMonsterDeath: {fileID: -2808051973218809083, guid: 5027ff0cd9791274bba9584ce433c042, type: 3}
+  _mideumMonsterDeath: {fileID: -7943472143168675222, guid: 47175f18359cb7145a72fff52f5c72f0, type: 3}
+  _bigMonsterDeath: {fileID: -357489499632663238, guid: 1b5232a2ab4ac4c4493ae471bff16847, type: 3}
 --- !u!1 &9067016289769985914
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,11 +321,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49124cb1f55bd4408551a9ad69144e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterPool: {fileID: 0}
-  SpawnPoint: {fileID: 7117326364648101376}
+  Source: {fileID: 0}
+  SpawnPoint:
+  - {fileID: 0}
   SpawnCoolDown: 1
   SpawnAmount: 10
   AmountForClear: 1000
+  Type: 0
 --- !u!114 &2170117193501205635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,3 +342,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minOffset: -15
   maxOffset: 15
+  _smallMonsterDeath: {fileID: -2808051973218809083, guid: 5027ff0cd9791274bba9584ce433c042, type: 3}
+  _mideumMonsterDeath: {fileID: -7943472143168675222, guid: 47175f18359cb7145a72fff52f5c72f0, type: 3}
+  _bigMonsterDeath: {fileID: -357489499632663238, guid: 1b5232a2ab4ac4c4493ae471bff16847, type: 3}
